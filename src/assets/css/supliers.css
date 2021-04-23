@@ -1,0 +1,94 @@
+.sup-box{
+    background-color: #ffffff;
+    padding: 1rem 1rem;
+    border-radius: 16px;
+    box-shadow: 0px 0px 15px rgba(0, 66, 63, 0.08);
+}
+.sup-subhead{
+    font-size: 18px;
+    font-weight: 700;
+}
+#dropdownMenuButton{
+    width: 100%;
+    height: 100% !important;
+    color: #00a79e;
+    background-color: #ffffff;
+    border: #00a79e solid 2px !important;
+}
+#description{
+    width: 100%;
+    border-radius: 16px;
+    border: #959595 2px solid;
+}
+input{
+    border: #959595 solid 2px !important;
+}
+/* .col{
+    border: blue solid 2px;
+}
+.row{
+    border: red solid 1px;
+} */
+input{
+    width: 100%;
+}
+.id-pic {
+    margin-top: 0rem  !important;
+}
+.btn{
+    background-color: #00a79e;
+    color: #ffffff;
+}
+.page-search>input{
+    width: 200px !important ;
+}
+.search-box>input{
+    border: 2px solid #00a79e !important;
+}
+
+.table_morecondensed>tbody>tr>th, 
+.table_morecondensed>tfoot>tr>th, 
+.table_morecondensed>thead>tr>td, 
+.table_morecondensed>tbody>tr>td, 
+.table_morecondensed>tfoot>tr>td{
+   padding-bottom: 0px !important;
+  }
+  tbody{
+    font-size: 13px !important;
+  }
+.pdf-icon{
+    font-size: 16px;
+
+}
+.pdf-icon:hover{
+    color: #00a79e;
+    transition: 0.3s;
+    
+}
+.sub-head1{
+    font-size: 16px;
+}
+.par-btn{
+    width: 100% !important;
+
+}
+.filter-btn2{
+    border: #00a79e solid 2px !important;
+}
+.checkboxnw1{
+    width: 24px;
+    text-align: right;
+}
+.textarea1nw{
+    width: 100%;
+    border: solid 2px #959595;
+    border-radius: 16px;
+}
+input{
+    color: #959595 !important;
+    font-size: 13px !important;
+  }
+.bottom-sen-pad{
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}

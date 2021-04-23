@@ -1,0 +1,128 @@
+a {
+    color: unset ;
+    text-decoration:none ;
+    background-color: unset  ; 
+   
+  }
+
+
+  
+.sub-menu-hr{
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    border: none;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    
+}
+  
+
+.sub-menu{
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 0px 15px rgba(0, 66, 63, 0.08);
+    padding: 1rem 1rem;
+}
+.show>.dropdown-toggle {
+   background-color: unset;
+   border: none;
+   color: #959595;
+   transition: 0.2s;
+   width: 100%;
+   
+}
+.sub-menu-option{
+    text-align: left !important;
+}
+a:hover {
+    
+    color: #00a79e !important;
+ }
+
+
+ .page-btn{
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    background-color: #00a79e;
+    color: #ffffff;
+    text-align: center;
+ }
+
+ .doc-box{
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 0px 15px rgba(0, 66, 63, 0.08);
+    padding: 1rem 1rem;
+ }
+
+ .doc-head{
+    font-size: 24px;
+    color: #00a79e;
+ }
+
+ .doc-text{
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    border: 2px solid #959595 ;
+    text-align: center;
+
+ }
+ .sub-head1{
+     font-weight: 700;
+     font-size: 16px;
+ }
+ .cross-sign-red{
+     font-size: 18px;
+     color: #f75252;
+     font-size: 18px;
+     
+
+ }
+ .check-sign-green{
+    font-size: 18px;
+    color: #00a79e;
+ }
+ .edit-btn:hover{
+    color: #00a79e;
+ }
+ .cross-btn:hover{
+    color: #f75252;
+    
+ }
+ .par-btn{
+     width: 100%;
+ }
+
+ .inp-3{
+     height: 40px;
+ }
+ #textarea2{
+     width: 100%;
+ }
+ .btn{
+     background-color: unset !important;
+     color: unset !important;
+ }
+ .active-text-nw2{
+     width: 100%;
+     background-color: #00a79e !important;
+     color: #ffffff !important;
+     border-radius: 8px;
+ }
+ input{
+    color: #959595 !important;
+    font-size: 13px !important;
+  }
+  .ddmenu{
+      color: #00a79e !important;
+      border: #00a79e solid 2px !important;
+      border-radius: 8px;
+  }
+  
+ .checkbox-nw{
+     border: none !important;
+     width: 16px;
+     height: 16px;
+     color: #00a79e;
+ }

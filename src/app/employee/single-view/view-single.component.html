@@ -1,0 +1,13 @@
+<p>view-single-employee works!</p>
+
+<form (ngSubmit)="f.valid && getEmployeeById()" #f="ngForm" novalidate>
+    id : <input [(ngModel)]="employeeId"/>
+    <button class="button" type="submit">Search </button>
+
+</form>
+<h1>
+{{employee.name}}</h1>
+{{employee.email}}
+{{employee.designation}}
+{{employee.salary}}
+

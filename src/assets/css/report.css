@@ -1,0 +1,332 @@
+/* .row{
+    border: red solid 1px;
+}
+.col{
+    border: blue 2px solid;
+} */
+.hr-vert-div{
+    display: inline-block;
+    
+}
+#sidebarCollapse{
+    border-radius: 50px !important;
+    color: #ffffff !important;
+}
+.page-title{
+    color: #00a79e;
+    font-size: 36px
+    
+}
+th{
+    font-size: 14px;
+}
+.date-time{
+    width: fit-content;
+}
+.notebtn>a>img{
+    width: 24px;
+}
+.report-menu-all{
+    width: 160px ;
+    border-radius: 8px;
+
+}
+.dateinpss{
+    border: solid 2px #959595 !important;
+}
+
+.report-menu-all>a{
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+    margin-top: 0.6rem;
+    border: unset !important;
+    color: #ffffff !important;
+}
+.report-menu-1>a{
+    background-color: #5932E6 !important;
+}
+.report-menu-2>a{
+    background-color: #5A7DE6 !important;
+}
+.report-menu-3>a{
+    background-color: #4FC5E6 !important;
+}
+
+.report-menu-4>a{
+    background-color: #43E6AF !important;
+}
+
+.report-menu-5>a{
+    background-color: #9AE665 !important;
+}
+
+.report-menu-6>a{
+    background-color: #CFE649 !important;
+}
+
+.report-menu-7>a{
+    background-color: #E6D755 !important;
+}
+.report-menu-8>a{
+    background-color: #E6D755 !important;
+}
+.report-menu-9>a{
+    background-color: #E6AA49 !important;
+}
+
+.report-menu-10>a{
+    background-color: #E67E65 !important;
+}
+
+.report-menu-11>a{
+    background-color: #E63F56 !important;
+}
+
+.active-report-btn1>a{
+    border:  2px solid #5932E6 !important;
+    background-color: transparent !important;
+    color: #5932E6 !important;
+}
+.active-report-btn2>a{
+    border:  2px solid #5A7DE6 !important;
+    background-color: transparent !important;
+    color: #5A7DE6 !important;
+}
+.active-report-btn3>a{
+    border:  2px solid #4FC5E6 !important;
+    background-color: transparent !important;
+    color: #4FC5E6 !important;
+}
+.active-report-btn4>a{
+    border:  2px solid #43E6AF !important;
+    background-color: transparent !important;
+    color: #43E6AF !important;
+}
+.active-report-btn5>a{
+    border:  2px solid #9AE665 !important;
+    background-color: transparent !important;
+    color: #9AE665 !important;
+}
+.active-report-btn6>a{
+    border:  2px solid #CFE649 !important;
+    background-color: transparent !important;
+    color: #CFE649 !important;
+}
+.active-report-btn7>a{
+    border:  2px solid #E6D755 !important;
+    background-color: transparent !important;
+    color: #E6D755 !important;
+}
+.active-report-btn8>a{
+    border:  2px solid #E6D755 !important;
+    background-color: transparent !important;
+    color: #E6D755 !important;
+}
+.active-report-btn9>a{
+    border:  2px solid #E6AA49 !important;
+    background-color: transparent !important;
+    color: #E6AA49 !important;
+}
+.active-report-btn10>a{
+    border:  2px solid #E67E65 !important;
+    background-color: transparent !important;
+    color: #E67E65 !important;
+}
+.active-report-btn11>a{
+    border:  2px solid #E63F56 !important;
+    background-color: transparent !important;
+    color: #E63F56 !important;
+}
+.col_13>div{
+    padding: 0;
+}
+.page-sub{
+    font-size: 36px;
+}
+.date-in3{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 2px solid #959595;
+}
+.enter-btn{
+    width: 100%;
+}
+.pie-chart-all{
+    width: 100%;
+    height: fit-content;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgba(0, 66, 63, 0.08);
+    border-radius: 16px;
+    padding: 1rem 2rem;
+}
+/* .pie-chart-2{
+    height: 100%;
+} */
+
+.btn{
+    background-color: #E9E9E9;
+    color: #959595;
+    border: none !important;
+    border-radius: 8px !important;
+}
+.dateinpss{
+    width: 100%;
+}
+#dropdownMenuButton {
+    color: #00a79e;
+    height: 100%;
+    border-radius: 8px;
+    padding: 0.1rem 0.2rem;
+    font-size: 14px;
+   
+}
+.sale-type{
+    text-align: right;
+}
+.con-table-all{
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgba(0, 66, 63, 0.08);
+    border-radius: 16px;
+    padding: 1rem 1rem;
+}
+.general-info-title{
+    font-size: 18px;
+    color: #959595;
+    font-weight: 700;
+}
+.con-table{
+    overflow-x: scroll;
+}
+#checkbox1{
+    width: 24px;
+}
+
+.page-sub{
+    font-size: 24px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 50px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #00a79e;
+  border-radius: 50px;
+
+}
+button{
+    width: 100%;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.date-input-box{
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgba(0, 66, 63, 0.08);
+    border-radius: 16px;
+    padding: 1rem 1rem;
+}
+.deatils-btn>a>button{
+    width: 100%;
+}
+
+.idbtnnone{
+    height: 36px;
+}
+
+.ddmenubox{
+    border: #00a79e  solid 2px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0.2rem 0.4rem;
+}
+.dropdown-menu-box{
+    width: 100%;
+}
+.imp-btn{
+    color: #00a79e;
+    border: #00a79e solid 2px ;
+    padding: 0.2rem 0.4rem;
+    border-radius: 8px;
+    font-size: 13px;
+}
+.imp-btn:hover{
+    color: #2dc0b9;
+    text-decoration: unset;
+    border: #2dc0b9 solid 2px ;
+    
+}
+.linechart232{
+    height: 60vh !important;
+}
+
+.close{
+    width: auto;
+}
+.checkbox-nw{
+    border: none !important;
+    width: 16px;
+    height: 16px;
+    color: #00a79e;
+}
+.colmarginbot{
+    margin-bottom: 0.7rem;
+    margin-right: 0.7rem;
+}
+.annuler-btn{
+    width: auto;
+}
+.valueNum{
+    font-size: 18px;
+    font-weight: 700;
+}
+@media (max-width: 768px){
+    .date-input-box-121{
+        margin-bottom: 1rem;
+    }
+  .page-sub{
+      margin-bottom: 1rem;
+  }
+    .chartBox{
+        overflow-x: scroll !important;
+    }
+    .report-menu-all{
+        width: 100%;
+    }
+    .repport-menu-all{
+        margin-bottom: 2rem;
+    }
+    .pie-chart-all{
+       margin-top: 2rem;
+    }
+    .chart-br{
+        display: none !important;
+    }
+    .Idbox{
+        margin-top: 2rem;
+    }  
+    .dateinpcol{
+        margin-bottom: 1rem;
+    }
+    .colmarginNw{
+        margin-top: 1rem;
+    }
+}
+
+input{
+    color: #959595 !important;
+    font-size: 13px !important;
+  }

@@ -1,0 +1,47 @@
+<h1>This is Employee Screen</h1>
+
+
+
+<form #f="ngForm" name="form"  ngSubmit="addEmployee();">
+
+    <div>
+      <label>
+        User Name
+      </label>
+      <input 
+      [(ngModel)]="employeeModel.name"
+      name="name" type="text" />
+    </div>
+
+    <div>
+        <label >
+          Email
+        </label>
+        <input
+        [(ngModel)]="employeeModel.email"
+        name="email" type="email" />
+      </div>
+
+
+      <div>
+        <label >
+          Last Name
+        </label>
+        <input
+        
+        [(ngModel)]="employeeModel.designation"
+        name="designation" type="text" />
+      </div>
+
+    <div>
+        <label>
+          Email
+        </label>
+        <input
+
+        [(ngModel)]="employeeModel.salary" id="salary" type="text" />
+    </div>
+  
+    <button class="button" type="submit">Add Employee</button>
+  
+  </form>

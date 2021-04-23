@@ -1,0 +1,180 @@
+<div class="login_wrraper">
+    <div class="logo-wrapper">
+        <a href="#" class="logo"><img src="../../assets/img/sobrus-logo.jpg" alt=""></a>
+        <p class="logo-slogan">Le logiciel de pharmacie <br>qu'il vous faut !</p>
+    </div>
+
+    <div class="login-top-info">
+        <div class="lti-tel">
+            <i class="login-tel"></i>
+            05 30 500 500
+        </div>
+
+        <div class="lti-assistance">
+            <span><i class="dash-head"></i> Support </span>
+        </div>
+    </div>
+    <div class="login-bottom-info">
+        <a href="http://pharma.sobrus.com/" class="lbi-bloc" target="_blank">
+            <i class="world"></i>
+            pharma.sobrus.com
+        </a>
+        <div class="lbi-bloc">
+            <i class="small-envelope"></i>
+            support@sobrus.com
+        </div>
+    </div>
+    <!-- <c:url var="loginUrl" value="/login.htm"/> -->
+
+    <div class="login_bg">
+        <div class="login_container">
+            <div class="login_ct">
+                <div class="login">
+                    <p class="login_head"><strong>Sobrus</strong> Pharma</p>
+                    <!-- <c:if test="${not empty error}">
+                        <h5 class="text-center"
+                            style="border-bottom-color: red; color: red">Wrong Username
+                            OR Password</h5>
+                    </c:if> -->
+                    <form id="connex_form" class="form-auth-small m-t-md ajax-form-login login_form" (ngSubmit)="login();" #f="ngForm">
+
+                        <div class="form-group form_row">
+                            <input 
+                                type="text" 
+                                class="form-control input" 
+                                id="username" 
+                                name="username" 
+                                placeholder="Email"
+                                id="username"
+                                [(ngModel)]="loginModel.username"
+                                #username="ngModel"
+                                
+                            >
+                        </div>
+                        <div class=" form-group form_row">
+                                <input 
+                                    type="password"
+                                    required
+                                    name="password"
+                                    maxlength="11"
+                                    id="password"
+                                    placeholder="Password"
+                                    [(ngModel)]="loginModel.password"
+                                    #password="ngModel"
+                                    class="input"
+                                >                    
+                        </div>
+                        <div class="form_row">
+                            <label for="remember_me" class="checkbox">
+
+                                <input type="hidden" name="remember_me" value="0"><input type="checkbox"
+                                                                                         name="remember_me"
+                                                                                         id="remember_me" value="1"
+                                                                                         checked="checked"> <span
+                                    class="checked"></span>
+                                Se souvenir de moi </label>
+                        </div>
+                        
+
+                        <div class="form_row">
+                            <button id="submit" type="submit" class="submit btn btn-primary btn-lg btn-block">Se connecter</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="login_footer">
+                    <p><a href="#">Mot de passe oublié ?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="login_wrraper">
+    <div class="logo-wrapper">
+        <a href="#" class="logo"><img src="../../assets/img/sobrus-logo.jpg" alt=""></a>
+        <p class="logo-slogan">Le logiciel de pharmacie <br>qu'il vous faut !</p>
+    </div>
+
+    <div class="login-top-info">
+        <div class="lti-tel">
+            <i class="login-tel"></i>
+            05 30 500 500
+        </div>
+
+        <div class="lti-assistance">
+            <span><i class="dash-head"></i> Support </span>
+        </div>
+    </div>
+    <div class="login-bottom-info">
+        <a href="http://pharma.sobrus.com/" class="lbi-bloc" target="_blank">
+            <i class="world"></i>
+            pharma.sobrus.com
+        </a>
+        <div class="lbi-bloc">
+            <i class="small-envelope"></i>
+            support@sobrus.com
+        </div>
+    </div>
+    <!-- <c:url var="loginUrl" value="/login.htm"/> -->
+
+    <div class="login_bg">
+        <div class="login_container">
+            <div class="login_ct">
+                <div class="login">
+                    <p class="login_head"><strong>Sobrus</strong> Pharma</p>
+                    <!-- <c:if test="${not empty error}">
+                        <h5 class="text-center"
+                            style="border-bottom-color: red; color: red">Wrong Username
+                            OR Password</h5>
+                    </c:if> -->
+                    <form id="connex_form" class="form-auth-small m-t-md ajax-form-login login_form" (ngSubmit)="login();" #f="ngForm">
+
+                        <div class="form-group form_row">
+                            <input 
+                                type="text" 
+                                class="form-control input" 
+                                id="username" 
+                                name="username" 
+                                placeholder="Email"
+                                id="username"
+                                [(ngModel)]="loginModel.username"
+                                #username="ngModel"
+                                
+                            >
+                        </div>
+                        <div class=" form-group form_row">
+                                <input 
+                                    type="password"
+                                    required
+                                    name="password"
+                                    maxlength="11"
+                                    id="password"
+                                    placeholder="Password"
+                                    [(ngModel)]="loginModel.password"
+                                    #password="ngModel"
+                                    class="input"
+                                >                    
+                        </div>
+                        <div class="form_row">
+                            <label for="remember_me" class="checkbox">
+
+                                <input type="hidden" name="remember_me" value="0"><input type="checkbox"
+                                                                                         name="remember_me"
+                                                                                         id="remember_me" value="1"
+                                                                                         checked="checked"> <span
+                                    class="checked"></span>
+                                Se souvenir de moi </label>
+                        </div>
+                        
+
+                        <div class="form_row">
+                            <button id="submit" type="submit" class="submit btn btn-primary btn-lg btn-block">Se connecter</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="login_footer">
+                    <p><a href="#">Mot de passe oublié ?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
