@@ -25,6 +25,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PaginationComponent } from './pagination/pagination.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [

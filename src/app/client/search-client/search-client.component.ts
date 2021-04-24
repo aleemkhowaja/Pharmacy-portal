@@ -19,14 +19,6 @@ export class SearchClientComponent implements OnInit {
     totalItems: 10,
     itemsPerPage: 5,
   };
-  displayedColumns: string[] = [
-    'Nom',
-    'Taper',
-    'Email',
-    'Phone No.',
-    'CIN',
-    'CNSS',
-  ];
 
   resultsLength = 0;
   isLoadingResults = true;

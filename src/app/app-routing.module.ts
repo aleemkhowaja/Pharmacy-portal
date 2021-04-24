@@ -1,3 +1,5 @@
+import { SearchArchiveComponent } from './archive/search-archive/search-archive.component';
+import { ArchiveComponent } from './archive/archive.component';
 import { ClientComponent } from './client/client.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -29,6 +31,11 @@ const routes: Routes = [
     component: AddClientComponent,
     data: { title: 'Add Client' },
   },
+  {
+    path: 'archive',
+    component: ArchiveComponent,
+    data: { title: 'archive' },
+  },
 ];
 
 @NgModule({
@@ -44,4 +51,6 @@ export const routingComponents = [
   SearchClientComponent,
   ClientComponent,
   AddClientComponent,
+  ArchiveComponent,
+  SearchArchiveComponent,
 ];
