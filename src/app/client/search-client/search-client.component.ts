@@ -8,11 +8,17 @@ import { ClientService } from '../client.service';
 @Component({
   selector: 'app-search-client',
   templateUrl: './search-client.component.html',
-  styleUrls: ['./search-client.component.css']
+  styleUrls: ['./search-client.component.css'],
 })
 export class SearchClientComponent implements OnInit {
-
-  displayedColumns: string[] = ['Nom', 'Taper', 'Email', 'Phone No.', 'CIN', 'CNSS'];
+  displayedColumns: string[] = [
+    'Nom',
+    'Taper',
+    'Email',
+    'Phone No.',
+    'CIN',
+    'CNSS',
+  ];
   todoDatasource!: MatTableDataSource<unknown>;
 
   resultsLength = 0;
@@ -22,27 +28,124 @@ export class SearchClientComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  @ViewChild(MatSort) 
+  @ViewChild(MatSort)
   sort!: MatSort;
 
   dataLoading: boolean = true;
-  
 
-  constructor(private clientService : ClientService) { }
+  constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
     this.getAll();
   }
 
-    getAll(){
-      this.clientService.getAll().subscribe(response=> {
-        this.dataLoading = false;
-        console.log('response ',response.data.getAllCustomers);
-        this.todoDatasource = new MatTableDataSource(response.data.getAllCustomers);
-        this.todoDatasource.paginator = this.paginator;
-        this.todoDatasource.sort = this.sort;
-        console.log('this.allClients ',this.todoDatasource);
-      });
-    } 
-
+  getAll() {
+    this.dataLoading = false;
+    //#region Dummy Data
+    const _lstClient: any[] = [
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+      {
+        lastName: 'Mark',
+        type: 'Regular Client',
+        email: 'Mark@gmail.com',
+        phone: '8156466558',
+        cin: '2565AFAJ',
+        cnss: '2565AFAJ-6',
+      },
+    ];
+    //#endregion
+    this.todoDatasource = new MatTableDataSource(_lstClient);
+    this.todoDatasource.paginator = this.paginator;
+    this.todoDatasource.sort = this.sort;
+    console.log('this.allClients ', this.todoDatasource);
+  }
+  // getAll(){
+  //   this.clientService.getAll().subscribe(response=> {
+  //     this.dataLoading = false;
+  //     console.log('response ',response.data.getAllCustomers);
+  //     this.todoDatasource = new MatTableDataSource(response.data.getAllCustomers);
+  //     this.todoDatasource.paginator = this.paginator;
+  //     this.todoDatasource.sort = this.sort;
+  //     console.log('this.allClients ',this.todoDatasource);
+  //   });
+  // }
 }
