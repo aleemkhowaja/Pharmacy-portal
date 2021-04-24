@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/Css/select2.min.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+ng-select input {
+  border: 0 !important;
+}
+
+ng-select {
+  border-radius: 8px;
+  border: #959595 2px solid !important;
+}

@@ -37,15 +37,122 @@ const allClients = gql`
   providedIn: 'root',
 })
 export class ClientService {
+  lstCients: any = [
+    {
+      id: 1,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 2,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 3,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 4,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 5,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 6,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 7,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 8,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 9,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+    {
+      id: 10,
+      lastName: 'Mark',
+      type: 'Regular Client',
+      email: 'Mark@gmail.com',
+      phone: '8156466558',
+      cin: '2565AFAJ',
+      cnss: '2565AFAJ-6',
+      balanced: 1331,
+    },
+  ];
   constructor(private http: HttpClient, private apollo: Apollo) {}
 
-  getAll(): Observable<any> {
-    let _a: any = { id: 0 };
+  getAll(pageNumber: number, itemPerPage: number): Observable<ClientModel[]> {
+    return this.lstCients.slice(
+      (pageNumber - 1) * itemPerPage,
+      pageNumber * itemPerPage
+    );
+  }
 
-    return _a;
-    // return this.apollo.watchQuery<any>({
-    //   query: allClients,
-    // }).valueChanges;
-    // add the dummy data
+  getSpecificClient(id: number) {
+    return this.lstCients.find((x: any) => x.id === id);
+  }
+
+  save() {
+    console.log(name);
   }
 }

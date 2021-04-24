@@ -114,7 +114,9 @@
                 <td><input type="text" placeholder="CNSS" /></td>
                 <td><input type="text" placeholder="Balance" /></td>
                 <td>
-                  <button><i class="fas fa-search"></i></button>
+                  <button>
+                    <i class="fas fa-search" routerLink="login"></i>
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -123,198 +125,51 @@
       </div>
 
       <div class="row">
-        <div class="col">
-          <div class="absolute-center" *ngIf="dataLoading"></div>
-
-          <div
-            class="table-cont"
-            [style.visibility]="dataLoading ? 'hidden' : 'visible'"
-          >
-            <div class="patients-table">
-              <table
-                class="table table-striped"
-                mat-table
-                [dataSource]="todoDatasource"
-              >
-                <ng-container matColumnDef="Nom">
-                  <tr>
-                    <th
-                      scope="col"
-                      mat-header-cell
-                      *matHeaderCellDef
-                      mat-sort-header
-                    >
-                      Nom
-                    </th>
-                  </tr>
-                  <tr>
-                    <td mat-cell *matCellDef="let row" style="width: 20%">
-                      {{ row.lastName }}
-                    </td>
-                  </tr>
-
-                  <tr></tr
-                ></ng-container>
-
-                <ng-container matColumnDef="Taper">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        mat-header-cell
-                        *matHeaderCellDef
-                        mat-sort-header
-                      >
-                        Taper
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td mat-cell *matCellDef="let row" style="width: 20%">
-                        {{ row.type }}
-                      </td>
-                    </tr>
-
-                    <tr></tr>
-                  </tbody>
-                </ng-container>
-
-                <ng-container matColumnDef="Email">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        mat-header-cell
-                        *matHeaderCellDef
-                        mat-sort-header
-                      >
-                        Email
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td mat-cell *matCellDef="let row" style="width: 20%">
-                        {{ row.email }}
-                      </td>
-                    </tr>
-
-                    <tr></tr>
-                  </tbody>
-                </ng-container>
-
-                <ng-container matColumnDef="Phone No.">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        mat-header-cell
-                        *matHeaderCellDef
-                        mat-sort-header
-                      >
-                        Phone No.
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td mat-cell *matCellDef="let row" style="width: 20%">
-                        {{ row.phone }}
-                      </td>
-                    </tr>
-
-                    <tr></tr>
-                  </tbody>
-                </ng-container>
-
-                <ng-container matColumnDef="CIN">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        mat-header-cell
-                        *matHeaderCellDef
-                        mat-sort-header
-                      >
-                        CIN
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td mat-cell *matCellDef="let row" style="width: 20%">
-                        {{ row.cin }}
-                      </td>
-                    </tr>
-
-                    <tr></tr>
-                  </tbody>
-                </ng-container>
-
-                <ng-container matColumnDef="CNSS">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        mat-header-cell
-                        *matHeaderCellDef
-                        mat-sort-header
-                      >
-                        CNSS
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td mat-cell *matCellDef="let row" style="width: 20%">
-                        {{ row.cnss }}
-                      </td>
-                    </tr>
-
-                    <tr></tr>
-                  </tbody>
-                </ng-container>
-
-                <ng-container matColumnDef="">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        mat-header-cell
-                        *matHeaderCellDef
-                        mat-sort-header
-                      ></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td mat-cell *matCellDef="let row" style="width: 20%">
-                        <a href=""
-                          ><i class="fas fa-pen" aria-hidden="true"></i
-                        ></a>
-                      </td>
-                    </tr>
-
-                    <tr></tr>
-                  </tbody>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr
-                  mat-row
-                  *matRowDef="let row; columns: displayedColumns"
-                ></tr>
-              </table>
-            </div>
-            <mat-paginator
-              [length]="resultsLength"
-              [pageSize]="10"
-            ></mat-paginator>
+        <div class="col-12">
+          <div class="table-cont">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nom</th>
+                  <th>Taper</th>
+                  <th>Email</th>
+                  <th>Phone No</th>
+                  <th>CIN</th>
+                  <th>CNSS</th>
+                  <th>Équilibre</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of lstClient">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.lastName }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.email }}</td>
+                  <td>{{ item.phone }}</td>
+                  <td>{{ item.cin }}</td>
+                  <td>{{ item.cnss }}</td>
+                  <td>{{ item.balanced }}$</td>
+                  <td>
+                    <a
+                      class="fa fa-pencil"
+                      [routerLink]="['/add-client', item.id]"
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="pagination" class="mt-1">
+    <app-pagination
+      [pagination]="pagination"
+      (pageNumberChanged)="loadLst($event)"
+    ></app-pagination>
   </div>
   <br />
   <div class="container-fluid">

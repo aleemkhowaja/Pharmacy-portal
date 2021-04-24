@@ -1,4 +1,9 @@
-<form class="client-form" id="client-form" [formGroup]="addClientForm">
+<form
+  class="client-form"
+  id="client-form"
+  [formGroup]="addClientForm"
+  (ngSubmit)="submitForm()"
+>
   <!-- Page content holder -->
   <div class="p-51"></div>
   <div class="page-content p-5" id="content">
@@ -80,9 +85,9 @@
                 <div class="Sub-Head">Gestionnaire</div>
                 <input
                   type="text"
-                  placeholder="Mouad Ghalmane"
-                  id="client-username"
-                  formControlName="username"
+                  placeholder="Gestionnaire"
+                  id="client-manager"
+                  formControlName="manager"
                 />
               </div>
               <div class="col col-12 col-md-6">
@@ -98,24 +103,20 @@
               </div>
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Type</div>
-                <div class="dropdown show">
-                  <select
-                    id="client-type"
-                    class="btn btn-secondary dropdown-toggle filter-btn filter-btn2"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    formControlName="type"
-                  >
-                    <option class="dropdown-item" value="cr">
-                      Client régulier
-                    </option>
-                    <option class="dropdown-item" value="cp">
-                      Client Passager
-                    </option>
-                    <option class="dropdown-item" value="ph">Pharmacie</option>
-                  </select>
-                </div>
+                <ng-select
+                  [ngClass]="'overFlowSelect'"
+                  [clearable]="true"
+                  [items]="types"
+                  bindValue="value"
+                  bindtext="label"
+                  name="type"
+                  formControlName="type"
+                  [placeholder]="'type'"
+                  [virtualScroll]="true"
+                  [appendTo]="'body'"
+                  required
+                >
+                </ng-select>
               </div>
             </div>
             <br />
@@ -144,13 +145,19 @@
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Médecin traitant</div>
                 <ng-select
-                  id="id"
-                  bindLabel="name"
-                  bindValue="id"
-                  placeholder="Select Doctors"
-                  formControlName="doctorId"
-                  loadingText="Searching..."
-                ></ng-select>
+                  [ngClass]="'overFlowSelect'"
+                  [clearable]="true"
+                  [items]="doctors"
+                  bindValue="value"
+                  bindtext="label"
+                  name="type"
+                  formControlName="type"
+                  [placeholder]="'type'"
+                  [virtualScroll]="true"
+                  [appendTo]="'body'"
+                  required
+                >
+                </ng-select>
 
                 <!-- <input type="text" data-toggle="modal" data-target="#myModal"> -->
               </div>
@@ -159,7 +166,7 @@
             <div class="row">
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Plafond de crédit</div>
-                <input type="text" />
+                <input type="text" formControlName="creditLimit" />
               </div>
             </div>
           </div>
@@ -205,7 +212,7 @@
               </div>
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Numéro d'immatriculation</div>
-                <input type="text" />
+                <input type="text" formControlName="registerationNumber" />
               </div>
             </div>
 
@@ -213,7 +220,7 @@
             <div class="row">
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Numéro d'affiliation</div>
-                <input type="text" />
+                <input type="text" formControlName="affiliateNumber" />
               </div>
             </div>
           </div>
@@ -238,7 +245,7 @@
             <div class="row">
               <div class="col col-12">
                 <div class="Sub-Head">Adresse</div>
-                <input type="text" />
+                <input type="text" formControlName="address" />
               </div>
             </div>
 
@@ -247,7 +254,7 @@
             <div class="row">
               <div class="col col-12">
                 <div class="Sub-Head">Ville</div>
-                <input type="text" />
+                <input type="text" formControlName="city" />
               </div>
             </div>
 
@@ -256,7 +263,7 @@
             <div class="row">
               <div class="col col-12">
                 <div class="Sub-Head">Code postal</div>
-                <input type="text" />
+                <input type="text" formControlName="postalCode" />
               </div>
             </div>
 
@@ -266,7 +273,7 @@
               <div class="col col-12">
                 <div class="Sub-Head">Pays</div>
                 <div class="dropdown show">
-                  <a
+                  <!-- <a
                     class="btn btn-secondary dropdown-toggle filter-btn filter-btn2"
                     href="#"
                     role="button"
@@ -276,14 +283,22 @@
                     aria-expanded="false"
                   >
                     Marco
-                  </a>
+                  </a> -->
 
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Niveau 1</a>
-                    <a class="dropdown-item" href="#">Niveau 2</a>
-                    <a class="dropdown-item" href="#">Niveau 3</a>
-                    <a class="dropdown-item" href="#">Aucun</a>
-                  </div>
+                  <ng-select
+                    [ngClass]="'overFlowSelect'"
+                    [clearable]="true"
+                    [items]="countries"
+                    bindValue="value"
+                    bindtext="label"
+                    name="type"
+                    formControlName="country"
+                    [placeholder]="'type'"
+                    [virtualScroll]="true"
+                    [appendTo]="'body'"
+                    required
+                  >
+                  </ng-select>
                 </div>
               </div>
             </div>

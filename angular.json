@@ -34,7 +34,8 @@
               "src/styles.css" , "src/assets/css/ssds.css", "src/assets/css/style.css", "src/assets/css/settings.css", 
               "src/assets/css/login.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.min.js"]
+            "scripts": ["node_modules/jquery/dist/jquery.min.js",
+              "src/assets/scripts/select2.min.js"]
           },
           "configurations": {
             "production": {

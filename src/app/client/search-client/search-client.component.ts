@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClientModel } from 'src/models/client';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ClientService } from '../client.service';
+import { ClientModel } from 'src/models/client';
+import { Pagination } from 'src/models/pagination';
 
 @Component({
   selector: 'app-search-client',
@@ -11,6 +12,13 @@ import { ClientService } from '../client.service';
   styleUrls: ['./search-client.component.css'],
 })
 export class SearchClientComponent implements OnInit {
+  lstClient: any;
+  pagination: Pagination = {
+    totalPages: 2,
+    currentPage: 1,
+    totalItems: 10,
+    itemsPerPage: 5,
+  };
   displayedColumns: string[] = [
     'Nom',
     'Taper',
@@ -19,7 +27,6 @@ export class SearchClientComponent implements OnInit {
     'CIN',
     'CNSS',
   ];
-  todoDatasource!: MatTableDataSource<unknown>;
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -42,110 +49,17 @@ export class SearchClientComponent implements OnInit {
   getAll() {
     this.dataLoading = false;
     //#region Dummy Data
-    const _lstClient: any[] = [
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-      {
-        lastName: 'Mark',
-        type: 'Regular Client',
-        email: 'Mark@gmail.com',
-        phone: '8156466558',
-        cin: '2565AFAJ',
-        cnss: '2565AFAJ-6',
-      },
-    ];
+    this.lstClient = this.clientService.getAll(
+      this.pagination.currentPage,
+      this.pagination.itemsPerPage
+    );
     //#endregion
-    this.todoDatasource = new MatTableDataSource(_lstClient);
-    this.todoDatasource.paginator = this.paginator;
-    this.todoDatasource.sort = this.sort;
-    console.log('this.allClients ', this.todoDatasource);
+
+    console.log('this.allClients ', this.lstClient);
   }
-  // getAll(){
-  //   this.clientService.getAll().subscribe(response=> {
-  //     this.dataLoading = false;
-  //     console.log('response ',response.data.getAllCustomers);
-  //     this.todoDatasource = new MatTableDataSource(response.data.getAllCustomers);
-  //     this.todoDatasource.paginator = this.paginator;
-  //     this.todoDatasource.sort = this.sort;
-  //     console.log('this.allClients ',this.todoDatasource);
-  //   });
-  // }
+
+  loadLst(pageNumber: number) {
+    this.pagination.currentPage = pageNumber;
+    this.getAll();
+  }
 }
