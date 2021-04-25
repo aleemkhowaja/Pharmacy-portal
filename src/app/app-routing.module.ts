@@ -1,5 +1,3 @@
-import { SearchArchiveComponent } from './archive/search-archive/search-archive.component';
-import { ArchiveComponent } from './archive/archive.component';
 import { ClientComponent } from './client/client.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { AddClientComponent } from './client/add-client/add-client.component';
 import { HomeComponent } from './home/home.component';
 import { SearchClientComponent } from './client/search-client/search-client.component';
+import { ArchiveComponent } from './client/archive/archive.component';
+import { SearchArchiveComponent } from './client/archive/search-archive/search-archive.component';
 
 const routes: Routes = [
   {
