@@ -9,6 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { SearchClientComponent } from './client/search-client/search-client.component';
 import { ArchiveComponent } from './client/archive/archive.component';
 import { SearchArchiveComponent } from './client/archive/search-archive/search-archive.component';
+import { ProductComponent } from './product/product.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -31,6 +35,32 @@ const routes: Routes = [
     component: AddClientComponent,
     data: { title: 'Add Client' },
   },
+  {
+    path: 'product',
+    component: ProductComponent,
+    data: { title: 'Product' },
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailsComponent,
+    data: { title: 'Product details' },
+  },
+  {
+    path: 'product-suggestion',
+    component: SearchProductSuggestionComponent,
+    data: { title: 'Product suggestions' },
+  },
+  {
+    path: 'add-product',
+    component: AddProductComponent,
+    data: { title: 'Add Product' },
+  },
+  {
+    path: 'add-product/:id',
+    component: AddProductComponent,
+    data: { title: 'Update Product' },
+  },
+  
   {
     path: 'archive',
     component: ArchiveComponent,
