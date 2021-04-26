@@ -2,7 +2,7 @@ import { AddClientComponent } from './client/add-client/add-client.component';
 import { SearchClientComponent } from './client/search-client/search-client.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_BASE_HREF } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,11 +20,15 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { NgxSelectModule } from 'ngx-select-ex';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PaginationComponent } from './pagination/pagination.component';
+import { SearchProductComponent } from './product/search-product/search-product.component';
+import { ProductComponent } from './product/product.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
 
 @NgModule({
   declarations: [
@@ -32,17 +36,19 @@ import { PaginationComponent } from './pagination/pagination.component';
     routingComponents,
     NavBarComponent,
     PaginationComponent,
+    ProductComponent,
+    SearchProductComponent,
+    AddProductComponent,
+    SearchProductSuggestionComponent
   ],
   imports: [
-    NgSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     PaginationModule.forRoot(),
     NgxSelectModule,
     NgSelectModule,
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    AppRoutingModule,   
     HttpClientModule,
     HomeModule,
     EmployeeModule,
