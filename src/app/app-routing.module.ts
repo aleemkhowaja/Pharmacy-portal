@@ -13,6 +13,11 @@ import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { SuplierComponent } from './suplier/suplier.component';
+import { AddSuplierComponent } from './suplier/add-suplier/add-suplier.component';
+import { SuplierDetailsComponent } from './suplier/suplier-details/suplier-details.component';
+import { SearchSuplierSuggestionComponent } from './suplier/search-suplier-suggestion/search-suplier-suggestion.component';
+import { SuplierSuggestionDetailsComponent } from './suplier/suplier-suggestion-details/suplier-suggestion-details.component';
 
 const routes: Routes = [
   {
@@ -60,7 +65,37 @@ const routes: Routes = [
     component: AddProductComponent,
     data: { title: 'Update Product' },
   },
-  
+  {
+    path: 'suplier',
+    component: SuplierComponent,
+    data: { title: 'Suplier' },
+  },
+  {
+    path: 'suplier-suggestion',
+    component: SearchSuplierSuggestionComponent,
+    data: { title: 'Suplier suggestions' },
+  },
+  {
+    path: 'suplier/:id',
+    component: SuplierDetailsComponent,
+    data: { title: 'Suplier details' },
+  },
+  {
+    path: 'suplier-suggestion/:id',
+    component: SuplierSuggestionDetailsComponent,
+    data: { title: 'Suplier details' },
+  },
+  {
+    path: 'add-suplier',
+    component: AddSuplierComponent,
+    data: { title: 'Add Suplier' },
+  },
+  {
+    path: 'add-suplier/id',
+    component: AddSuplierComponent,
+    data: { title: 'Update Suplier' },
+  },
+
   {
     path: 'archive',
     component: ArchiveComponent,
