@@ -1,3 +1,5 @@
+import { SearchSaleComponent } from './sale/search-sale/search-sale.component';
+import { SaleComponent } from './sale/sale.component';
 import { AddClientComponent } from './client/add-client/add-client.component';
 import { SearchClientComponent } from './client/search-client/search-client.component';
 import { NgModule } from '@angular/core';
@@ -29,17 +31,13 @@ import { ProductComponent } from './product/product.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
+import { ViewClientComponent } from './client/view-client/view-client.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    NavBarComponent,
-    PaginationComponent,
-    ProductComponent,
-    SearchProductComponent,
-    AddProductComponent,
-    SearchProductSuggestionComponent
+    ViewClientComponent   
   ],
   imports: [
     FormsModule,

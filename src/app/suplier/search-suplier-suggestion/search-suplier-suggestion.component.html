@@ -13,7 +13,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col page-head col-md-8">
-        <h2>Les patients</h2>
+        <h2>Suggestions de fournisseurs</h2>
       </div>
 
       <div class="col col-2 col-sm-1 cmnpad">
@@ -42,21 +42,9 @@
         </div>
       </div>
 
-      <div class="col col-12 buttons-aic col-lr-1 col-md-1 col-sm-3 cmnpad">
-        <div class="box1 boxes12 special-red">
-          <a routerLink="/archive">Archiver</a>
-        </div>
-      </div>
-
-      <div class="col col-12 col-lr-1 buttons-aic col-md-1 col-sm-3 cmnpad">
-        <div class="box2 boxes12">Importer</div>
-      </div>
-
-      <div class="col col-12 col-lr-1 buttons-aic col-md-1 col-sm-3 cmnpad">
-        <div class="creer">
-          <a href="#">
-            <button class="creerbtn"  [routerLink]="['/add-client', 0]">Créer</button>
-          </a>
+      <div class="col col-12 col-lr-1 buttons-aic col-md-3 col-sm-3 cmnpad">
+        <div class="box2 boxes12 special-green">
+          Suggérer un nouveau fournisseur
         </div>
       </div>
     </div>
@@ -82,7 +70,19 @@
           <table class="table">
             <tbody>
               <tr>
-                <td><input type="text" placeholder="Name" /></td>
+                <td><input type="text" placeholder="Last Name" /></td>
+                <td><input type="text" placeholder="PPV" /></td>
+                <td><input type="text" placeholder="Category" /></td>
+                <td><input type="text" placeholder="Pharmaceutical Form" /></td>
+
+                <td>
+                  <button><i class="fas fa-search"></i></button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><input type="text" placeholder="PPH" /></td>
+                <td><input type="text" placeholder="Bar Code" /></td>
                 <td>
                   <div class="dropdown dropdown1 show dropright">
                     <a
@@ -94,7 +94,7 @@
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      Taper
+                      Zoné
                     </a>
 
                     <div
@@ -102,23 +102,32 @@
                       aria-labelledby="dropdownMenuLink"
                     >
                       <a class="dropdown-item" href="#">Non</a>
-                      <a class="dropdown-item" href="#">Client régulier</a>
-                      <a class="dropdown-item" href="#">Client passager</a>
-                      <a class="dropdown-item" href="#">Pharmacie</a>
+                      <a class="dropdown-item" href="#">Oui</a>
                     </div>
                   </div>
                 </td>
-                <td><input type="text" placeholder="Email" /></td>
-                <td><input type="text" placeholder="Phone" /></td>
-              </tr>
-              <tr>
-                <td><input type="text" placeholder="CIN" /></td>
-                <td><input type="text" placeholder="CNSS" /></td>
-                <td><input type="text" placeholder="Balance" /></td>
                 <td>
-                  <button>
-                    <i class="fas fa-search" routerLink="login"></i>
-                  </button>
+                  <div class="dropdown dropdown1 show dropright">
+                    <a
+                      class="btn btn-secondary dropdown-toggle"
+                      href="#"
+                      role="button"
+                      id="dropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      C'est actif
+                    </a>
+
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuLink"
+                    >
+                      <a class="dropdown-item" href="#">Non</a>
+                      <a class="dropdown-item" href="#">Oui</a>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -132,37 +141,23 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Nom</th>
-                  <th>Taper</th>
-                  <th>Email</th>
-                  <th>Phone No</th>
-                  <th>CIN</th>
-                  <th>CNSS</th>
-                  <th>Équilibre</th>
-                  <th></th>
+                  <th scope="col">Fournisseur</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col"> Téléphone</th>
+                  <th scope="col">Ville</th>
+                  <th scope="col"> Status</th>
                 </tr>
               </thead>
               <tbody>
-
-                <tr *ngFor="let item of lstClient" [routerLink]="['/view-client', item.id]">
-                  <!-- <a [routerLink]="['/view-client']"> -->
-                  <td>{{ item.id }}</td>
-                  <td>{{ item.lastName }}</td>
-                  <td>{{ item.type }}</td>
-                  <td>{{ item.email }}</td>
+                <tr
+                  *ngFor="let item of lstSuplier"
+                  (click)="viewSuplier(item.id)"
+                >
+                  <td>{{ item.suplier }}</td>
+                  <td>{{ item.name }}</td>
                   <td>{{ item.phone }}</td>
-                  <td>{{ item.cin }}</td>
-                  <td>{{ item.cnss }}</td>
-                  <td>{{ item.balanced }}$</td>
-                  <td>
-                    <a
-                      class="fa fa-pencil"
-                      [routerLink]="['/add-client', item.id]"
-                    >
-                    </a>
-                  </td>
-                  <!-- </a> -->
+                  <td>{{ item.city }}</td>
+                  <td class="status-sign"> <span class="status-sign-com">Compléter</span></td>
                 </tr>
               </tbody>
             </table>

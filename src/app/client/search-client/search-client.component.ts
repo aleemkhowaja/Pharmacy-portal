@@ -1,9 +1,9 @@
+import { ClientModel } from './../../../models/client';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ClientService } from '../client.service';
-import { ClientModel } from 'src/models/client';
 import { Pagination } from 'src/models/pagination';
 
 @Component({
@@ -54,4 +54,10 @@ export class SearchClientComponent implements OnInit {
     this.pagination.currentPage = pageNumber;
     this.getAll();
   }
+
+  viewClient(clientModel : ClientModel)
+  {
+      
+  }
+
 }

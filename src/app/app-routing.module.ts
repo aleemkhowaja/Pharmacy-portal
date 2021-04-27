@@ -1,3 +1,15 @@
+import { SearchSuplierComponent } from './suplier/search-suplier/search-suplier.component';
+import { AddSuplierComponent } from './suplier/add-suplier/add-suplier.component';
+import { SuplierSuggestionDetailsComponent } from './suplier/suplier-suggestion-details/suplier-suggestion-details.component';
+import { SuplierDetailsComponent } from './suplier/suplier-details/suplier-details.component';
+import { SearchSuplierSuggestionComponent } from './suplier/search-suplier-suggestion/search-suplier-suggestion.component';
+import { SuplierComponent } from './suplier/suplier.component';
+import { ViewClientComponent } from './client/view-client/view-client.component';
+import { SearchSaleComponent } from './sale/search-sale/search-sale.component';
+import { SaleComponent } from './sale/sale.component';
+import { SearchProductComponent } from './product/search-product/search-product.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ClientComponent } from './client/client.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,11 +28,6 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
-  {
     path: 'login',
     component: LoginComponent,
     data: { title: 'Login' },
@@ -31,10 +38,16 @@ const routes: Routes = [
     data: { title: 'Client' },
   },
   {
-    path: 'add-client/:Id',
+    path: 'add-client/:id',
     component: AddClientComponent,
     data: { title: 'Add Client' },
   },
+  {
+    path: 'view-client/:Id',
+    component: ViewClientComponent,
+    data: { title: 'View Client' },
+  },
+
   {
     path: 'product',
     component: ProductComponent,
@@ -66,6 +79,44 @@ const routes: Routes = [
     component: ArchiveComponent,
     data: { title: 'archive' },
   },
+  {
+    path: 'suplier',
+    component: SuplierComponent,
+    data: { title: 'Suplier' },
+  },
+  {
+    path: 'suplier-suggestion',
+    component: SearchSuplierSuggestionComponent,
+    data: { title: 'Suplier suggestions' },
+  },
+  {
+    path: 'suplier/:id',
+    component: SuplierDetailsComponent,
+    data: { title: 'Suplier details' },
+  },
+  {
+    path: 'suplier-suggestion/:id',
+    component: SuplierSuggestionDetailsComponent,
+    data: { title: 'Suplier details' },
+  },
+  {
+    path: 'add-suplier',
+    component: AddSuplierComponent,
+    data: { title: 'Add Suplier' },
+  },
+  {
+    path: 'add-suplier/:id',
+    component: AddSuplierComponent,
+    data: { title: 'Update Suplier' },
+  },
+
+
+  //sale
+  {
+    path: 'sale',
+    component: SaleComponent,
+    data: { title: 'Sale' },
+  },
 ];
 
 @NgModule({
@@ -83,4 +134,18 @@ export const routingComponents = [
   AddClientComponent,
   ArchiveComponent,
   SearchArchiveComponent,
+  NavBarComponent,
+  PaginationComponent,
+  ProductComponent,
+  SearchProductComponent,
+  AddProductComponent,
+  SearchProductSuggestionComponent,
+  SuplierComponent,
+  SearchSuplierComponent,
+  AddSuplierComponent,
+  SuplierDetailsComponent,
+  SearchSuplierSuggestionComponent,
+  SuplierSuggestionDetailsComponent,
+  SaleComponent, 
+  SearchSaleComponent,
 ];

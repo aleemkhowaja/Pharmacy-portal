@@ -141,7 +141,17 @@ export class ClientService {
   ];
   constructor(private http: HttpClient, private apollo: Apollo) {}
 
+  
+
+  // getAll(pageNumber: number, itemPerPage: number) : Observable<any> 
+  // {
+  //   return this.apollo.watchQuery<any>({
+  //     query: allClients,
+  //   }).valueChanges;
+  // }
+
   getAll(pageNumber: number, itemPerPage: number): Observable<ClientModel[]> {
+    
     return this.lstCients.slice(
       (pageNumber - 1) * itemPerPage,
       pageNumber * itemPerPage

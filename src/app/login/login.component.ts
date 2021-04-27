@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('token', token);
     // this.tokenStorage.saveToken(token);
     // this.tokenStorage.saveUser(username);
-    this.router.navigate(['/home'], { replaceUrl: true });
+    this.router.navigate(['/home'], { replaceUrl: false });
 
     //  this.loginService.auth(this.loginModel).subscribe(response=> {
     //   console.log('response ',response);

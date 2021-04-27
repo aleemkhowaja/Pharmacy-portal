@@ -62,7 +62,8 @@ export class AddClientComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     const _clientId: number = this.router.snapshot.params.id;
-    this.addEditClientDto = this.clientSv.getSpecificClient(_clientId);
+    if(_clientId > 0 )
+     this.addEditClientDto = this.clientSv.getSpecificClient(_clientId);
   }
 
   ngAfterContentChecked() {
