@@ -32,11 +32,11 @@ export class AddSuplierComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   
+
     const _suplierId: number = this.router.snapshot.params.id;
     console.log(_suplierId);
-    this.addEditSuplier = this.suplierService.getSpecificSuplier(_suplierId);
-    if(this.addEditSuplier) 
+    this.addEditSuplier = this.suplierService.getById(_suplierId);
+    if(this.addEditSuplier)
       this.addSuplierForm.patchValue(this.addEditSuplier);
     console.log(this.addEditSuplier);
   }
@@ -49,7 +49,7 @@ export class AddSuplierComponent implements OnInit {
 
   submitForm() {
     this.suplierService.save(this.addSuplierForm.value);
-    
+
     console.log(this.addSuplierForm.value);
   }
 

@@ -91,7 +91,7 @@ const routes: Routes = [
     data: { title: 'Add Suplier' },
   },
   {
-    path: 'add-suplier/id',
+    path: 'add-suplier/:id',
     component: AddSuplierComponent,
     data: { title: 'Update Suplier' },
   },

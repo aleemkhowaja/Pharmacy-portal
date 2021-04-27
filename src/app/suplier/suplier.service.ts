@@ -174,7 +174,7 @@ export class SuplierService {
     );
   }
 
-  getSpecificSuplier(id: number) {
+  getById(id: number) {
     return this.lstSupliers.find((x: any) => x.id == id);
   }
 

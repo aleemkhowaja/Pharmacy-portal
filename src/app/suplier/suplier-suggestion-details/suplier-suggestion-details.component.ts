@@ -22,7 +22,7 @@ export class SuplierSuggestionDetailsComponent implements OnInit {
     this.route.params.subscribe(
       params => {
           const id = +params['id'];
-          this.getSuplier(id);
+          this.getSupplierById (id);
       }
     );
   }
@@ -31,9 +31,9 @@ export class SuplierSuggestionDetailsComponent implements OnInit {
     this.router.navigate([`/suplier-suggestion/${id}`]);
   }
 
-  getSuplier(_productId: number) {
+  getSupplierById(_suplierId: number) {
     this.suplier = undefined;
-    this.suplier = this.suplierService.getSpecificSuplier(_productId);
+    this.suplier = this.suplierService.getById(_suplierId);
     this.lstSuplier = this.suplierService.getDetailsSupliers();
   }
 }
