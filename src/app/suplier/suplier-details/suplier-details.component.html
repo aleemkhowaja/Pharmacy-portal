@@ -1,0 +1,470 @@
+<!-- Page content holder -->
+<div class="p-51"></div>
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button
+    id="sidebarCollapse"
+    type="button"
+    class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+  >
+    <i class="fa fa-bars mr-2"></i>
+  </button>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-md-2 col-12">
+        <div class="patient-name-cont">
+          <div class="row">
+            <div class="col">
+              <div class="bar-head">
+                <div class="card-head pat-head">Fournisseur</div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="dropdown show">
+            <a
+              class="btn btn-secondary dropdown-toggle filter-btn"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Filtre
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row" *ngFor="let item of lstSuplier" (click)="viewSuplier(item.id)" style="cursor: pointer;">
+            <div class="col">
+              <div class="patient-name">
+                <span>
+                  {{ item.name }}
+                </span>
+              </div>
+            </div>
+
+            <div class="col justify-content-end col-sm-1">
+              <div class="patient-name">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="page-num-nw">
+          <a href=""
+            ><span><i class="fas fa-arrow-left"></i></span
+          ></a>
+          <a href=""><span class="active-page4">1</span></a>
+          <a href=""><span>2</span></a>
+          <a href=""><span class="dots-new">...</span></a>
+          <a href=""><span>15</span></a>
+
+          <a href=""
+            ><span><i class="fas fa-arrow-right"></i></span
+          ></a>
+        </div>
+
+        <br />
+
+        <div class="page-num-nw">
+          <div class="row">
+            <div class="col col-12">
+              <Input value="10" type="number" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-12">
+              <button class="enter-btn-nw">Enter</button>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="page-num-nw">
+          <div class="row">
+            <div class="col col-12">
+              <Input type="text" placeholder="Search Page" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-12">
+              <button class="enter-btn-nw">Enter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-md-7 col-12">
+        <br class="br545sas" />
+
+        <div class="row">
+          <div class="col page-head col-md-11">
+            <h2>{{suplier?.name}}</h2>
+          </div>
+
+          <div class="col col-2 col-md-1 cmnpad">
+            <div class="dropdown show dropright">
+              <a
+                class="btn btn-secondary dropdown-toggle bell-icon-dd"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <img
+                  src="../../assets/images/Icons/bell.png"
+                  alt="Notification"
+                  class="bell-icon"
+                />
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col card-box-nw-col">
+            <div class="card-box-nw-1212">
+              <div class="row">
+                <div class="col">
+                  <div class="card assets-box assets-box1">
+                    <div class="row">
+                      <div class="col">
+                        <span class="assets-title bottom-sen-pad cards-title">
+                          Total non payé
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <span class="assets-num bottom-sen-pad card-num">
+                          145 DHS
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <span class="assests-remark bottom-sen-pad card-remark">
+                          Dont un avoir de : 0 DHS
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br class="br545sas" />
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <div class="row">
+          <div class="col col-12 buttons-aic col-lr-1 col-md-3 col-sm-3 cmnpad">
+            <div class="box1 boxes12 special-red">Ajouter aux favoris</div>
+          </div>
+          <div class="col col-12 buttons-aic col-lr-1 col-md-4 col-sm-3 cmnpad">
+            <div class="box1 boxes12">Suggérer une modification</div>
+          </div>
+          <div class="col col-12 buttons-aic col-lr-1 col-md-5 col-sm-3 cmnpad">
+            <div class="box1 boxes12">Payer les bons de livraison impayés</div>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="general-info">
+              <div class="row">
+                <div class="col">
+                  <div class="general-info-title card-head">
+                    Informations générales
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-12 col-sm-2 id-pic-column">
+                  <div class="id-pic"></div>
+                </div>
+
+                <div class="col">
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="name all-tags">
+                        <span class="name-tag tags">Nom :</span>
+                        <span class="id-name">{{suplier?.name}}</span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="phone-num all-tags">
+                        <span class="phone-tag tags">Téléphone :</span>
+                        <span class="id-num">suplier?.phone</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="cin all-tags">
+                        <span class="cin-tag tags">Industrie : </span>
+                        <span class="id-cin">Nil </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="general-info">
+              <div class="row">
+                <div class="col">
+                  <div class="general-info-title card-head">Des détails</div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="sub-head1">Informations générales</div>
+                  <hr />
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Nom :</span>
+                        <span class="prop">{{suplier?.name}}</span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Téléphone :</span>
+                        <span class="prop">{{suplier?.phone}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Fax : </span>
+                        <span class="prop">{{suplier?.fax}}</span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Site internet : </span>
+                        <span class="prop">{{suplier?.internetSite}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br />
+
+                  <div class="sub-head1">Adresse</div>
+                  <hr />
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Adresse :</span>
+                        <span class="prop">{{suplier?.address}}</span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Ville :</span>
+                        <span class="prop">{{suplier?.city}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Postal Code : </span>
+                        <span class="prop">{{suplier?.zipCode}} </span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Pays : </span>
+                        <span class="prop">{{suplier?.country}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br />
+                  <div class="sub-head1">Informations descriptives</div>
+                  <hr />
+
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="all-tags">
+                        <span class="tags">Description :</span>
+                        <span class="prop">{{suplier?.description}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+      </div>
+
+      <div class="col col-md-3">
+        <div class="row">
+          <div class="col">
+            <div class="card assets-box">
+              <div class="row">
+                <div class="col">
+                  <span class="assets-title bottom-sen-pad cards-title">
+                    Total non payé
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <span class="assets-num bottom-sen-pad card-num">
+                    145 DHS
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <span class="assests-remark bottom-sen-pad card-remark">
+                    Dont un avoir de : 0 DHS
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="srtcutbox">
+              <div class="srtcut">
+                <h4>Raccourcis</h4>
+              </div>
+
+              <div class="srtcutlinks">
+                <ul>
+                  <li>
+                    <a href="#"> <span>Créer un nouveau contact</span> </a>
+                  </li>
+
+                  <li>
+                    <a href="#"> <span>Créer un nouveau devis</span> </a>
+                  </li>
+                  <li>
+                    <a href="#"> <span>Créer une nouvelle vente</span> </a>
+                  </li>
+
+                  <li>
+                    <a href="#"> <span> Modifier la remise par défaut</span></a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span> Envoyer le crédit à payer par SMS</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="comments-box">
+              <div class="row">
+                <div class="col">commentaires</div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col">
+                  <input
+                    type="text"
+                    placeholder="Add a comment"
+                    class="comment-input"
+                  />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col">
+                  <a href="#"
+                    ><button class="all-comment">
+                      Tous les commentaires
+                    </button></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+  <div class="clear-fix">
+    <div class="row justify-content-end">
+      <div class="col faq col-sm-1">
+        <div class="faqbox">
+          <a href="#">
+            <button class="faqbtn">FAQ</button>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="col supportnum col-sm-2 float-right"
+        style="position: relative"
+      >
+        <div class="sptnumbox">
+          <p>Soutien: 99 99 999 999</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+<!-- End demo content -->

@@ -3,15 +3,15 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Pagination } from 'src/models/pagination';
-import { ProductService } from '../product.service';
+import { SuplierService } from '../suplier.service';
 
 @Component({
-  selector: 'app-search-product',
-  templateUrl: './search-product.component.html',
-  styleUrls: ['./search-product.component.css']
+  selector: 'app-search-suplier',
+  templateUrl: './search-suplier.component.html',
+  styleUrls: ['./search-suplier.component.css']
 })
-export class SearchProductComponent implements OnInit {
-  lstProduct: any;
+export class SearchSuplierComponent implements OnInit {
+  lstSuplier: any;
   moreInformation = false;
   pagination: Pagination = {
     totalPages: 2,
@@ -32,7 +32,7 @@ export class SearchProductComponent implements OnInit {
 
   dataLoading: boolean = true;
 
-  constructor(private productService: ProductService,
+  constructor(private suplierService: SuplierService,
               private router: Router) {}
 
   ngOnInit(): void {
@@ -42,13 +42,13 @@ export class SearchProductComponent implements OnInit {
   getAll() {
     this.dataLoading = false;
     //#region Dummy Data
-    this.lstProduct = this.productService.getAll(
+    this.lstSuplier = this.suplierService.getAll(
       this.pagination.currentPage,
       this.pagination.itemsPerPage
     );
     //#endregion
 
-    console.log('this.allProduct ', this.lstProduct);
+    console.log('this.allSuplier ', this.lstSuplier);
   }
 
   loadLst(pageNumber: number) {
@@ -60,8 +60,8 @@ export class SearchProductComponent implements OnInit {
     this.moreInformation = !this.moreInformation;
   }
 
-  viewProduct(id: number) {
-    this.router.navigate([`/product/${id}`]);
+  viewSuplier(id: number) {
+    this.router.navigate([`/suplier/${id}`]);
   }
 
 }

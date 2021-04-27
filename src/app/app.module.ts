@@ -29,6 +29,13 @@ import { ProductComponent } from './product/product.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { SuplierComponent } from './suplier/suplier.component';
+import { SearchSuplierComponent } from './suplier/search-suplier/search-suplier.component';
+import { AddSuplierComponent } from './suplier/add-suplier/add-suplier.component';
+import { SuplierDetailsComponent } from './suplier/suplier-details/suplier-details.component';
+import { SearchSuplierSuggestionComponent } from './suplier/search-suplier-suggestion/search-suplier-suggestion.component';
+import { SuplierSuggestionDetailsComponent } from './suplier/suplier-suggestion-details/suplier-suggestion-details.component';
 
 @NgModule({
   declarations: [
@@ -39,16 +46,24 @@ import { SearchProductSuggestionComponent } from './product/search-product-sugge
     ProductComponent,
     SearchProductComponent,
     AddProductComponent,
-    SearchProductSuggestionComponent
+    SearchProductSuggestionComponent,
+    ProductDetailsComponent,
+    SuplierComponent,
+    SearchSuplierComponent,
+    AddSuplierComponent,
+    SuplierDetailsComponent,
+    SearchSuplierSuggestionComponent,
+    SuplierSuggestionDetailsComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
     NgxSelectModule,
     NgSelectModule,
     BrowserModule,
-    AppRoutingModule,   
+    AppRoutingModule,
     HttpClientModule,
     HomeModule,
     EmployeeModule,

@@ -11,7 +11,7 @@ export class ProductService {
   lstProducts: any = [
     {
       id: 1,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
+      product: 'BIOFAR CO CALCIUM Protein D5 B23 COMP EFFER',
       name: 'Mark',
       category: "Drugstore (33.330%)",
       pharmaceuticalForm: 'ACCESSORIES',
@@ -41,7 +41,7 @@ export class ProductService {
     },
     {
       id: 3,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
+      product: 'BIOFAR CO CALCIUM GlUTAMINE D3 B50 COMP EFFER',
       name: 'Mark',
       category: "Drugstore (33.330%)",
       pharmaceuticalForm: 'ACCESSORIES',
@@ -56,7 +56,7 @@ export class ProductService {
     },
     {
       id: 4,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
+      product: 'BIOFAR CO CALCIUM CREATINE D3 B80 COMP EFFER',
       name: 'Mark',
       category: "Drugstore (33.330%)",
       pharmaceuticalForm: 'ACCESSORIES',
@@ -162,6 +162,7 @@ export class ProductService {
     
     
   ];
+
   constructor(private http: HttpClient, private apollo: Apollo) {}
 
   getAll(pageNumber: number, itemPerPage: number): Observable<ProductModel[]> {
@@ -177,5 +178,9 @@ export class ProductService {
 
   save(product: ProductModel) {
     console.log(name);
+  }
+
+  getDetailsProducts() {
+    return this.lstProducts;
   }
 }

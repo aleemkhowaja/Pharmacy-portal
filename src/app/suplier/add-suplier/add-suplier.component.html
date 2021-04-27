@@ -1,0 +1,173 @@
+  <form
+    class="client-form"
+    id="suplier-form"
+    [formGroup]="addSuplierForm"
+    (ngSubmit)="submitForm()"
+  >
+    <!-- Page content holder -->
+    <div class="p-51"></div>
+    <div class="page-content p-5" id="content">
+      <!-- Toggle button -->
+      <button
+        id="sidebarCollapse"
+        type="button"
+        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+      >
+        <i class="fa fa-bars mr-2"></i>
+      </button>
+  
+      <div class="container-fluid">
+        <div class="row">
+  
+          <div class="col page-head col-md-9">
+              <h2>Suggérer nouveau fournisseur</h2>
+          </div>
+  
+          <div class=" col col-2 col-md-1 cmnpad" >
+              <div class="dropdown show dropright ">
+                <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="../../../assets/Icons/bell.png" alt="Notification" class="bell-icon">
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+    
+          <div class=" col col-12 col-lr-1 buttons-aic col-md-2 col-sm-3 cmnpad">
+              <div class="creer">
+                  <a href="#">
+                      <button class="creerbtn">
+                        Sauvegarder
+                      </button>
+                  </a>
+              </div>
+          </div>
+    
+      </div>
+        <br />
+  
+        <div class="row">
+          <div class="col">
+            <div class="general-info">
+              <div class="row">
+                <div class="col">
+                  <div class="general-info-title">
+                    <h5>Informations générales</h5>
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <br />
+  
+              <div class="row">
+                <div class="col col-12 col-md-6">
+                  <div class="Sub-Head">Nom</div>
+                  <input id="suplier-name" formControlName="name" />
+                </div>
+                <div class="col col-12 col-md-6">
+                  <div class="Sub-Head">Email</div>
+                  <input id="suplier-email" formControlName="email" />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col col-12 col-md-6">
+                  <div class="Sub-Head">Téléphone</div>
+                  <input type="text" id="suplier-phone" formControlName="phone" />
+                </div>
+                <div class="col col-12 col-md-6">
+                    <div class="Sub-Head">Fax</div>
+                    <input type="text" id="suplier-fax" formControlName="fax" />
+                  </div>
+        
+              </div>
+              <br />
+              <div class="row">
+                <div class="col col-12 col-md-6">
+                    <div class="Sub-Head">Site internet</div>
+                    <input type="text" id="suplier-internet-site" formControlName="internetSite" />
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <br />
+  
+        <div class="row">
+          <div class="col">
+            <div class="general-info">
+              <div class="row">
+                <div class="col">
+                  <div class="general-info-title">
+                    <h5>Adresse</h5>
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <br />
+  
+              <div class="row">
+                <div class="col col-12 col-md-6">
+                  <div class="Sub-Head">Adresse</div>
+                  <input type="text" formControlName="address" />
+                </div>
+                <div class="col col-12 col-md-6">
+                  <div class="Sub-Head">Ville</div>
+                  <input type="text" formControlName="city" />
+                </div>
+              </div>
+  
+              <br />
+              <div class="row">
+                <div class="col col-12 col-md-6">
+                    <div class="Sub-Head">Postal code</div>
+                    <input type="text" formControlName="zipCode" />
+                  </div>
+                  <div class="col col-12 col-md-6">
+                    <div class="Sub-Head">Pays</div>
+                    <input type="text" formControlName="country" />
+                  </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col col-12 col-md-6">
+                    <div class="Sub-Head">Site internet</div>
+                    <input type="text" id="suplier-internet-site" formControlName="internetSite" />
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    <div class="container-fluid"> 
+      <div class="clear-fix">
+        <div class="row justify-content-end">
+  
+        <div class="col faq col-sm-1  " >
+          <div class="faqbox" >
+            <a href="#">
+              <button class="faqbtn">FAQ</button>
+            </a>
+          </div>
+        </div>
+  
+        <div class="col supportnum col-sm-2 float-right " style="position:relative"  >
+          <div class="sptnumbox">
+            <p>Soutien : 99 99 999 999</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+    </div>
+    </div>
+  </form>
+  
+  
+  
