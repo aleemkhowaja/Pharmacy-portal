@@ -18,6 +18,12 @@ import { AddSuplierComponent } from './suplier/add-suplier/add-suplier.component
 import { SuplierDetailsComponent } from './suplier/suplier-details/suplier-details.component';
 import { SearchSuplierSuggestionComponent } from './suplier/search-suplier-suggestion/search-suplier-suggestion.component';
 import { SuplierSuggestionDetailsComponent } from './suplier/suplier-suggestion-details/suplier-suggestion-details.component';
+import { StockComponent } from './stock/stock.component';
+import { SearchInventoryComponent } from './stock/search-inventory/search-inventory.component';
+import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
+import { UpdateInventoryComponent } from './stock/update-inventory/update-inventory.component';
+import { AddImportComponent } from './stock/add-import/add-import.component';
+import { SearchImportComponent } from './stock/search-import/search-import.component';
 
 const routes: Routes = [
   {
@@ -94,6 +100,37 @@ const routes: Routes = [
     path: 'add-suplier/:id',
     component: AddSuplierComponent,
     data: { title: 'Update Suplier' },
+  },
+  {
+    path: 'stock',
+    component: StockComponent,
+    data: { title: 'Stock' },
+  },
+  {
+    path: 'inventory',
+    component: SearchInventoryComponent,
+    data: { title: 'Inventory' },
+  },
+
+  {
+    path: 'inventory/:id',
+    component: InventoryDetailsComponent,
+    data: { title: 'Inventory Details' },
+  },
+  {
+    path: 'update-inventory/:id',
+    component: UpdateInventoryComponent,
+    data: { title: 'Inventory Details' },
+  },
+  {
+    path: 'import',
+    component: SearchImportComponent,
+    data: { title: 'Import' },
+  },
+  {
+    path: 'add-import',
+    component: AddImportComponent,
+    data: { title: 'Add Import' },
   },
 
   {

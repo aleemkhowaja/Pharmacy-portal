@@ -36,6 +36,13 @@ import { AddSuplierComponent } from './suplier/add-suplier/add-suplier.component
 import { SuplierDetailsComponent } from './suplier/suplier-details/suplier-details.component';
 import { SearchSuplierSuggestionComponent } from './suplier/search-suplier-suggestion/search-suplier-suggestion.component';
 import { SuplierSuggestionDetailsComponent } from './suplier/suplier-suggestion-details/suplier-suggestion-details.component';
+import { StockComponent } from './stock/stock.component';
+import { SearchStockComponent } from './stock/search-stock/search-stock.component';
+import { SearchInventoryComponent } from './stock/search-inventory/search-inventory.component';
+import { UpdateInventoryComponent } from './stock/update-inventory/update-inventory.component';
+import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
+import { SearchImportComponent } from './stock/search-import/search-import.component';
+import { AddImportComponent } from './stock/add-import/add-import.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +60,14 @@ import { SuplierSuggestionDetailsComponent } from './suplier/suplier-suggestion-
     AddSuplierComponent,
     SuplierDetailsComponent,
     SearchSuplierSuggestionComponent,
-    SuplierSuggestionDetailsComponent
+    SuplierSuggestionDetailsComponent,
+    StockComponent,
+    SearchStockComponent,
+    SearchInventoryComponent,
+    UpdateInventoryComponent,
+    InventoryDetailsComponent,
+    SearchImportComponent,
+    AddImportComponent
   ],
   imports: [
     CommonModule,

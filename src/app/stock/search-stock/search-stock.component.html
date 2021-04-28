@@ -1,0 +1,219 @@
+<!-- Page content holder -->
+<div class="p-51"></div>
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button
+    id="sidebarCollapse"
+    type="button"
+    class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+  >
+    <i class="fa fa-bars mr-2"></i>
+  </button>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col page-head col-md-4">
+        <h2>Stocks</h2>
+      </div>
+
+      <div class="col col-2 col-sm-1 cmnpad">
+        <div class="dropdown show dropright">
+          <a
+            class="btn btn-secondary dropdown-toggle bell-icon-dd"
+            href="#"
+            role="button"
+            id="dropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              src="../../assets/images/Icons/bell.png"
+              alt="Notification"
+              class="bell-icon"
+            />
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-12 col-lr-1 buttons-aic col-md-2 col-sm-3 cmnpad">
+        <div class="box2 boxes12" routerLink="/import">Liste des importations</div>
+      </div>
+
+      <div class="col col-12 col-lr-1 buttons-aic col-md-2 col-sm-3 cmnpad">
+        <div class="box2 boxes12" routerLink="/inventory">Liste des inventaires</div>
+      </div>
+
+      <div class="col col-12 col-lr-1 buttons-aic col-md-3 col-sm-3 cmnpad">
+        <div class="creer">
+          <a href="#">
+            <button class="creerbtn">Réinitialisation du stock</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid sec-cont">
+      <div class="row justify-content-end">
+        <div class="col col-12 col-md-4">
+          <div class="search-box">
+            <input type="text" placeholder="Type to search.." />
+            <div class="search-icon searchbtn">
+              <i style="line-height: inherit" class="fas fa-search"></i>
+            </div>
+            <div class="cancel-icon crossbtn">
+              <i class="fas fa-times"></i>
+            </div>
+            <div class="search-data"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row search-row">
+        <div class="col">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><input type="text" placeholder="Last Name" /></td>
+                <td><input type="text" placeholder="PPV" /></td>
+                <td><input type="text" placeholder="Category" /></td>
+                <td><input type="text" placeholder="Pharmaceutical Form" /></td>
+
+                <td>
+                  <button><i class="fas fa-search"></i></button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><input type="text" placeholder="PPH" /></td>
+                <td><input type="text" placeholder="Bar Code" /></td>
+                <td>
+                  <div class="dropdown dropdown1 show dropright">
+                    <a
+                      class="btn btn-secondary dropdown-toggle"
+                      href="#"
+                      role="button"
+                      id="dropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Zoné
+                    </a>
+
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuLink"
+                    >
+                      <a class="dropdown-item" href="#">Non</a>
+                      <a class="dropdown-item" href="#">Oui</a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown dropdown1 show dropright">
+                    <a
+                      class="btn btn-secondary dropdown-toggle"
+                      href="#"
+                      role="button"
+                      id="dropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      C'est actif
+                    </a>
+
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuLink"
+                    >
+                      <a class="dropdown-item" href="#">Non</a>
+                      <a class="dropdown-item" href="#">Oui</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="table-cont">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    Produit</th>
+                  <th scope="col">
+                    Stock en magasin</th>
+                  <th scope="col"> Réservé</th>
+                  <th scope="col">
+                    Disponible</th>
+                  <th scope="col"> Ordres</th>
+                  <th scope="col">Value in PPH</th>
+                  <th scope="col">PPV Value</th>
+                  <th scope="col">Zoné</th>
+                  <th scope="col">
+                    Date d'expiration</th>
+                  <th scope="col">Bar Code</th>
+                  <th scope="col">Bar Code 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of lstStock" (click)="viewStock(item.id)">
+                  <td>{{ item.product }}</td>
+                  <td>{{ item.inStore }}</td>
+                  <td>{{ item.reserved }}</td>
+                  <td>{{ item.available }}</td>
+                  <td>{{ item.orders }}</td>
+                  <td>{{ item.pph }}</td>
+                  <td>{{ item.ppv }}</td>
+                  <td>{{ item.zone }}</td>
+                  <td>{{ item.expirationDate }}</td>
+                  <td>{{ item.barCode }}</td>
+                  <td>{{ item.barCode2 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="pagination" class="mt-1">
+    <app-pagination
+      [pagination]="pagination"
+      (pageNumberChanged)="loadLst($event)"
+    ></app-pagination>
+  </div>
+  <br />
+  <div class="container-fluid">
+    <div class="clear-fix">
+      <div class="row justify-content-end querry-box">
+        <div>
+          <div class="row">
+            <div class="col">
+              <div class="faqbox">
+                <a href="#">
+                  <button class="faqbtn">FAQ</button>
+                </a>
+              </div>
+              <div class="sptnumbox">
+                <p>Soutien: 99 99 999 999</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

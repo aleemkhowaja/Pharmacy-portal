@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col">
               <div class="bar-head">
-                <div class="card-head pat-head">Fournisseur</div>
+                <div class="card-head pat-head">Inventaire</div>
               </div>
             </div>
           </div>
@@ -46,11 +46,11 @@
 
           <br />
 
-          <div class="row" *ngFor="let item of lstSuplier" (click)="viewSuplier(item.id)" style="cursor: pointer;">
+          <div class="row" *ngFor="let item of lstInventory" (click)="viewInventory(item.id)" style="cursor: pointer;">
             <div class="col">
               <div class="patient-name">
                 <span>
-                  {{ item.name }}
+                  {{ item.transactionNumber }}
                 </span>
               </div>
             </div>
@@ -84,7 +84,7 @@
           </div>
           <div class="row">
             <div class="col col-12">
-              <button class="enter-btn-nw">Enter</button>
+              <button class="enter-btn-nw">Entrer</button>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
           </div>
           <div class="row">
             <div class="col col-12">
-              <button class="enter-btn-nw">Enter</button>
+              <button class="enter-btn-nw">Entrer</button>
             </div>
           </div>
         </div>
@@ -107,13 +107,12 @@
 
       <div class="col col-md-7 col-12">
         <br class="br545sas" />
-
         <div class="row">
-          <div class="col page-head col-md-11">
-            <h2>{{suplier?.name}}</h2>
+          <div class="col page-head col-md-7">
+            <h2>{{inventory?.transactionNumber}}</h2>
           </div>
 
-          <div class="col col-2 col-md-1 cmnpad">
+          <div class="col col-2 col-sm-1 cmnpad">
             <div class="dropdown show dropright">
               <a
                 class="btn btn-secondary dropdown-toggle bell-icon-dd"
@@ -143,48 +142,35 @@
             <div class="card-box-nw-1212">
               <div class="row">
                 <div class="col">
-                  <div class="card assets-box assets-box1">
+                  <div class="card status-nw status-nw1">
                     <div class="row">
                       <div class="col">
-                        <span class="assets-title bottom-sen-pad cards-title">
-                          Total non payé
-                        </span>
+                        <p class="status-title">Statut</p>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col">
-                        <span class="assets-num bottom-sen-pad card-num">
-                          145 DHS
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col">
-                        <span class="assests-remark bottom-sen-pad card-remark">
-                          Dont un avoir de : 0 DHS
+                        <span
+                          class="status-remark-nw bottom-sen-pad card-remark"
+                        >
+                          Complété
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
               <br class="br545sas" />
             </div>
           </div>
-        </div>
+          <div class="col col-12 buttons-aic col-lr-1 col-md-2 col-sm-3 cmnpad">
+            <div class="box1 boxes12 special-red">Annuler</div>
+          </div>
 
-        <br />
-        <div class="row">
-          <div class="col col-12 buttons-aic col-lr-1 col-md-3 col-sm-3 cmnpad">
-            <div class="box1 boxes12 special-red">Ajouter aux favoris</div>
-          </div>
-          <div class="col col-12 buttons-aic col-lr-1 col-md-4 col-sm-3 cmnpad">
-            <div class="box1 boxes12">Suggérer une modification</div>
-          </div>
-          <div class="col col-12 buttons-aic col-lr-1 col-md-5 col-sm-3 cmnpad">
-            <div class="box1 boxes12">Payer les bons de livraison impayés</div>
+          <div class="col col-12 buttons-aic col-lr-1 col-md-2 col-sm-3 cmnpad">
+            <div class="box1 boxes12">Dupliquer</div>
           </div>
         </div>
         <br />
@@ -194,29 +180,23 @@
             <div class="general-info">
               <div class="row">
                 <div class="col">
-                  <div class="general-info-title card-head">
-                    Informations générales
-                  </div>
+                  <div class="general-info-title card-head">Inventaire</div>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col col-12 col-sm-2 id-pic-column">
-                  <div class="id-pic"></div>
-                </div>
-
                 <div class="col">
                   <div class="row">
                     <div class="col col-12 col-md-6">
                       <div class="name all-tags">
-                        <span class="name-tag tags">Nom :</span>
-                        <span class="id-name">{{suplier?.name}}</span>
+                        <span class="name-tag tags">Date :</span>
+                        <span class="id-name">{{inventory?.date}}</span>
                       </div>
                     </div>
                     <div class="col col-12 col-md-6">
                       <div class="phone-num all-tags">
-                        <span class="phone-tag tags">Téléphone :</span>
-                        <span class="id-num">suplier?.phone</span>
+                        <span class="phone-tag tags">Ecart total :</span>
+                        <span class="id-num">{{inventory?.totalDeviation}}</span>
                       </div>
                     </div>
                   </div>
@@ -224,8 +204,27 @@
                   <div class="row">
                     <div class="col col-12 col-md-6">
                       <div class="cin all-tags">
-                        <span class="cin-tag tags">Industrie : </span>
-                        <span class="id-cin">Nil </span>
+                        <span class="cin-tag tags">Commentaire : </span>
+                        <span class="id-cin">{{inventory?.comment}} </span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="email all-tags">
+                        <span class="email-tag tags"
+                          >Valeur totale en PPV :
+                        </span>
+                        <span class="id-email">{{inventory?.totalPPV}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="cnss all-tags">
+                        <span class="cnss-tag tags"
+                          >Valeur totale en PPH :
+                        </span>
+                        <span class="id-cnss">{{inventory?.totalPPH}}</span>
                       </div>
                     </div>
                   </div>
@@ -238,126 +237,113 @@
 
         <div class="row">
           <div class="col">
-            <div class="general-info">
-              <div class="row">
+            <div class="pro-his">
+              <div class="row justify-content-end">
+                <div class="col col-12 col-md-4">
+                  <div class="search-box">
+                    <input type="text" placeholder="Type to search.." />
+                    <div class="search-icon searchbtn">
+                      <i class="fas fa-search"></i>
+                    </div>
+                    <div class="cancel-icon crossbtn">
+                      <i class="fas fa-times"></i>
+                    </div>
+                    <div class="search-data"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row search-row">
                 <div class="col">
-                  <div class="general-info-title card-head">Des détails</div>
+                  <table class="table">
+                    <tbody>
+                      <td><input type="text" placeholder="Nom" /></td>
+                      <td><input type="text" placeholder="PPH" /></td>
+                      <td>
+                        <input type="text" placeholder="Quantité en stock" />
+                      </td>
+                      <td>
+                        <input type="text" placeholder="Quantité réelle" />
+                      </td>
+                      <td><input type="text" placeholder="Ecart" /></td>
+                      <td><input type="text" placeholder="Valeur en PPV" /></td>
+                      <td><input type="text" placeholder="Valeur en PPH" /></td>
+                      <td>
+                        <button><i class="fas fa-search"></i></button>
+                      </td>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col">
-                  <div class="sub-head1">Informations générales</div>
-                  <hr />
-                  <div class="row">
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Nom :</span>
-                        <span class="prop">{{suplier?.name}}</span>
-                      </div>
-                    </div>
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Téléphone :</span>
-                        <span class="prop">{{suplier?.phone}}</span>
-                      </div>
-                    </div>
+                  <div class="pro-his-title card-head">
+                    Produits de l'inventaire
                   </div>
+                </div>
+              </div>
 
-                  <div class="row">
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Fax : </span>
-                        <span class="prop">{{suplier?.fax}}</span>
-                      </div>
-                    </div>
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Site internet : </span>
-                        <span class="prop">{{suplier?.internetSite}}</span>
-                      </div>
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col">
+                  <div class="invoice-table">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nom</th>
+                          <th scope="col">PPH</th>
+                          <th scope="col">Quantité en stock</th>
+                          <th scope="col">Quantité réelle</th>
+                          <th scope="col">Ecart</th>
+                          <th scope="col">Valeur en PPV</th>
+                          <th scope="col">Valeur en PPH</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of inventory?.products">
+                          <td>{{item.name}}</td>
+                          <td>{{item.pph}}</td>
+                          <td>{{item.inStock}}</td>
+                          <td>{{item.actualQuantity}}</td>
+                          <td>{{item.difference}}</td>
+                          <td>{{item.ppvValue}}</td>
+                          <td>{{item.pphValue}}</td>
+                          <td>
+                            <div class="edit-btn">
+                              <i class="fas fa-pen" (click)="updateInventory(item.id)"></i>
 
-                  <br />
-
-                  <div class="sub-head1">Adresse</div>
-                  <hr />
-                  <div class="row">
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Adresse :</span>
-                        <span class="prop">{{suplier?.address}}</span>
-                      </div>
-                    </div>
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Ville :</span>
-                        <span class="prop">{{suplier?.city}}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Postal Code : </span>
-                        <span class="prop">{{suplier?.zipCode}} </span>
-                      </div>
-                    </div>
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Pays : </span>
-                        <span class="prop">{{suplier?.country}}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <br />
-                  <div class="sub-head1">Informations descriptives</div>
-                  <hr />
-
-                  <div class="row">
-                    <div class="col col-12 col-md-6">
-                      <div class="all-tags">
-                        <span class="tags">Description :</span>
-                        <span class="prop">{{suplier?.description}}</span>
-                      </div>
-                    </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="cross-btn">
+                              <i class="fas fa-times"></i>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <br />
       </div>
 
-      <div class="col col-md-3">
+      <div class="col col-md-3 card-top1">
         <div class="row">
           <div class="col">
-            <div class="card assets-box">
+            <div class="card status-nw">
               <div class="row">
                 <div class="col">
-                  <span class="assets-title bottom-sen-pad cards-title">
-                    Total non payé
-                  </span>
+                  <span class="bottom-sen-pad status-title"> Statut </span>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col">
-                  <span class="assets-num bottom-sen-pad card-num">
-                    145 DHS
-                  </span>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col">
-                  <span class="assests-remark bottom-sen-pad card-remark">
-                    Dont un avoir de : 0 DHS
+                  <span class="bottom-sen-pad status-remark-nw card-remark">
+                    Complété
                   </span>
                 </div>
               </div>
@@ -368,33 +354,39 @@
 
         <div class="row">
           <div class="col">
-            <div class="srtcutbox">
-              <div class="srtcut">
-                <h4>Raccourcis</h4>
+            <div class="Trace-info-box">
+              <div class="row">
+                <div class="col">
+                  <p class="Trace-info-title">Informations de traçabilité</p>
+                </div>
               </div>
 
-              <div class="srtcutlinks">
-                <ul>
-                  <li>
-                    <a href="#"> <span>Créer un nouveau contact</span> </a>
-                  </li>
+              <hr />
 
-                  <li>
-                    <a href="#"> <span>Créer un nouveau devis</span> </a>
-                  </li>
-                  <li>
-                    <a href="#"> <span>Créer une nouvelle vente</span> </a>
-                  </li>
+              <div class="row">
+                <div class="col col-md-5">Créé par</div>
+                <div class="col">GHALMANE MOHAMED</div>
+              </div>
 
-                  <li>
-                    <a href="#"> <span> Modifier la remise par défaut</span></a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span> Envoyer le crédit à payer par SMS</span>
-                    </a>
-                  </li>
-                </ul>
+              <hr />
+
+              <div class="row">
+                <div class="col col-md-5">Créé sur</div>
+                <div class="col">2021-02-12 15:43:22</div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col col-md-5">Mis à jour par</div>
+                <div class="col">GHALMANE MOHAMED</div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col col-md-5">Mise à jour</div>
+                <div class="col">2021-02-12 15:43:22</div>
               </div>
             </div>
           </div>
@@ -406,7 +398,7 @@
           <div class="col">
             <div class="comments-box">
               <div class="row">
-                <div class="col">commentaires</div>
+                <div class="col">Commentaires</div>
               </div>
               <br />
               <div class="row">
@@ -461,5 +453,3 @@
   </div>
 </div>
 <br />
-
-<!-- End demo content -->
