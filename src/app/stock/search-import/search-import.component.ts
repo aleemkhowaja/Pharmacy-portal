@@ -19,7 +19,14 @@ export class SearchImportComponent implements OnInit {
     totalItems: 10,
     itemsPerPage: 5,
   };
-
+  searching = false;
+  searchFields: any = {
+    fileName: '',
+    successessNumber: '',
+    failuresNumber: '',
+    importedBy: '',
+    importedOn: ''
+  };
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -62,6 +69,11 @@ export class SearchImportComponent implements OnInit {
 
   viewImport(id: number) {
     this.router.navigate([`/import/${id}`]);
+  }
+
+  searchItems() {
+    this.lstImport = this.importService.search(this.searchFields);
+    console.log(this.lstImport);
   }
 
 }

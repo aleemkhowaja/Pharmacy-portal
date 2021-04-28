@@ -12,7 +12,7 @@ export class ProductService {
     {
       id: 1,
       product: 'BIOFAR CO CALCIUM Protein D5 B23 COMP EFFER',
-      name: 'Mark',
+      name: 'Jhon',
       category: "Drugstore (33.330%)",
       categoryId: "2",
       galenicForm: "1",
@@ -68,7 +68,7 @@ export class ProductService {
     {
       id: 3,
       product: 'BIOFAR CO CALCIUM GlUTAMINE D3 B50 COMP EFFER',
-      name: 'Mark',
+      name: 'Philipe',
       category: "Drugstore (33.330%)",
       pharmaceuticalForm: 'ACCESSORIES',
       ppv: 75.00,
@@ -96,7 +96,7 @@ export class ProductService {
     {
       id: 4,
       product: 'BIOFAR CO CALCIUM CREATINE D3 B80 COMP EFFER',
-      name: 'Mark',
+      name: 'George',
       category: "Drugstore (33.330%)",
       pharmaceuticalForm: 'ACCESSORIES',
       ppv: 75.00,
@@ -124,7 +124,7 @@ export class ProductService {
     {
       id: 5,
       product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Mark',
+      name: 'Carl',
       category: "Drugstore (33.330%)",
       pharmaceuticalForm: 'ACCESSORIES',
       ppv: 75.00,
@@ -312,5 +312,17 @@ export class ProductService {
 
   getDetailsProducts() {
     return this.lstProducts;
+  }
+
+  search(filters: any) {
+    return this.lstProducts.filter((x: any) => {
+      return (!filters.name || x.name.includes(filters.name)) && (!filters.ppv || x.ppv == filters.ppv)
+              && (!filters.category || x.category.includes(filters.category))
+              && (!filters.barCode || x.category.includes(filters.barcode))
+              && (!filters.pharmaceuticalForm || x.pharmaceuticalForm.includes(filters.pharmaceuticalForm))
+              && (!filters.pph || x.pph == filters.pph)
+              && (!filters.zone || x.zone == (filters.zone == 'Oui'))
+              && (!filters.active || x.active == (filters.active == 'Oui'));
+    });
   }
 }

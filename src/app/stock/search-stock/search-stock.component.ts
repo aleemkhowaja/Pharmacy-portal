@@ -20,6 +20,18 @@ export class SearchStockComponent implements OnInit {
     itemsPerPage: 5,
   };
 
+  searching = false;
+  searchFields: any = {
+    name: '',
+    ppv: '',
+    category: '',
+    pharmaceuticalForm: '',
+    pph: '',
+    barCode: '',
+    zone: '',
+    active: ''
+  };
+
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -62,6 +74,11 @@ export class SearchStockComponent implements OnInit {
 
   viewStock(id: number) {
     this.router.navigate([`/stock/${id}`]);
+  }
+
+  searchItems() {
+    this.lstStock = this.stockService.search(this.searchFields);
+    console.log(this.lstStock);
   }
 
 }

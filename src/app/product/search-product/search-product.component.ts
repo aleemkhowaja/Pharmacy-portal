@@ -13,6 +13,17 @@ import { ProductService } from '../product.service';
 export class SearchProductComponent implements OnInit {
   lstProduct: any;
   moreInformation = false;
+  searching = false;
+  searchFields: any = {
+    name: '',
+    ppv: '',
+    category: '',
+    pharmaceuticalForm: '',
+    pph: '',
+    barCode: '',
+    zone: '',
+    active: ''
+  };
   pagination: Pagination = {
     totalPages: 2,
     currentPage: 1,
@@ -62,6 +73,11 @@ export class SearchProductComponent implements OnInit {
 
   viewProduct(id: number) {
     this.router.navigate([`/product/${id}`]);
+  }
+
+  searchItems() {
+    this.lstProduct = this.productService.search(this.searchFields);
+    console.log(this.lstProduct);
   }
 
 }

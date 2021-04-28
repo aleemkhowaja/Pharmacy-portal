@@ -19,7 +19,14 @@ export class SearchSuplierComponent implements OnInit {
     totalItems: 10,
     itemsPerPage: 5,
   };
-
+  searching = false;
+  searchFields: any = {
+    fileName: '',
+    successessNumber: '',
+    failuresNumber: '',
+    importedBy: '',
+    importedOn: ''
+  };
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -62,6 +69,11 @@ export class SearchSuplierComponent implements OnInit {
 
   viewSuplier(id: number) {
     this.router.navigate([`/suplier/${id}`]);
+  }
+
+  searchItems() {
+    this.lstSuplier = this.suplierService.search(this.searchFields);
+    console.log(this.lstSuplier);
   }
 
 }

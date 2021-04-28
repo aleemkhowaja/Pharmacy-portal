@@ -19,7 +19,14 @@ export class SearchInventoryComponent implements OnInit {
     totalItems: 10,
     itemsPerPage: 5,
   };
-
+  searching = false;
+  searchFields: any = {
+    transactionNumber: '',
+    method: '',
+    galenicForm: '',
+    zone: '',
+    status: ''
+  };
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -62,5 +69,9 @@ export class SearchInventoryComponent implements OnInit {
 
   viewInventory(id: number) {
     this.router.navigate([`/inventory/${id}`]);
+  }
+  searchItems() {
+    this.lstInventory = this.inventoryService.search(this.searchFields);
+    console.log(this.lstInventory);
   }
 }

@@ -19,7 +19,7 @@ src: url(myriad-pro-cufonfonts/MYRIADPRO-COND.OTF);
 src: url(myriad-pro-cufonfonts/MYRIADPRO-CONDIT.OTF);
 src: url(myriad-pro-cufonfonts/MyriadPro-Light.otf);
 src: url(myriad-pro-cufonfonts/MYRIADPRO-SEMIBOLD.OTF);
-src: url(myriad-pro-cufonfonts/MYRIADPRO-SEMIBOLDIT.OTF); 
+src: url(myriad-pro-cufonfonts/MYRIADPRO-SEMIBOLDIT.OTF);
 */
 
   src: url("../fonts/MYRIADPRO-REGULAR.OTF") format("opentype");
@@ -532,7 +532,7 @@ tbody {
 .cancel-icon3 {
   color: #00a79e !important;
 }
-.search-box .cancel-icon.active,
+.search-box .cancel-icon,
 .search-box2 .cancel-icon2.active2,
 .search-box3 .cancel-icon3.active3 {
   right: 0px;

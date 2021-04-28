@@ -185,4 +185,14 @@ export class SuplierService {
   getDetailsSupliers() {
     return this.lstSupliers;
   }
+
+  search(filters: any) {
+    return this.lstSupliers.filter((x: any) => {
+      return (!filters.name || x.name.includes(filters.name))
+              && (!filters.phone || x.phone.includes(filters.phone))
+              && (!filters.city || x.city.includes(filters.city))
+              && (!filters.balance || x.balance.includes(filters.balance))
+              && (!filters.suplier || x.suplier.includes(filters.suplier));
+    });
+  }
 }

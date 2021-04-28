@@ -112,4 +112,14 @@ export class ImportService {
   getDetailsSupliers() {
     return this.lstImport;
   }
+
+  search(filters: any) {
+    return this.lstImport.filter((x: any) => {
+      return (!filters.fileName || x.fileName.includes(filters.fileName))
+              && (!filters.successessNumber || x.successessNumber == filters.successessNumber)
+              && (!filters.failuresNumber || x.failuresNumber == filters.failuresNumber)
+              && (!filters.importedBy || x.importedBy.includes(filters.importedBy))
+              && (!filters.importedOn || x.importedOn.includes(filters.importedOn));
+    });
+  }
 }

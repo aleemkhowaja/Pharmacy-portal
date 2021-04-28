@@ -12,10 +12,10 @@ export class InventoryService {
     {
       id: 1,
       transactionNumber: 'INV-340',
-      date: "06-02-2021",
-      method: "Bar Code",
-      galenicForm: "Nil",
-      zone: "2",
+      date: "22-12-2025",
+      method: "XYZ",
+      galenicForm: "Galenic",
+      zone: "1",
       status: "Complete",
       contains: '3',
       comment: 63.34,
@@ -23,7 +23,7 @@ export class InventoryService {
       totalPPH: "NIL",
       totalDeviation: "30-09-2021",
       dci: "3",
-      barCode: "the inventory bar code",
+      barCode: "A bar code",
       name: "asdasdasdasd",
       products: [
         {
@@ -74,17 +74,17 @@ export class InventoryService {
       id: 2,
       transactionNumber: 'INV-341',
       date: "06-02-2021",
-      method: "Bar Code",
+      method: "ZZZ",
       galenicForm: "Nil",
       zone: "2",
       status: "Complete",
       contains: '3',
-      comment: 63.34,
+      comment: 90.00,
       totalPPV: 95.87,
       totalPPH: "NIL",
       totalDeviation: "30-09-2021",
       dci: "3",
-      barCode: "the inventory bar code",
+      barCode: "Different bar code",
       name: "asdasdasdasd",
       products: [
         {
@@ -134,16 +134,16 @@ export class InventoryService {
     {
       id: 3,
       transactionNumber: 'INV-342',
-      date: "06-02-2021",
-      method: "Bar Code",
-      galenicForm: "Nil",
-      zone: "2",
-      status: "Complete",
+      date: "10-11-2019",
+      method: "TTTT",
+      galenicForm: "Austrolopitecus",
+      zone: "3",
+      status: "Incomplete",
       contains: '3',
-      comment: 63.34,
-      totalPPV: 95.87,
+      comment: 100.72,
+      totalPPV: 35.88,
       totalPPH: "NIL",
-      totalDeviation: "30-09-2021",
+      totalDeviation: "31-09-2021",
       dci: "3",
       barCode: "the inventory bar code",
       name: "asdasdasdasd",
@@ -195,10 +195,10 @@ export class InventoryService {
     {
       id: 4,
       transactionNumber: 'INV-343',
-      date: "06-02-2021",
-      method: "Bar Code",
+      date: "05-05-2020",
+      method: "RRR",
       galenicForm: "Nil",
-      zone: "2",
+      zone: "3",
       status: "Complete",
       contains: '3',
       comment: 63.34,
@@ -318,7 +318,7 @@ export class InventoryService {
       id: 6,
       transactionNumber: 'INV-345',
       date: "06-02-2021",
-      method: "Bar Code",
+      method: "YYY",
       galenicForm: "Nil",
       zone: "2",
       status: "Complete",
@@ -640,5 +640,15 @@ export class InventoryService {
 
   getDetailsInventorys() {
     return this.lstInventory;
+  }
+
+  search(filters: any) {
+    return this.lstInventory.filter((x: any) => {
+      return (!filters.transactionNumber || x.transactionNumber.includes(filters.transactionNumber))
+              && (!filters.method || x.method.includes(filters.method))
+              && (!filters.galenicForm || x.galenicForm.includes(filters.galenicForm))
+              && (!filters.zone || x.zone.includes(filters.zone))
+              && (!filters.status || x.status.includes(filters.status));
+    });
   }
 }

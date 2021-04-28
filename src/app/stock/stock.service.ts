@@ -171,4 +171,14 @@ export class StockService {
   getDetailsSupliers() {
     return this.lstStock;
   }
+
+  search(filters: any) {
+    return this.lstStock.filter((x: any) => {
+      return (!filters.product || x.product.includes(filters.product)) && (!filters.ppvValue || x.ppvValue == filters.ppvValue)
+              && (!filters.inStore || x.inStore == filters.inStore) && (!filters.available || x.available == filters.available)
+              && (!filters.orders || x.orders == filters.orders) && (!filters.pphValue || x.pphValue == filters.pphValue)
+              && (!filters.zone || x.zone.includes(filters.zone)) && (!filters.barCode || x.barCode.includes(filters.barCode))
+              && (!filters.barCode2 || x.barCode2.includes(filters.barCode2));
+    });
+  }
 }
