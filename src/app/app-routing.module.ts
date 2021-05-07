@@ -25,6 +25,13 @@ import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { StockComponent } from './stock/stock.component';
+import { SearchStockComponent } from './stock/search-stock/search-stock.component';
+import { SearchInventoryComponent } from './stock/search-inventory/search-inventory.component';
+import { UpdateInventoryComponent } from './stock/update-inventory/update-inventory.component';
+import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
+import { SearchImportComponent } from './stock/search-import/search-import.component';
+import { AddImportComponent } from './stock/add-import/add-import.component';
 
 const routes: Routes = [
   {
@@ -109,6 +116,37 @@ const routes: Routes = [
     component: AddSuplierComponent,
     data: { title: 'Update Suplier' },
   },
+  {
+    path: 'stock',
+    component: StockComponent,
+    data: { title: 'Stock' },
+  },
+  {
+    path: 'inventory',
+    component: SearchInventoryComponent,
+    data: { title: 'Inventory' },
+  },
+
+  {
+    path: 'inventory/:id',
+    component: InventoryDetailsComponent,
+    data: { title: 'Inventory Details' },
+  },
+  {
+    path: 'update-inventory/:id',
+    component: UpdateInventoryComponent,
+    data: { title: 'Inventory Details' },
+  },
+  {
+    path: 'import',
+    component: SearchImportComponent,
+    data: { title: 'Import' },
+  },
+  {
+    path: 'add-import',
+    component: AddImportComponent,
+    data: { title: 'Add Import' },
+  },
 
 
   //sale
@@ -146,6 +184,13 @@ export const routingComponents = [
   SuplierDetailsComponent,
   SearchSuplierSuggestionComponent,
   SuplierSuggestionDetailsComponent,
+  StockComponent,
+  SearchStockComponent,
+  SearchInventoryComponent,
+  UpdateInventoryComponent,
+  InventoryDetailsComponent,
+  SearchImportComponent,
+  AddImportComponent,
   SaleComponent, 
   SearchSaleComponent,
 ];

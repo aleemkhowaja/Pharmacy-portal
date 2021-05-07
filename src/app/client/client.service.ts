@@ -1,37 +1,11 @@
+
+import { ALL_CLIENT_URL, GET_BY_ID, SAVE_CLIENT_URL, UPDATE_CLIENT_URL } from './constant';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
 import { ClientModel } from 'src/models/client';
-
-const allClients = gql`
-  query {
-    getAllCustomers {
-      id
-      manager
-      firstName
-      lastName
-      type
-      cin
-      cnss
-      email
-      phone
-      creditLimit
-      organization {
-        name
-      }
-      affiliateNumber
-      address
-      city
-      postalCode
-      country {
-        name
-      }
-      description
-    }
-  }
-`;
 
 @Injectable({
   providedIn: 'root',
@@ -143,26 +117,130 @@ export class ClientService {
 
   
 
-  // getAll(pageNumber: number, itemPerPage: number) : Observable<any> 
+  getAll(pageNum: number, itemPerPage: number) : Observable<any> 
+  {
+    return this.apollo.query<any>({
+      query: ALL_CLIENT_URL,
+      variables : {
+        pageNumber : pageNum-1,
+        pageSize : itemPerPage,
+        sortOrder : "DESC",
+        sortBy : "id",
+      },
+    });
+  }
+
+  filter(pageNum: number, itemPerPage: number, client: ClientModel) : Observable<any> 
+  {
+    return this.apollo.query<any>({
+      query: ALL_CLIENT_URL,
+      variables : {
+        pageNumber : pageNum-1,
+        pageSize : itemPerPage,
+        sortOrder : "DESC",
+        sortBy : "id",
+        lastName: client.lastName,
+        email : client.email,
+        phone : client.phone,
+        cin : client.cin,
+        cnss : client.cnss,
+        balance : client.creditLimit
+      },
+    });
+  }
+
+  save(client: ClientModel) {
+    this.apollo.mutate({
+      mutation: SAVE_CLIENT_URL,
+      variables: {
+        manager: client.manager,
+        firstName: client.firstName,
+        lastName : client.lastName,
+        type : client.type,
+        cin : client.cin,
+        cnss : client.cnss,
+        email : client.email,
+        phone : client.phone,
+        creditLimit : client.creditLimit,
+        orgId : client.organization,
+        registerationNumber : client.registerationNumber,
+        affiliateNumber : client.affiliateNumber,
+        address : client.address,
+        city : client.city,
+        postalCode : client.postalCode,
+        countryId  : client.country,
+        description : client.description
+      }
+    }).subscribe((response) => {
+     // this.notifyService.showSuccess("Record Saved Successfull", "");
+
+    });
+}
+
+update(client: ClientModel) {
+  this.apollo.mutate({
+    mutation: UPDATE_CLIENT_URL,
+    variables: {
+      id : client.id,
+      manager: client.manager,
+      firstName: client.firstName,
+      lastName : client.lastName,
+      type : client.type,
+      cin : client.cin,
+      cnss : client.cnss,
+      email : client.email,
+      phone : client.phone,
+      creditLimit : client.creditLimit,
+      orgId : client.organization,
+      registerationNumber : client.registerationNumber,
+      affiliateNumber : client.affiliateNumber,
+      address : client.address,
+      city : client.city,
+      postalCode : client.postalCode,
+      countryId  : client.country,
+      description : client.description
+    }
+  }).subscribe((response) => {
+   // this.notifyService.showSuccess("Record Saved Successfull", "");
+
+  });
+}
+
+
+
+  // getAll(pageNumber: number, itemPerPage: number): Observable<ClientModel[]> {
+    
+  //   return this.lstCients.slice(
+  //     (pageNumber - 1) * itemPerPage,
+  //     pageNumber * itemPerPage
+  //   );
+  // }
+
+  // getByIs(id: number) : Observable<any>  {
   // {
   //   return this.apollo.watchQuery<any>({
-  //     query: allClients,
+  //     query: GET_BY_ID,
+  //     variables : {
+  //       sortOrder : "DESC",
+  //       sortBy : "id",
+  //     },
   //   }).valueChanges;
   // }
 
-  getAll(pageNumber: number, itemPerPage: number): Observable<ClientModel[]> {
-    
-    return this.lstCients.slice(
-      (pageNumber - 1) * itemPerPage,
-      pageNumber * itemPerPage
-    );
+  getById(id: number) : Observable<any>  {
+    return this.apollo.watchQuery<any>({
+      query : GET_BY_ID,
+      variables : {
+        customerId : id
+      },
+    }).valueChanges;
+
+  // return this.lstCients.find((x: any) => x.id === id);
   }
 
-  getSpecificClient(id: number) {
-    return this.lstCients.find((x: any) => x.id === id);
-  }
 
-  save() {
-    console.log(name);
-  }
+  // save(client: ClientModel) {
+  //   console.log(client.email);
+  // }
+
 }

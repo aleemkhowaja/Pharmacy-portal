@@ -66,17 +66,12 @@
         <br />
 
         <div class="page-num-nw">
-          <a href=""
-            ><span><i class="fas fa-arrow-left"></i></span
-          ></a>
-          <a href=""><span class="active-page4">1</span></a>
-          <a href=""><span>2</span></a>
-          <a href=""><span class="dots-new">...</span></a>
-          <a href=""><span>15</span></a>
-
-          <a href=""
-            ><span><i class="fas fa-arrow-right"></i></span
-          ></a>
+          <div *ngIf="pagination" class="mt-1">
+            <app-pagination
+              [pagination]="pagination"
+              (pageNumberChanged)="loadLst($event)"
+            ></app-pagination>
+          </div>
         </div>
 
         <br />

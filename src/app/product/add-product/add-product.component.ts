@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
     name: [''],
     barcode: [''],
     barcode2: [''],
-    category: [''],
+    categoryId: [''],
     therapeuticClass: [''],
     galenicForm: [''],
     dci: [''],
@@ -104,11 +104,11 @@ export class AddProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   
+
     const _productId: number = this.router.snapshot.params.id;
     console.log(_productId);
     this.addEditProductDto = this.productService.getSpecificProduct(_productId);
-    if(this.addEditProductDto) 
+    if(this.addEditProductDto)
       this.addProductForm.patchValue(this.addEditProductDto);
     console.log(this.addEditProductDto);
   }
@@ -121,7 +121,7 @@ export class AddProductComponent implements OnInit {
 
   submitForm() {
     this.productService.save(this.addProductForm.value);
-    
+
     console.log(this.addProductForm.value);
   }
 

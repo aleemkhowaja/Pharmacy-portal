@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pagination } from 'src/models/pagination';
 import { ProductModel } from 'src/models/product';
 import { ProductService } from '../product.service';
 
@@ -11,11 +12,17 @@ import { ProductService } from '../product.service';
 export class ProductDetailsComponent implements OnInit {
   product: ProductModel | undefined;
   lstProduct: any;
+  pagination: Pagination = {
+    totalPages: 2,
+    currentPage: 1,
+    totalItems: 10,
+    itemsPerPage: 5,
+  };
   constructor(private route: ActivatedRoute,
               private router: Router,
               private productService: ProductService
               ) {
-                
+
             }
 
   ngOnInit(): void {
@@ -34,7 +41,21 @@ export class ProductDetailsComponent implements OnInit {
   getProduct(_productId: number) {
     this.product = undefined;
     this.product = this.productService.getSpecificProduct(_productId);
-    this.lstProduct = this.productService.getDetailsProducts();
+    this.getAll();
+  }
+
+  getAll() {
+    //#region Dummy Data
+    this.lstProduct = this.productService.getAll(
+      this.pagination.currentPage,
+      this.pagination.itemsPerPage
+    );
+    //#endregion
+  }
+
+  loadLst(pageNumber: number) {
+    this.pagination.currentPage = pageNumber;
+    this.getAll();
   }
 
 }

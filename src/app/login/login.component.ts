@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   loginModel = new LoginModel();
   serverURL: string = '';
 
+  isloginPage : boolean = true;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,34 +38,57 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
   }
 
-  login() {
-    const token = '12345';
-    const username = 'testing';
-    localStorage.setItem('username', username);
-    localStorage.setItem('token', token);
-    // this.tokenStorage.saveToken(token);
-    // this.tokenStorage.saveUser(username);
-    this.router.navigate(['/home'], { replaceUrl: false });
 
-    //  this.loginService.auth(this.loginModel).subscribe(response=> {
-    //   console.log('response ',response);
-    //   const token = response.accessToken;
-    //   const username = response.username;
-    //   console.log('Tokennn ',token);
-    //   if(token){
-    //     localStorage.setItem("username",username);
-    //     localStorage.setItem("token", token);
-    //     // this.tokenStorage.saveToken(token);
-    //     // this.tokenStorage.saveUser(username);
-    //     this.router.navigate(['/home'], { replaceUrl: true });
-    //   }
-    //   else{
-    //     this.router.navigate(['/login'], { replaceUrl: true });
-    //   }
+  
+  login(){
+    this.loginService.auth(this.loginModel).subscribe(response=> {
+     console.log('response ',response);
+     const token = response.accessToken;
+     const username = response.username;
+     console.log('Tokennn ',token);
+     if(token){
+       localStorage.setItem("username",username);
+       localStorage.setItem("token", token);
+       // this.tokenStorage.saveToken(token);
+       // this.tokenStorage.saveUser(username);
+       this.router.navigate(['/home'], { replaceUrl: true });
+     }
+     else{
+       this.router.navigate(['/login'], { replaceUrl: true });
+     }
+     
+   }
+   ); 
+ }
 
-    // }
-    //);
-  }
+  // login() {
+  //   const token = '12345';
+  //   const username = 'testing';
+  //   localStorage.setItem('username', username);
+  //   localStorage.setItem('token', token);
+  //   // this.tokenStorage.saveToken(token);
+  //   // this.tokenStorage.saveUser(username);
+  //   this.router.navigate(['/home'], { replaceUrl: false });
+
+  //   //  this.loginService.auth(this.loginModel).subscribe(response=> {
+  //   //   console.log('response ',response);
+  //   //   const token = response.accessToken;
+  //   //   const username = response.username;
+  //   //   console.log('Tokennn ',token);
+  //   //   if(token){
+  //   //     localStorage.setItem("username",username);
+  //   //     localStorage.setItem("token", token);
+  //   //     // this.tokenStorage.saveToken(token);
+  //   //     // this.tokenStorage.saveUser(username);
+  //   //     this.router.navigate(['/home'], { replaceUrl: true });
+  //   //   }
+  //   //   else{
+  //   //     this.router.navigate(['/login'], { replaceUrl: true });
+  //   //   }
+
+  //   // }
+  //   //);
+  // }
   // auth(context:LoginModel): Observable<any> {
   //   return this.http.post(this.serverURL+'authenticate', {
   //     username: context.username,

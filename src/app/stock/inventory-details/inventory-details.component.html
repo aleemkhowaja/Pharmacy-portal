@@ -1,0 +1,455 @@
+<!-- Page content holder -->
+<div class="p-51"></div>
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button
+    id="sidebarCollapse"
+    type="button"
+    class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+  >
+    <i class="fa fa-bars mr-2"></i>
+  </button>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-md-2 col-12">
+        <div class="patient-name-cont">
+          <div class="row">
+            <div class="col">
+              <div class="bar-head">
+                <div class="card-head pat-head">Inventaire</div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="dropdown show">
+            <a
+              class="btn btn-secondary dropdown-toggle filter-btn"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Filtre
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row" *ngFor="let item of lstInventory" (click)="viewInventory(item.id)" style="cursor: pointer;">
+            <div class="col">
+              <div class="patient-name">
+                <span>
+                  {{ item.transactionNumber }}
+                </span>
+              </div>
+            </div>
+
+            <div class="col justify-content-end col-sm-1">
+              <div class="patient-name">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="page-num-nw">
+          <div *ngIf="pagination" class="mt-1">
+            <app-pagination
+              [pagination]="pagination"
+              (pageNumberChanged)="loadLst($event)"
+            ></app-pagination>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="page-num-nw">
+          <div class="row">
+            <div class="col col-12">
+              <Input value="10" type="number" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-12">
+              <button class="enter-btn-nw">Entrer</button>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="page-num-nw">
+          <div class="row">
+            <div class="col col-12">
+              <Input type="text" placeholder="Search Page" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-12">
+              <button class="enter-btn-nw">Entrer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-md-7 col-12">
+        <br class="br545sas" />
+        <div class="row">
+          <div class="col page-head col-md-7">
+            <h2>{{inventory?.transactionNumber}}</h2>
+          </div>
+
+          <div class="col col-2 col-sm-1 cmnpad">
+            <div class="dropdown show dropright">
+              <a
+                class="btn btn-secondary dropdown-toggle bell-icon-dd"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <img
+                  src="../../assets/images/Icons/bell.png"
+                  alt="Notification"
+                  class="bell-icon"
+                />
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col card-box-nw-col">
+            <div class="card-box-nw-1212">
+              <div class="row">
+                <div class="col">
+                  <div class="card status-nw status-nw1">
+                    <div class="row">
+                      <div class="col">
+                        <p class="status-title">Statut</p>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <span
+                          class="status-remark-nw bottom-sen-pad card-remark"
+                        >
+                          Complété
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br class="br545sas" />
+            </div>
+          </div>
+          <div class="col col-12 buttons-aic col-lr-1 col-md-2 col-sm-3 cmnpad">
+            <div class="box1 boxes12 special-red">Annuler</div>
+          </div>
+
+          <div class="col col-12 buttons-aic col-lr-1 col-md-2 col-sm-3 cmnpad">
+            <div class="box1 boxes12">Dupliquer</div>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="general-info">
+              <div class="row">
+                <div class="col">
+                  <div class="general-info-title card-head">Inventaire</div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="name all-tags">
+                        <span class="name-tag tags">Date :</span>
+                        <span class="id-name">{{inventory?.date}}</span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="phone-num all-tags">
+                        <span class="phone-tag tags">Ecart total :</span>
+                        <span class="id-num">{{inventory?.totalDeviation}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="cin all-tags">
+                        <span class="cin-tag tags">Commentaire : </span>
+                        <span class="id-cin">{{inventory?.comment}} </span>
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                      <div class="email all-tags">
+                        <span class="email-tag tags"
+                          >Valeur totale en PPV :
+                        </span>
+                        <span class="id-email">{{inventory?.totalPPV}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-12 col-md-6">
+                      <div class="cnss all-tags">
+                        <span class="cnss-tag tags"
+                          >Valeur totale en PPH :
+                        </span>
+                        <span class="id-cnss">{{inventory?.totalPPH}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="pro-his">
+              <div class="row justify-content-end">
+                <div class="col col-12 col-md-4">
+                  <div class="search-box">
+                    <input type="text" placeholder="Type to search.." />
+                    <div class="search-icon searchbtn">
+                      <i class="fas fa-search"></i>
+                    </div>
+                    <div class="cancel-icon crossbtn">
+                      <i class="fas fa-times"></i>
+                    </div>
+                    <div class="search-data"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row search-row">
+                <div class="col">
+                  <table class="table">
+                    <tbody>
+                      <td><input type="text" placeholder="Nom" /></td>
+                      <td><input type="text" placeholder="PPH" /></td>
+                      <td>
+                        <input type="text" placeholder="Quantité en stock" />
+                      </td>
+                      <td>
+                        <input type="text" placeholder="Quantité réelle" />
+                      </td>
+                      <td><input type="text" placeholder="Ecart" /></td>
+                      <td><input type="text" placeholder="Valeur en PPV" /></td>
+                      <td><input type="text" placeholder="Valeur en PPH" /></td>
+                      <td>
+                        <button><i class="fas fa-search"></i></button>
+                      </td>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="pro-his-title card-head">
+                    Produits de l'inventaire
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="invoice-table">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nom</th>
+                          <th scope="col">PPH</th>
+                          <th scope="col">Quantité en stock</th>
+                          <th scope="col">Quantité réelle</th>
+                          <th scope="col">Ecart</th>
+                          <th scope="col">Valeur en PPV</th>
+                          <th scope="col">Valeur en PPH</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of inventory?.products">
+                          <td>{{item.name}}</td>
+                          <td>{{item.pph}}</td>
+                          <td>{{item.inStock}}</td>
+                          <td>{{item.actualQuantity}}</td>
+                          <td>{{item.difference}}</td>
+                          <td>{{item.ppvValue}}</td>
+                          <td>{{item.pphValue}}</td>
+                          <td>
+                            <div class="edit-btn">
+                              <i class="fas fa-pen" (click)="updateInventory(item.id)"></i>
+
+                            </div>
+                          </td>
+                          <td>
+                            <div class="cross-btn">
+                              <i class="fas fa-times"></i>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-md-3 card-top1">
+        <div class="row">
+          <div class="col">
+            <div class="card status-nw">
+              <div class="row">
+                <div class="col">
+                  <span class="bottom-sen-pad status-title"> Statut </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <span class="bottom-sen-pad status-remark-nw card-remark">
+                    Complété
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="Trace-info-box">
+              <div class="row">
+                <div class="col">
+                  <p class="Trace-info-title">Informations de traçabilité</p>
+                </div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col col-md-5">Créé par</div>
+                <div class="col">GHALMANE MOHAMED</div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col col-md-5">Créé sur</div>
+                <div class="col">2021-02-12 15:43:22</div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col col-md-5">Mis à jour par</div>
+                <div class="col">GHALMANE MOHAMED</div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col col-md-5">Mise à jour</div>
+                <div class="col">2021-02-12 15:43:22</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+          <div class="col">
+            <div class="comments-box">
+              <div class="row">
+                <div class="col">Commentaires</div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col">
+                  <input
+                    type="text"
+                    placeholder="Add a comment"
+                    class="comment-input"
+                  />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col">
+                  <a href="#"
+                    ><button class="all-comment">
+                      Tous les commentaires
+                    </button></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+  <div class="clear-fix">
+    <div class="row justify-content-end">
+      <div class="col faq col-sm-1">
+        <div class="faqbox">
+          <a href="#">
+            <button class="faqbtn">FAQ</button>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="col supportnum col-sm-2 float-right"
+        style="position: relative"
+      >
+        <div class="sptnumbox">
+          <p>Soutien: 99 99 999 999</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />

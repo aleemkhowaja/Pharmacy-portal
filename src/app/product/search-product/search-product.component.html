@@ -13,19 +13,19 @@
   <div class="container-fluid">
     <div class="row">
 
-    
+
 
         <div class="col page-head col-md-2">
             <h2>Produits
             </h2>
         </div>
-  
+
         <div class=" col col-2 col-md-1 cmnpad" >
           <div class="dropdown show dropright ">
             <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="../../assets/images/Icons/bell.png" alt="Notification" class="bell-icon">
             </a>
-          
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="#">Action</a>
               <a class="dropdown-item" href="#">Another action</a>
@@ -33,22 +33,22 @@
             </div>
           </div>
         </div>
-  
-  
+
+
         <div class=" col col-12 buttons-aic col-lr-1 col-md-3 col-sm-3 cmnpad">
-            <div class="box1 boxes12" (click)="toogleMoreInformation()"> 
+            <div class="box1 boxes12" (click)="toogleMoreInformation()">
               Afficher {{moreInformation? 'moins': 'plus'}} d'informations
             </div>
         </div>
-  
+
         <div class=" col col-12 col-lr-1 buttons-aic col-md-3 col-sm-3 cmnpad">
             <div class="box2 boxes12" routerLink="/product-suggestion">
-             
+
                   Historique des suggestions
-           
+
             </div>
         </div>
-  
+
         <div class=" col col-12 col-lr-1 buttons-aic col-md-3 col-sm-3 cmnpad">
             <div class="creer">
                 <a routerLink="/add-product" >
@@ -58,19 +58,19 @@
                 </a>
             </div>
         </div>
-  
-       
+
+
     </div>
 
     <div class="container-fluid sec-cont">
-      <div class="row justify-content-end">
+      <div class="row justify-content-end" >
         <div class="col col-12 col-md-4">
           <div class="search-box">
             <input type="text" placeholder="Type to search.." />
-            <div class="search-icon searchbtn">
+            <div class="search-icon searchbtn" (click)="searching = true">
               <i style="line-height: inherit" class="fas fa-search"></i>
             </div>
-            <div class="cancel-icon crossbtn">
+            <div class="cancel-icon crossbtn" *ngIf="searching" (click)="searching = false">
               <i class="fas fa-times"></i>
             </div>
             <div class="search-data"></div>
@@ -78,44 +78,44 @@
         </div>
       </div>
 
-      <div class="row search-row" >
+      <div class="row" *ngIf="searching">
         <div class="col">
           <table class="table ">
             <tbody>
               <tr >
-              <td><input type="text" placeholder="Last Name"></td>
-              <td><input type="text" placeholder="PPV"></td>
-              <td><input type="text" placeholder="Category"></td>
-              <td><input type="text" placeholder="Pharmaceutical Form"></td>
-              
-             
-           
-              <td><button><i class="fas fa-search"></i></button></td> 
+              <td><input type="text" [(ngModel)]="searchFields.name" placeholder="Last Name"></td>
+              <td><input type="text" [(ngModel)]="searchFields.ppv" placeholder="PPV"></td>
+              <td><input type="text" [(ngModel)]="searchFields.category" placeholder="Category"></td>
+              <td><input type="text" [(ngModel)]="searchFields.pharmaceuticalForm" placeholder="Pharmaceutical Form"></td>
+
+
+
+              <td><button (click)="searchItems()"><i class="fas fa-search"></i></button></td>
               </tr>
 
               <tr>
-                <td><input type="text" placeholder="PPH"></td>
-                <td><input type="text" placeholder="Bar Code"></td>
+                <td><input type="text" [(ngModel)]="searchFields.pph" placeholder="PPH"></td>
+                <td><input type="text" [(ngModel)]="searchFields.barCode" placeholder="Bar Code"></td>
                 <td><div class="dropdown dropdown1 show dropright ">
                   <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Zoné
+                    {{searchFields.zone? searchFields.zone: 'Zoné'}}
                   </a>
-                
+
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Non</a>
-                    <a class="dropdown-item" href="#">Oui</a>
-                    
+                    <a class="dropdown-item" href="#" (click)="searchFields.zone = 'Non'">Non</a>
+                    <a class="dropdown-item" href="#" (click)="searchFields.zone = 'Oui'">Oui</a>
+
                   </div>
                 </div></td>
                 <td><div class="dropdown dropdown1 show dropright ">
                   <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    C'est actif
+                    {{searchFields.active? searchFields.active: 'C`est actif'}}
                   </a>
-                
+
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Non</a>
-                    <a class="dropdown-item" href="#">Oui</a>
-                    
+                    <a class="dropdown-item" href="#" (click)="searchFields.active = 'Non'">Non</a>
+                    <a class="dropdown-item" href="#" (click)="searchFields.active = 'Oui'">Oui</a>
+
                   </div>
                 </div></td>
               </tr>

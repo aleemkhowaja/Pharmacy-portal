@@ -1,4 +1,4 @@
 export interface StrNgCombo {
-  value: string;
   label: string;
+  value: string;
 }

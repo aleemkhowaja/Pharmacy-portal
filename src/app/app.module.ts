@@ -1,5 +1,3 @@
-import { SearchSaleComponent } from './sale/search-sale/search-sale.component';
-import { SaleComponent } from './sale/sale.component';
 import { AddClientComponent } from './client/add-client/add-client.component';
 import { SearchClientComponent } from './client/search-client/search-client.component';
 import { NgModule } from '@angular/core';
@@ -11,9 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
 import { EmployeeModule } from './employee/employee.module';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatInputModule } from '@angular/material/input';
 import { GraphQLModule } from './graphql.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -31,34 +26,66 @@ import { ProductComponent } from './product/product.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
-import { ViewClientComponent } from './client/view-client/view-client.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { SuplierComponent } from './suplier/suplier.component';
+import { SearchSuplierComponent } from './suplier/search-suplier/search-suplier.component';
+import { AddSuplierComponent } from './suplier/add-suplier/add-suplier.component';
+import { SuplierDetailsComponent } from './suplier/suplier-details/suplier-details.component';
+import { SearchSuplierSuggestionComponent } from './suplier/search-suplier-suggestion/search-suplier-suggestion.component';
+import { SuplierSuggestionDetailsComponent } from './suplier/suplier-suggestion-details/suplier-suggestion-details.component';
+import { StockComponent } from './stock/stock.component';
+import { SearchStockComponent } from './stock/search-stock/search-stock.component';
+import { SearchInventoryComponent } from './stock/search-inventory/search-inventory.component';
+import { UpdateInventoryComponent } from './stock/update-inventory/update-inventory.component';
+import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
+import { SearchImportComponent } from './stock/search-import/search-import.component';
+import { AddImportComponent } from './stock/add-import/add-import.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    ViewClientComponent   
+    NavBarComponent,
+    PaginationComponent,
+    ProductComponent,
+    SearchProductComponent,
+    AddProductComponent,
+    SearchProductSuggestionComponent,
+    ProductDetailsComponent,
+    SuplierComponent,
+    SearchSuplierComponent,
+    AddSuplierComponent,
+    SuplierDetailsComponent,
+    SearchSuplierSuggestionComponent,
+    SuplierSuggestionDetailsComponent,
+    StockComponent,
+    SearchStockComponent,
+    SearchInventoryComponent,
+    UpdateInventoryComponent,
+    InventoryDetailsComponent,
+    SearchImportComponent,
+    AddImportComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
     NgxSelectModule,
     NgSelectModule,
     BrowserModule,
-    AppRoutingModule,   
+    AppRoutingModule,
     HttpClientModule,
     HomeModule,
     EmployeeModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatInputModule,
     GraphQLModule,
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
-    ButtonsModule.forRoot(),
+    ButtonsModule.forRoot()
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],

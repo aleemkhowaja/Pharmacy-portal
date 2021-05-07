@@ -1,18 +1,11 @@
-<form
-  class="client-form"
-  id="client-form"
-  [formGroup]="addClientForm"
-  (ngSubmit)="submitForm()"
->
+<form class="client-form" id="client-form" [formGroup]="addClientForm" (ngSubmit)="submitForm()">
+
+  <input type="hidden" id="client_id" formControlName="id" />
   <!-- Page content holder -->
   <div class="p-51"></div>
   <div class="page-content p-5" id="content">
     <!-- Toggle button -->
-    <button
-      id="sidebarCollapse"
-      type="button"
-      class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-    >
+    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
       <i class="fa fa-bars mr-2"></i>
     </button>
 
@@ -24,20 +17,9 @@
 
         <div class="col col-2 col-md-1 cmnpad">
           <div class="dropdown show dropright">
-            <a
-              class="btn btn-secondary dropdown-toggle bell-icon-dd"
-              href="#"
-              role="button"
-              id="dropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img
-                src="../../../assets/Icons/bell.png"
-                alt="Notification"
-                class="bell-icon"
-              />
+            <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="../../../assets/Icons/bell.png" alt="Notification" class="bell-icon" />
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -83,40 +65,52 @@
             <div class="row">
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Gestionnaire</div>
-                <input
-                  type="text"
-                  placeholder="Gestionnaire"
-                  id="client-manager"
-                  formControlName="manager"
-                />
+
+                <ng-select 
+                  id="client-manager" 
+                  [ngClass]="'overFlowSelect'"
+                  [clearable]="true" 
+                  [items]="managers" 
+                  bindValue="id"
+                  bindLabel="name" 
+                  name="manager" 
+                  formControlName="manager" 
+                  [placeholder]="'Gestionnaire'" 
+                  [virtualScroll]="true"
+                  [appendTo]="'body'">
+              </ng-select>
+                      <div *ngIf=" f.manager.errors" class="invalid-feedback">
+                        <div *ngIf="f.manager.errors.required">Gestionnaire is required</div>
+                      </div>
+
               </div>
+
               <div class="col col-12 col-md-6">
+
                 <div class="Sub-Head">Nom</div>
-                <input id="client-lastName" formControlName="lastName" />
+                <input required id="client-lastName" formControlName="lastName"   class="form-control"
+                [ngClass]="{ 'is-invalid':  f.lastName.errors }" />
+
+                <div *ngIf=" f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">Nom is required</div>
+              </div>
+
               </div>
             </div>
             <br />
             <div class="row">
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">CIN</div>
-                <input type="text" id="client-cin" formControlName="cin" />
+                <input type="text" id="client-cin" formControlName="cin"  (keypress) = "onClientKeyPress($event)" />
               </div>
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Type</div>
-                <ng-select
-                  [ngClass]="'overFlowSelect'"
-                  [clearable]="true"
-                  [items]="types"
-                  bindValue="value"
-                  bindtext="label"
-                  name="type"
-                  formControlName="type"
-                  [placeholder]="'type'"
-                  [virtualScroll]="true"
-                  [appendTo]="'body'"
-                  required
-                >
+                                
+                <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="types" bindValue="id"
+                  bindLabel="name" name="type" formControlName="type" [placeholder]="'type'" [virtualScroll]="true"
+                  [appendTo]="'body'">
                 </ng-select>
+
               </div>
             </div>
             <br />
@@ -136,30 +130,14 @@
                 <div class="Sub-Head">Téléphone</div>
                 <input type="text" id="client-phone" formControlName="phone" />
               </div>
-
-              <!-- <input type="text" placeholder="Search" ng-model="query" ng-focus="focus=true">
-            <div id="search-results" ng-show="focus">
-              <div class="search-result" ng-repeat="item in data | search:query" ng-bind="item" ng-click="setQuery(item)"></div>
-            </div> -->
-
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Médecin traitant</div>
-                <ng-select
-                  [ngClass]="'overFlowSelect'"
-                  [clearable]="true"
-                  [items]="doctors"
-                  bindValue="value"
-                  bindtext="label"
-                  name="type"
-                  formControlName="type"
-                  [placeholder]="'type'"
-                  [virtualScroll]="true"
-                  [appendTo]="'body'"
-                  required
-                >
+
+                <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="doctors" bindValue="value"
+                  bindtext="label" name="type" formControlName="type" [placeholder]="'type'" [virtualScroll]="true"
+                  [appendTo]="'body'">
                 </ng-select>
 
-                <!-- <input type="text" data-toggle="modal" data-target="#myModal"> -->
               </div>
             </div>
             <br />
@@ -191,25 +169,13 @@
             <div class="row">
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Organisme</div>
-                <div class="dropdown show">
-                  <a
-                    class="btn btn-secondary dropdown-toggle filter-btn filter-btn2"
-                    href="#"
-                    role="button"
-                    id="dropdownMenuLink"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Aucun
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Client régulier</a>
-                    <a class="dropdown-item" href="#">Client Passager</a>
-                    <a class="dropdown-item" href="#">Pharmacie</a>
-                  </div>
-                </div>
+                <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="organizations" bindValue="id"
+                  bindLabel="name" name="organization" formControlName="organization" [placeholder]="'organization'"
+                  [virtualScroll]="true" [appendTo]="'body'">
+                </ng-select>
+                
               </div>
+
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Numéro d'immatriculation</div>
                 <input type="text" formControlName="registerationNumber" />
@@ -273,31 +239,9 @@
               <div class="col col-12">
                 <div class="Sub-Head">Pays</div>
                 <div class="dropdown show">
-                  <!-- <a
-                    class="btn btn-secondary dropdown-toggle filter-btn filter-btn2"
-                    href="#"
-                    role="button"
-                    id="dropdownMenuLink"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Marco
-                  </a> -->
-
-                  <ng-select
-                    [ngClass]="'overFlowSelect'"
-                    [clearable]="true"
-                    [items]="countries"
-                    bindValue="value"
-                    bindtext="label"
-                    name="type"
-                    formControlName="country"
-                    [placeholder]="'type'"
-                    [virtualScroll]="true"
-                    [appendTo]="'body'"
-                    required
-                  >
+                  <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="countries" bindValue="id"
+                  bindLabel="name" name="country" formControlName="country" [placeholder]="'country'" [virtualScroll]="true"
+                    [appendTo]="'body'">
                   </ng-select>
                 </div>
               </div>

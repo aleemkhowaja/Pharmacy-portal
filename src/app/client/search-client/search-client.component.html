@@ -55,21 +55,21 @@
       <div class="col col-12 col-lr-1 buttons-aic col-md-1 col-sm-3 cmnpad">
         <div class="creer">
           <a href="#">
-            <button class="creerbtn"  [routerLink]="['/add-client', 0]">Créer</button>
+            <button class="creerbtn"  [routerLink]="['/add-client', 0]" >Créer</button>
           </a>
         </div>
       </div>
     </div>
 
     <div class="container-fluid sec-cont">
-      <div class="row justify-content-end">
+      <div class="row justify-content-end" >
         <div class="col col-12 col-md-4">
           <div class="search-box">
             <input type="text" placeholder="Type to search.." />
-            <div class="search-icon searchbtn">
+            <div class="search-icon searchbtn" (click)="searching = true">
               <i style="line-height: inherit" class="fas fa-search"></i>
             </div>
-            <div class="cancel-icon crossbtn">
+            <div class="cancel-icon crossbtn" *ngIf="searching" (click)="searching = false">
               <i class="fas fa-times"></i>
             </div>
             <div class="search-data"></div>
@@ -77,14 +77,18 @@
         </div>
       </div>
 
-      <div class="row search-row">
+      <div class="row" *ngIf="searching">
         <div class="col">
-          <table class="table">
+          <table class="table ">
             <tbody>
               <tr>
-                <td><input type="text" placeholder="Name" /></td>
+                <td><input type="text"  [(ngModel)]="searchFields.lastName"  placeholder="Nom" /></td>
                 <td>
-                  <div class="dropdown dropdown1 show dropright">
+                  <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="types" bindValue="id" 
+                  [(ngModel)]="searchFields.type" [placeholder]="'type'" [virtualScroll]="true">
+                  </ng-select>
+
+                  <!-- <div class="dropdown dropdown1 show dropright">
                     <a
                       class="btn btn-secondary dropdown-toggle"
                       href="#"
@@ -106,21 +110,18 @@
                       <a class="dropdown-item" href="#">Client passager</a>
                       <a class="dropdown-item" href="#">Pharmacie</a>
                     </div>
-                  </div>
+                  </div> -->
                 </td>
-                <td><input type="text" placeholder="Email" /></td>
-                <td><input type="text" placeholder="Phone" /></td>
+                <td><input type="text"  [(ngModel)]="searchFields.email"  placeholder="Email" /></td>
+                <td><input type="text"  [(ngModel)]="searchFields.phone" placeholder="Phone" /></td>
               </tr>
               <tr>
-                <td><input type="text" placeholder="CIN" /></td>
-                <td><input type="text" placeholder="CNSS" /></td>
-                <td><input type="text" placeholder="Balance" /></td>
-                <td>
-                  <button>
-                    <i class="fas fa-search" routerLink="login"></i>
-                  </button>
-                </td>
+                <td><input type="text"  [(ngModel)]="searchFields.cin"  placeholder="CIN" /></td>
+                <td><input type="text"  [(ngModel)]="searchFields.cnss" placeholder="CNSS" /></td>
+                <td><input type="text"  [(ngModel)]="searchFields.creditLimit" placeholder="Balance" /></td>  
+                <td><button (click)="searchItems()"><i class="fas fa-search"></i></button></td>
               </tr>
+
             </tbody>
           </table>
         </div>
@@ -149,7 +150,7 @@
                   <!-- <a [routerLink]="['/view-client']"> -->
                   <td>{{ item.id }}</td>
                   <td>{{ item.lastName }}</td>
-                  <td>{{ item.type }}</td>
+                  <td>{{ item.type.name }}</td>
                   <td>{{ item.email }}</td>
                   <td>{{ item.phone }}</td>
                   <td>{{ item.cin }}</td>

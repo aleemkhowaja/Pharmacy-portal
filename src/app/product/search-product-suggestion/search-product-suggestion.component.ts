@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 import { Pagination } from 'src/models/pagination';
 import { ProductService } from '../product.service';
 
@@ -17,7 +18,17 @@ export class SearchProductSuggestionComponent implements OnInit {
     totalItems: 10,
     itemsPerPage: 5,
   };
-
+  searching = false;
+  searchFields: any = {
+    name: '',
+    ppv: '',
+    category: '',
+    pharmaceuticalForm: '',
+    pph: '',
+    barCode: '',
+    zone: '',
+    active: ''
+  };
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -30,7 +41,8 @@ export class SearchProductSuggestionComponent implements OnInit {
 
   dataLoading: boolean = true;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.getAll();
@@ -53,4 +65,12 @@ export class SearchProductSuggestionComponent implements OnInit {
     this.getAll();
   }
 
+  viewProduct(id: number) {
+    this.router.navigate([`/product/${id}`]);
+  }
+
+  searchItems() {
+    this.lstProduct = this.productService.search(this.searchFields);
+    console.log(this.lstProduct);
+  }
 }
