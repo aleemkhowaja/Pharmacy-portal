@@ -40,6 +40,13 @@ import { UpdateInventoryComponent } from './stock/update-inventory/update-invent
 import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
 import { SearchImportComponent } from './stock/search-import/search-import.component';
 import { AddImportComponent } from './stock/add-import/add-import.component';
+import { SearchSaleComponent } from './sale/search-sale/search-sale.component';
+import { AddSaleComponent } from './sale/add-sale/add-sale.component';
+import { SaleComponent } from './sale/sale.component';
+import { QuoteComponent } from './sale/quote/quote.component';
+import { SearchQuoteComponent } from './sale/quote/search-quote/search-quote.component';
+import { AddQuoteComponent } from './sale/quote/add-quote/add-quote.component';
+import { SaleDetailsComponent } from './sale/sale_details/sale-details.component';
 
 
 
@@ -54,6 +61,13 @@ import { AddImportComponent } from './stock/add-import/add-import.component';
     AddProductComponent,
     SearchProductSuggestionComponent,
     ProductDetailsComponent,
+    SaleComponent,
+    SearchSaleComponent,
+    AddSaleComponent,
+    SaleDetailsComponent,
+    QuoteComponent,
+    SearchQuoteComponent,
+    AddQuoteComponent,
     SuplierComponent,
     SearchSuplierComponent,
     AddSuplierComponent,

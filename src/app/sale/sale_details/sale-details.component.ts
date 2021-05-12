@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pagination } from 'src/models/pagination';
-import { ProductModel } from 'src/models/product';
-import { ProductService } from '../product.service';
+import { SaleModel } from 'src/models/sale';
+import { SaleService } from '../sale.service';
 
 @Component({
-  selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  selector: 'app-sale-details',
+  templateUrl: './sale-details.component.html',
+  styleUrls: ['./sale-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
-  product: ProductModel | undefined;
-  lstProduct: any;
+export class SaleDetailsComponent implements OnInit {
+  sale: SaleModel | undefined;
+  lstSale: any;
   pagination: Pagination = {
     totalPages: 2,
     currentPage: 1,
@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   };
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private saleService: SaleService
   ) {
 
   }
@@ -29,28 +29,27 @@ export class ProductDetailsComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         const id = +params['id'];
-        this.getProduct(id);
+        this.getSale(id);
       }
     );
   }
 
-  viewProduct(id: number) {
-    this.router.navigate([`/product/${id}`]);
+  viewSale(id: number) {
+    this.router.navigate([`/sale/${id}`]);
   }
 
-  getProduct(_productId: number) {
-    this.product = undefined;
-    this.product = this.productService.getSpecificProduct(_productId);
+  getSale(_saleId: number) {
+    this.sale = undefined;
+    this.sale = this.saleService.getSpecificProduct(_saleId);
     this.getAll();
   }
 
   getAll() {
-    //#region Dummy Data
-    this.lstProduct = this.productService.getAll(
+    this.lstSale = this.saleService.getAll(
       this.pagination.currentPage,
       this.pagination.itemsPerPage
     );
-    //#endregion
+    
   }
 
   loadLst(pageNumber: number) {
