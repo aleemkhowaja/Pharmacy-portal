@@ -2,8 +2,7 @@
 <div class="p-51"></div>
 <div class="page-content p-5" id="content">
     <!-- Toggle button -->
-    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-            class="fa fa-bars mr-2"></i></button>
+    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i></button>
 
     <div class="container-fluid">
         <div class="row">
@@ -18,15 +17,14 @@
                                 </div>
                             </div>
 
-
                         </div>
                     </div>
 
                     <br>
 
                     <div class="dropdown show">
-                        <a class="btn btn-secondary dropdown-toggle filter-btn" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-secondary dropdown-toggle filter-btn" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Filtre
                         </a>
 
@@ -39,13 +37,11 @@
 
                     <br>
 
-
-
                     <div class="row" *ngFor="let item of lstProduct" (click)="viewProduct(item.id)" style="cursor: pointer;">
                         <div class="col">
                             <div class="patient-name ">
                                 <span>
-                                   {{item.product}}
+                                    {{item.product}}
                                 </span>
                             </div>
                         </div>
@@ -62,12 +58,9 @@
 
                 <br>
                 <div class=" page-num-nw">
-                  <div *ngIf="pagination" class="mt-1">
-                    <app-pagination
-                      [pagination]="pagination"
-                      (pageNumberChanged)="loadLst($event)"
-                    ></app-pagination>
-                  </div>
+                    <div *ngIf="pagination" class="mt-1">
+                        <app-pagination [pagination]="pagination" (pageNumberChanged)="loadLst($event)"></app-pagination>
+                    </div>
                 </div>
 
                 <br>
@@ -116,11 +109,10 @@
                         <h2>{{product?.product}} </h2>
                     </div>
 
-
                     <div class=" col col-2 col-sm-1 cmnpad">
                         <div class="dropdown show dropright ">
-                            <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="../../../assets/Icons/bell.png" alt="Notification" class="bell-icon">
                             </a>
 
@@ -263,7 +255,8 @@
                                         <div class="col-12 col-md-6">
                                             <div class="prescription all-tags">
                                                 <span class="prescription-tag tags">Nécessite une prescription : </span>
-                                                <span class="id-prescription">{{product?.prescriptionRequired? 'Si': 'No'}}</span>
+                                                <span class="id-prescription">{{product?.prescriptionRequired? 'Si':
+                                                    'No'}}</span>
                                             </div>
                                         </div>
                                     </div>

@@ -32,6 +32,11 @@ import { UpdateInventoryComponent } from './stock/update-inventory/update-invent
 import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
 import { SearchImportComponent } from './stock/search-import/search-import.component';
 import { AddImportComponent } from './stock/add-import/add-import.component';
+import { AddSaleComponent } from './sale/add-sale/add-sale.component';
+import { QuoteComponent } from './sale/quote/quote.component';
+import { SearchQuoteComponent } from './sale/quote/search-quote/search-quote.component';
+import { AddQuoteComponent } from './sale/quote/add-quote/add-quote.component';
+import { SaleDetailsComponent } from './sale/sale_details/sale-details.component';
 
 const routes: Routes = [
   {
@@ -155,6 +160,31 @@ const routes: Routes = [
     component: SaleComponent,
     data: { title: 'Sale' },
   },
+
+  {
+    path: 'sale/:id',
+    component: SaleDetailsComponent,
+    data: { title: 'Sale details' },
+  },
+  {
+    path: 'add-sale',
+    component: AddSaleComponent,
+    data: { title: 'Add Sale' },
+  },
+
+  //quote
+
+  {
+    path: 'quote',
+    component: QuoteComponent,
+    data: { title: 'Quote' },
+  },
+
+  {
+    path: 'add-quote',
+    component: AddQuoteComponent,
+    data: { title: 'Add Quote' },
+  },
 ];
 
 @NgModule({
@@ -193,4 +223,7 @@ export const routingComponents = [
   AddImportComponent,
   SaleComponent, 
   SearchSaleComponent,
+  QuoteComponent,
+  SearchQuoteComponent,
+  AddQuoteComponent,
 ];
