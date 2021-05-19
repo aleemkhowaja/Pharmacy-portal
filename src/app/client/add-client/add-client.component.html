@@ -66,23 +66,25 @@
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Gestionnaire</div>
 
-                <ng-select 
-                  id="client-manager" 
-                  [ngClass]="'overFlowSelect'"
-                  [clearable]="true" 
-                  [items]="managers" 
-                  bindValue="id"
-                  bindLabel="name" 
-                  name="manager" 
-                  formControlName="manager" 
-                  [placeholder]="'Gestionnaire'" 
-                  [virtualScroll]="true"
-                  [appendTo]="'body'">
-              </ng-select>
-                      <div *ngIf=" f.manager.errors" class="invalid-feedback">
-                        <div *ngIf="f.manager.errors.required">Gestionnaire is required</div>
-                      </div>
+                  <ng-select 
+                    
+                    id="client-manager" 
+                    [ngClass]="{ 'is-invalid':  f.manager.errors }"
+                    [clearable]="true" 
+                    [items]="managers" 
+                    bindValue="id"
+                    bindLabel="name" 
+                    name="manager" 
+                    formControlName="manager" 
+                    [placeholder]="'Gestionnaire'" 
+                    [virtualScroll]="true"
+                    [appendTo]="'body'">
 
+                </ng-select>
+
+                <div *ngIf=" f.manager.errors  && f.manager.invalid" style="width: 100%; margin-top: .25rem; font-size: 80%;color: #dc3545;">
+                  <div *ngIf="f.manager.errors.required">Gestionnaire is required</div>
+                </div>
               </div>
 
               <div class="col col-12 col-md-6">
@@ -91,7 +93,7 @@
                 <input required id="client-lastName" formControlName="lastName"   class="form-control"
                 [ngClass]="{ 'is-invalid':  f.lastName.errors }" />
 
-                <div *ngIf=" f.lastName.errors" class="invalid-feedback">
+                <div *ngIf=" f.lastName.errors && f.lastName.invalid" class="invalid-feedback">
                   <div *ngIf="f.lastName.errors.required">Nom is required</div>
               </div>
 
@@ -101,7 +103,12 @@
             <div class="row">
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">CIN</div>
-                <input type="text" id="client-cin" formControlName="cin"  (keypress) = "onClientKeyPress($event)" />
+                <input 
+                  type="text" 
+                  id="client-cin" 
+                  formControlName="cin"  
+                  (keypress) = "onClientKeyPress($event)"  
+                  class="form-control" />
               </div>
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Type</div>
@@ -111,6 +118,9 @@
                   [appendTo]="'body'">
                 </ng-select>
 
+                <div *ngIf=" f.type.errors  && f.type.invalid" style="width: 100%; margin-top: .25rem; font-size: 80%;color: #dc3545;">
+                  <div *ngIf="f.type.errors.required">type is required</div>
+                </div>
               </div>
             </div>
             <br />
@@ -121,7 +131,12 @@
               </div>
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">E-mail</div>
-                <input type="text" id="client-email" formControlName="email" />
+                <input type="email" id="client-email" formControlName="email" [ngClass]="{ 'is-invalid': f.email.errors }" />
+                <div *ngIf=" f.email.errors" class="invalid-feedback">
+                  <div class="invalid-feedback" *ngIf="f.email.errors.email">
+                    <sup>*</sup>Please enter valid email</div>
+                </div>
+
               </div>
             </div>
             <br />
@@ -133,11 +148,13 @@
               <div class="col col-12 col-md-6">
                 <div class="Sub-Head">Médecin traitant</div>
 
-                <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="doctors" bindValue="value"
-                  bindtext="label" name="type" formControlName="type" [placeholder]="'type'" [virtualScroll]="true"
+                <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="doctors" bindValue="id"
+                  bindLabel="firstName" name="doctor" formControlName="doctor" [placeholder]="'doctor'" [virtualScroll]="true"
                   [appendTo]="'body'">
                 </ng-select>
-
+                <div *ngIf=" f.doctor.errors  && f.doctor.invalid" style="width: 100%; margin-top: .25rem; font-size: 80%;color: #dc3545;">
+                  <div *ngIf="f.doctor.errors.required">doctor is required</div>
+                </div>
               </div>
             </div>
             <br />
@@ -173,6 +190,10 @@
                   bindLabel="name" name="organization" formControlName="organization" [placeholder]="'organization'"
                   [virtualScroll]="true" [appendTo]="'body'">
                 </ng-select>
+
+                <div *ngIf=" f.organization.errors  && f.organization.invalid" style="width: 100%; margin-top: .25rem; font-size: 80%;color: #dc3545;">
+                  <div *ngIf="f.organization.errors.required">Organization is required</div>
+                </div>
                 
               </div>
 
@@ -244,6 +265,9 @@
                     [appendTo]="'body'">
                   </ng-select>
                 </div>
+                <div *ngIf=" f.country.errors  && f.country.invalid" style="width: 100%; margin-top: .25rem; font-size: 80%;color: #dc3545;">
+                  <div *ngIf="f.country.errors.required">Country is required</div>
+                </div>
               </div>
             </div>
           </div>
@@ -267,7 +291,7 @@
             <div class="row">
               <div class="col col-12">
                 <div class="Sub-Head">Description</div>
-                <textarea rows="4" class="textarea1nw"></textarea>
+                <textarea rows="4" class="textarea1nw" formControlName="description"></textarea>
               </div>
             </div>
 

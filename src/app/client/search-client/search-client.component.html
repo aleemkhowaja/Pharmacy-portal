@@ -84,33 +84,11 @@
               <tr>
                 <td><input type="text"  [(ngModel)]="searchFields.lastName"  placeholder="Nom" /></td>
                 <td>
-                  <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="types" bindValue="id" 
-                  [(ngModel)]="searchFields.type" [placeholder]="'type'" [virtualScroll]="true">
-                  </ng-select>
-
-                  <!-- <div class="dropdown dropdown1 show dropright">
-                    <a
-                      class="btn btn-secondary dropdown-toggle"
-                      href="#"
-                      role="button"
-                      id="dropdownMenuLink"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Taper
-                    </a>
-
-                    <div
-                      class="dropdown-menu"
-                      aria-labelledby="dropdownMenuLink"
-                    >
-                      <a class="dropdown-item" href="#">Non</a>
-                      <a class="dropdown-item" href="#">Client régulier</a>
-                      <a class="dropdown-item" href="#">Client passager</a>
-                      <a class="dropdown-item" href="#">Pharmacie</a>
-                    </div>
-                  </div> -->
+                  <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="types" bindValue="id"
+                  bindLabel="name" name="type" [(ngModel)]="searchFields.typeId" [placeholder]="'type'" [virtualScroll]="true"
+                  [appendTo]="'body'">
+                </ng-select>
+                
                 </td>
                 <td><input type="text"  [(ngModel)]="searchFields.email"  placeholder="Email" /></td>
                 <td><input type="text"  [(ngModel)]="searchFields.phone" placeholder="Phone" /></td>

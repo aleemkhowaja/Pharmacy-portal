@@ -17,6 +17,7 @@ export class SearchProductSuggestionComponent implements OnInit {
     currentPage: 1,
     totalItems: 10,
     itemsPerPage: 5,
+    maxSize : 5
   };
   searching = false;
   searchFields: any = {

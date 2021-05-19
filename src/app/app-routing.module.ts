@@ -42,7 +42,7 @@ const routes: Routes = [
   {
     path: 'client',
     component: ClientComponent,
-    data: { title: 'Client' },
+    data: { title: 'Client',  }
   },
   {
     path: 'add-client/:id',
@@ -50,7 +50,7 @@ const routes: Routes = [
     data: { title: 'Add Client' },
   },
   {
-    path: 'view-client/:Id',
+    path: 'view-client/:id',
     component: ViewClientComponent,
     data: { title: 'View Client' },
   },
@@ -170,6 +170,7 @@ export const routingComponents = [
   SearchClientComponent,
   ClientComponent,
   AddClientComponent,
+  ViewClientComponent,
   ArchiveComponent,
   SearchArchiveComponent,
   NavBarComponent,

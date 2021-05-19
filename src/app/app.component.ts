@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
 
     console.log(this.isLoggedIn$);
 
-    if(username)
-      this.router.navigate(['/home'], { replaceUrl: true });
+    // if(username)
+    //   this.router.navigate(['/home'], { replaceUrl: true });
   }
 
 }

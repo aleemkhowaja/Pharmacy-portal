@@ -17,6 +17,7 @@ export class InventoryDetailsComponent implements OnInit {
     currentPage: 1,
     totalItems: 10,
     itemsPerPage: 5,
+    maxSize : 5
   };
   constructor(private route: ActivatedRoute,
               private router: Router,

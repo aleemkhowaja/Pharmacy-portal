@@ -1,10 +1,12 @@
+import { QueryRef } from 'apollo-angular';
+import { Subscription } from 'rxjs';
+import { DoctorService } from './../../common-services/doctor/doctor.service';
 import { OrganizationService } from './../../common-services/organization/organization.service';
 import { ClientTypeService } from '../../common-services/client-type/client-type.service';
 import { ManagerService } from '../../common-services/manager/manager.service';
 import { Select } from './../../../models/select';
 import { CountryService } from '../../common-services/country/country.service';
 import { UtilityService } from './../../common/util/utility.service';
-import { StrNgCombo } from './../../../models/strNgCombo';
 import { ClientModel } from 'src/models/client';
 import { ClientService } from './../client.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,26 +21,30 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SAVE_MESSAGE } from 'src/app/common/constants/constants.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-add-client',
   templateUrl: './add-client.component.html',
   styleUrls: ['./add-client.component.css'],
 })
+@UntilDestroy()
 export class AddClientComponent implements OnInit, AfterViewInit {
   
   addEditClientDto: ClientModel | undefined;
+  getByIdSubscription: Subscription | undefined;
+  clientQuery: QueryRef<any> | undefined;
 
   addClientForm = this.fb.group({
     id : [''],
-    manager: ['', Validators.required],
+    manager: [null, Validators.required],
     lastName: ['', [Validators.required, Validators.maxLength(255)]],
     cin: [''],
     type: ['', Validators.required],
     cnss: [''],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     phone: [''],
-    doctorId: [''],
+    doctor: [''],
     creditLimit: [''],
     registerationNumber: [''],
     affiliateNumber: [''],
@@ -51,31 +57,17 @@ export class AddClientComponent implements OnInit, AfterViewInit {
   });
 
   managers: Select[] = [
-    // { name: 'manager-1', id: "1" },
-    // { name:'manager-2',  id:  "2" },
-    // { name: 'manager-3', id: "3" },
   ];
 
   types: Select[] = [
-    // { name: 'type1', id:  "1" },
-    // { name: 'type2', id:  "2" },
-    // { name: 'type3', id:  "3" },
   ];
 
   countries: Select[] = [];
 
   doctors: Select[] = [
-    // { name: 'doctor1', id: "1" },
-    // { name: 'doctor2', id: "2" },
-    // { name: 'doctor3', id: "3" },
-    // { name: 'doctor4', id: "4" },
   ];
 
   organizations: Select[] = [
-    // { name: 'org1',  id: "1" },
-    // { name: 'org2',  id: "2" },
-    // { name: 'org3',  id: "3" },
-    // { name: 'org4',  id: "4" },
   ];
 
   constructor(
@@ -87,15 +79,23 @@ export class AddClientComponent implements OnInit, AfterViewInit {
     private country : CountryService,
     private manager : ManagerService,
     private clientType : ClientTypeService ,
-    private organization : OrganizationService
+    private organization : OrganizationService,
+    private doctorService : DoctorService,
+    private r: Router,
   ) {}
 
   get f() { return this.addClientForm.controls; }
 
   ngOnInit(): void {
+
     const _clientId: number = this.router.snapshot.params.id;
+
     if(_clientId > 0 )
-    this.getById(_clientId);
+    {
+      this.getById(_clientId);
+      this.clientQuery?.refetch();
+    }
+      
 
     /**
      * initialize countries
@@ -117,56 +117,70 @@ export class AddClientComponent implements OnInit, AfterViewInit {
       * init organizations
       */
      this.initOrganizations();
+
+     /**
+      * init doctors
+      */
+     this.initDoctors();
   }
 
   ngAfterContentChecked() {
     this.cdr.detectChanges();
   }
 
+  ngOnDestroy() {
+    
+  }
+
   ngAfterViewInit() {}
 
-  public initDoctors(doctor?: { term: string; items: any[] }): void {}
+  //public initDoctors(doctor?: { term: string; items: any[] }): void {}
 
   /**
    * init all countries
    */
-  public initCountris() 
-  {
-    this.country.filter().subscribe(response=> {
-          this.countries = response.data.getAllCountries;       
-        });
+  public initCountris() {
+    this.country.filter().pipe(untilDestroyed(this)).subscribe(response => {
+      this.countries = response.data.getAllCountries;
+    });
   }
 
 
-    /**
+  /**
    * init all client types
    */
-     public initClientTypes() 
-     {
-       this.clientType.filter().subscribe(response=> {
-         console.log(response.data.getAllTypes);
-             this.types = response.data.getAllTypes;       
-           });
-     }
+  public initClientTypes() {
+    this.clientType.filter().pipe(untilDestroyed(this)).subscribe(response => {
+      console.log(response.data.getAllTypes);
+      this.types = response.data.getAllTypes;
+    });
+  }
 
-          /**
-         * init all managers
-         */
-          public initManagers() 
-          {
-            this.manager.filter().subscribe(response=> {
-                  this.managers = response.data.getAllManagers;       
-                });
-          }
+  /**
+   * init all managers
+   */
+  public initManagers() {
+    this.manager.filter().pipe(untilDestroyed(this)).subscribe(response => {
+      this.managers = response.data.getAllManagers;
+    });
+  }
 
-         /**
-          * init all organization
-          */
-         public initOrganizations() {
-           this.organization.filter().subscribe(response => {
-             this.organizations = response.data.getAllOrganizations;
-           });
-         }
+  /**
+   * init all organization
+   */
+  public initOrganizations() {
+    this.organization.filter().pipe(untilDestroyed(this)).subscribe(response => {
+      this.organizations = response.data.getAllOrganizations;
+    });
+  }
+  /**
+   * init all doctors
+   */
+  public initDoctors() {
+    this.doctorService.filter().pipe(untilDestroyed(this)).subscribe(response => {
+      this.doctors = response.data.getAllDoctors;
+    });
+  }
 
   /**
    * get Client/customer by id
@@ -174,9 +188,9 @@ export class AddClientComponent implements OnInit, AfterViewInit {
    */
   getById(_clientId : number)
   {
-    console.log("_clientId::"+_clientId);
+    this.clientQuery = this.clientSv.getById(_clientId);
 
-    this.clientSv.getById(_clientId).subscribe(response=> {
+    this.clientQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
       this.addEditClientDto = response.data.customerById;
       console.log(this.addEditClientDto);
 
@@ -187,7 +201,8 @@ export class AddClientComponent implements OnInit, AfterViewInit {
           this.addClientForm.get('type')?.setValue(this.addEditClientDto?.type?.id);
           this.addClientForm.get('organization')?.setValue(this.addEditClientDto?.organization?.id);
           this.addClientForm.get('country')?.setValue(this.addEditClientDto?.country?.id);   
-          this.addClientForm.get('manager')?.setValue(this.addEditClientDto?.manager?.id); 
+          this.addClientForm.get('manager')?.setValue(this.addEditClientDto?.manager?.id);
+          this.addClientForm.get('doctor')?.setValue(this.addEditClientDto?.doctor?.id); 
     });
   }
 
@@ -196,23 +211,37 @@ export class AddClientComponent implements OnInit, AfterViewInit {
  * Submit the client/customer form
  * @returns
  */
-  submitForm() 
+ public  submitForm()  : boolean | undefined
   {
-    if (!this.addClientForm.invalid) {
-      return;
+   
+    //this.getByIdSubscription?.unsubscribe();
+
+    console.log(this.addClientForm.invalid);
+
+    if (this.addClientForm.invalid) {
+      alert('Please fill all the required fields to create a super hero!');
+      return false;
     }
 
     if(this.addClientForm.value.id)
-      this.clientSv.update(this.addClientForm.value);
+      this.clientSv.update(this.addClientForm.value).subscribe((response) => {
+        Swal.fire(SAVE_MESSAGE)
+        this.addClientForm.reset();
+        this.r.navigate(['/client'], { replaceUrl: true });
+       });
     else
-      this.clientSv.save(this.addClientForm.value);
-
-    Swal.fire(SAVE_MESSAGE)
+      this.clientSv.save(this.addClientForm.value).subscribe(response=> {
+        Swal.fire(SAVE_MESSAGE)
+        this.addClientForm.reset();
+        this.r.navigate(['/client'], { replaceUrl: true });
+      });
+    return true;
   }
 
   onClientKeyPress(event: any) {
     this.utility.onKeyPress(event);
   }
+
 
 
 }

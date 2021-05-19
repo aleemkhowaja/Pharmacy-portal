@@ -2,7 +2,7 @@
 import { ALL_CLIENT_URL, GET_BY_ID, SAVE_CLIENT_URL, UPDATE_CLIENT_URL } from './constant';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo, QueryRef } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
 import { ClientModel } from 'src/models/client';
@@ -112,10 +112,8 @@ export class ClientService {
       cnss: '2565AFAJ-6',
       balanced: 1331,
     },
-  ];
+];
   constructor(private http: HttpClient, private apollo: Apollo) {}
-
-  
 
   getAll(pageNum: number, itemPerPage: number) : Observable<any> 
   {
@@ -130,10 +128,12 @@ export class ClientService {
     });
   }
 
-  filter(pageNum: number, itemPerPage: number, client: ClientModel) : Observable<any> 
+
+  filter(pageNum: number, itemPerPage: number, client: ClientModel) : QueryRef<any>
   {
-    return this.apollo.query<any>({
+    return this.apollo.watchQuery<any>({
       query: ALL_CLIENT_URL,
+
       variables : {
         pageNumber : pageNum-1,
         pageSize : itemPerPage,
@@ -144,16 +144,18 @@ export class ClientService {
         phone : client.phone,
         cin : client.cin,
         cnss : client.cnss,
-        balance : client.creditLimit
-      },
+        balance : client.creditLimit,
+        typeId : client.typeId
+      }
     });
   }
 
-  save(client: ClientModel) {
-    this.apollo.mutate({
+  save(client: ClientModel) : Observable<any> {
+    return this.apollo.mutate({
       mutation: SAVE_CLIENT_URL,
       variables: {
         manager: client.manager,
+        doctor : client.doctor,
         firstName: client.firstName,
         lastName : client.lastName,
         type : client.type,
@@ -169,20 +171,19 @@ export class ClientService {
         city : client.city,
         postalCode : client.postalCode,
         countryId  : client.country,
-        description : client.description
+        description : client.description,
+        createdBy : localStorage.getItem("username")
       }
-    }).subscribe((response) => {
-     // this.notifyService.showSuccess("Record Saved Successfull", "");
-
     });
 }
 
-update(client: ClientModel) {
-  this.apollo.mutate({
+update(client: ClientModel) : Observable<any> {
+  return this.apollo.mutate({
     mutation: UPDATE_CLIENT_URL,
     variables: {
       id : client.id,
       manager: client.manager,
+      doctor : client.doctor,
       firstName: client.firstName,
       lastName : client.lastName,
       type : client.type,
@@ -198,11 +199,9 @@ update(client: ClientModel) {
       city : client.city,
       postalCode : client.postalCode,
       countryId  : client.country,
-      description : client.description
+      description : client.description,
+      modifiedBy : localStorage.getItem("username")
     }
-  }).subscribe((response) => {
-   // this.notifyService.showSuccess("Record Saved Successfull", "");
-
   });
 }
 
@@ -227,13 +226,13 @@ update(client: ClientModel) {
   //   }).valueChanges;
   // }
 
-  getById(id: number) : Observable<any>  {
+  getById(id: number) : QueryRef<any>  {
     return this.apollo.watchQuery<any>({
       query : GET_BY_ID,
       variables : {
         customerId : id
       },
-    }).valueChanges;
+    });
 
   // return this.lstCients.find((x: any) => x.id === id);
   }

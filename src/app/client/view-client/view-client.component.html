@@ -24,7 +24,7 @@
                         
                    
                     </div> 
-                    </div>
+                </div>
                     
                     <br>
 
@@ -42,441 +42,69 @@
 
                       <br>
 
-                    <div class="row">
+                    <div class="row" *ngFor="let client of lstClient" [routerLink]="['/view-client', client.id]">
                         <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Mark 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Cory 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Larry 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Kevin 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Mark 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Cory 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Larry 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Kevin 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Mark 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Cory 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Larry 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Kevin 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col">
-                        <div class="patient-name">
-                            <span>
-                               Zack 
-                            </span>
-                        </div> 
-                    </div>
-
-                    <div class="col justify-content-end col-sm-1">
-                        <div class="patient-name">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                        
-                    </div>
-                    </div>
-
-                    
-
-
-                    
-                    
-            </div>
-
-      <br>
-            
-                    <div class=" page-num-nw">
-                        <a href=""><span><i class="fas fa-arrow-left"></i></span></a>
-                        <a href=""><span class="active-page4">1</span></a>
-                        <a href=""><span>2</span></a>
-                        <a href="" ><span class="dots-new">...</span></a>
-                        <a href=""><span>15</span></a>
-                       
-                        <a href=""><span><i class="fas fa-arrow-right"></i></span></a>
-                    </div>
-
-                    <br>
-
-                    <div class=" page-num-nw">
-                       <div class="row">
-                           <div class="col col-12">
-                               <input value="10" type="number" />
-                           </div>
-                           
-                       </div>
-                       <div class="row">
-                        <div class="col col-12">
-                            <button class="enter-btn-nw">Enter</button>
-                        </div>
-                       </div>
-                    </div>
-                    
-                    <br>
-
-                    <div class=" page-num-nw">
-                        <div class="row">
-                            <div class="col col-12">
-                                <input  type="text" placeholder="Search Page" />
+                            <div class="patient-name ">
+                                <span>
+                                   {{client.lastName}}
+                                </span>
                             </div>
-                            
                         </div>
-                        <div class="row">
-                         <div class="col col-12">
-                             <button class="enter-btn-nw">Enter</button>
-                         </div>
+                        <div class="col justify-content-end col-sm-1">
+                            <div class="patient-name">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
                         </div>
-                     </div>
-            
+                    </div>
+            </div>
+            <br> 
+            <div *ngIf="pagination" class="page-num-nw">
+                <app-pagination
+                  [pagination]="pagination"
+                  (pageNumberChanged)="loadLst($event)"
+                ></app-pagination>
+              </div>
 
+            <!-- <div class=" page-num-nw">
+                <a href=""><span><i class="fas fa-arrow-left"></i></span></a>
+                <a href=""><span class="active-page4">1</span></a>
+                <a href=""><span>2</span></a>
+                <a href="" ><span class="dots-new">...</span></a>
+                <a href=""><span>15</span></a>
+                <a href=""><span><i class="fas fa-arrow-right"></i></span></a>
+            </div> -->
 
-
+            <br>
+            <div class=" page-num-nw">
+                <div class="row">
+                    <div class="col col-12">
+                        <input value="10" type="number" />
+                    </div>       
+                </div>
+                <div class="row">
+                    <div class="col col-12">
+                        <button class="enter-btn-nw">Enter</button>
+                    </div>
+                </div>
+            </div>       
+            <br>
+            <div class=" page-num-nw">
+                <div class="row">
+                    <div class="col col-12">
+                        <input  type="text" placeholder="Search Page" />
+                    </div>       
+                </div>
+                <div class="row">
+                    <div class="col col-12">
+                        <button class="enter-btn-nw">Enter</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    
-
 
         <div class="col col-md-7 col-12">
-
             <br class="br545sas">
             <div class="row">
-
     
 
                 <div class="col page-head col-md-7">
@@ -636,13 +264,13 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="name all-tags">
                                             <span class="name-tag tags">Nom :</span>
-                                            <span class="id-name">Mark</span>
+                                            <span class="id-name">{{addEditClientDto?.lastName}}</span>
                                         </div>
                                     </div>
                                     <div class="col col-12 col-md-6">
                                         <div class="phone-num all-tags">
                                             <span class="phone-tag tags">Téléphone :</span>
-                                            <span class="id-num ">Mark</span>
+                                            <span class="id-num ">{{addEditClientDto?.phone}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -651,13 +279,13 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="cin all-tags">
                                             <span class="cin-tag tags">CIN : </span>
-                                            <span class="id-cin">Mark </span>
+                                            <span class="id-cin">{{addEditClientDto?.cin}} </span>
                                         </div>
                                     </div>
                                     <div class="col col-12 col-md-6">
                                         <div class="email all-tags">
                                             <span class="email-tag tags">Email : </span>
-                                            <span class="id-email">Mark</span>
+                                            <span class="id-email">{{addEditClientDto?.email}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -666,7 +294,7 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="cnss all-tags">
                                             <span class="cnss-tag tags">CNSS : </span>
-                                            <span class="id-cnss">Mark</span>
+                                            <span class="id-cnss">{{addEditClientDto?.cnss}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -710,7 +338,7 @@
                                         <div class="col col-12 col-md-6">
                                             <div class="all-tags">
                                                 <span class="tags">Nom :</span>
-                                                <span class="prop">Mark</span>
+                                                <span class="prop">{{addEditClientDto?.lastName}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -719,13 +347,13 @@
                                         <div class="col col-12 col-md-6">
                                             <div class="all-tags">
                                                 <span class="tags">Taper : </span>
-                                                <span class="prop">Client régulier</span>
+                                                <span class="prop">{{addEditClientDto?.type}}</span>
                                             </div>
                                         </div>
                                         <div class="col col-12 col-md-6">
                                             <div class="all-tags">
                                                 <span class="tags">CIN : </span>
-                                                <span class="prop">NIL</span>
+                                                <span class="prop">{{addEditClientDto?.cin}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -734,13 +362,13 @@
                                         <div class="col col-12 col-md-6">
                                             <div class="all-tags">
                                                 <span class="tags">CNSS : </span>
-                                                <span class="prop">NIL </span>
+                                                <span class="prop">{{addEditClientDto?.cnss}} </span>
                                             </div>
                                         </div>
                                         <div class="col col-12 col-md-6">
                                             <div class="all-tags">
                                                 <span class="tags">Email : </span>
-                                                <span class="prop">NIL</span>
+                                                <span class="prop">{{addEditClientDto?.email}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -749,13 +377,13 @@
                                         <div class="col col-12 col-md-6">
                                             <div class="all-tags">
                                                 <span class="tags">Téléphone : </span>
-                                                <span class="prop">99 99 9999 </span>
+                                                <span class="prop">{{addEditClientDto?.phone}}</span>
                                             </div>
                                         </div>
                                         <div class="col col-12 col-md-6">
                                             <div class="all-tags">
                                                 <span class="tags">Limite de crédit : </span>
-                                                <span class="prop">0</span>
+                                                <span class="prop">{{addEditClientDto?.creditLimit}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -781,13 +409,13 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Adresse :</span>
-                                            <span class="prop">No</span>
+                                            <span class="prop">{{addEditClientDto?.address}}</span>
                                         </div>
                                     </div>
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Ville :</span>
-                                            <span class="prop">yyyy</span>
+                                            <span class="prop">{{addEditClientDto?.city}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -796,13 +424,13 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Postal Code : </span>
-                                            <span class="prop">100509 </span>
+                                            <span class="prop">{{addEditClientDto?.postalCode}} </span>
                                         </div>
                                     </div>
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">De campagne : </span>
-                                            <span class="prop">Morroco</span>
+                                            <span class="prop">{{addEditClientDto?.country?.name}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -818,7 +446,7 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Organisation :</span>
-                                            <span class="prop">No</span>
+                                            <span class="prop">{{addEditClientDto?.organization?.name}}</span>
                                         </div>
                                     </div>
                                     <div class="col col-12 col-md-6">
@@ -833,7 +461,7 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Affilier No.: </span>
-                                            <span class="prop">100509 </span>
+                                            <span class="prop">{{addEditClientDto?.affiliateNumber}} </span>
                                         </div>
                                     </div>
                                 </div>
@@ -848,7 +476,7 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Description :</span>
-                                            <span class="prop">XXXXXX</span>
+                                            <span class="prop">{{addEditClientDto?.description}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1395,7 +1023,7 @@
 
                             </div>
                             <div class="col">
-                                GHALMANE MOHAMED
+                                {{addEditClientDto?.createdBy?.firstName}}
                             </div>
                         </div>
 
@@ -1406,7 +1034,7 @@
                                 Créé sur
                             </div>
                             <div class="col">
-                                2021-02-12 15:43:22
+                                {{addEditClientDto?.createdDate | date: 'dd-MM-yyyy hh:mm:ss'}}
                             </div>
                         </div>
 
@@ -1417,7 +1045,7 @@
                                 Mis à jour par
                             </div>
                             <div class="col">
-                                GHALMANE MOHAMED
+                                {{addEditClientDto?.modifiedBy?.firstName}}
                             </div>
                         </div>
 
@@ -1428,7 +1056,7 @@
                                 Mise à jour
                             </div>
                             <div class="col">
-                                2021-02-12 15:43:22
+                                {{addEditClientDto?.modifiedDate | date: 'dd-MM-yyyy hh:mm:ss'}}
                             </div>
                         </div>
 

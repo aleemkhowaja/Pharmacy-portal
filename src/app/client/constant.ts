@@ -3,9 +3,9 @@ import gql from 'graphql-tag'
 export const ALL_CLIENT_URL = gql`
 query($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String!, $lastName: String,
       $email : String, $phone : String, $cin : String, 
-      $cnss : String, $balance : String ) {
+      $cnss : String, $balance : String, $typeId : ID) {
   getAllCustomers(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy, filter:{ lastName : $lastName,
-                  email : $email, phone : $phone, cin : $cin, cnss : $cnss, creditLimit : $balance}) {
+                  email : $email, phone : $phone, cin : $cin, cnss : $cnss, creditLimit : $balance, type:{id :$typeId}}) {
     id,
         manager{
             id,
@@ -35,19 +35,37 @@ query($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String
             name
         }
         description,
-       count
+        doctor{
+            id,
+            firstName   
+        },
+       count,
+       status,
+       createdBy {
+        id,
+        firstName
+       },
+       createdDate,
+       modifiedBy{
+        id,
+        firstName
+       },
+       modifiedDate
   }
 }
 `;
 
-export const SAVE_CLIENT_URL = gql`mutation($manager : ID, $firstName : String, $lastName : String!,
+export const SAVE_CLIENT_URL = gql`mutation($manager : ID, $doctor : ID!, $firstName : String, $lastName : String!,
     $type : ID, $cin : String, $cnss : String, $email : String, $phone : String,
     $creditLimit : String, $orgId : ID!, $registerationNumber : String, $affiliateNumber : String, $address : String,
-    $city : String, $postalCode : String, $countryId : ID!, $description : String
+    $city : String, $postalCode : String, $countryId : ID!, $description : String, $createdBy : String
     ){
         createCustomer(input: {
           manager: {
             id: $manager
+        },
+        doctor: {
+            id : $doctor
         },
         firstName: $firstName,
         lastName: $lastName,
@@ -70,10 +88,16 @@ export const SAVE_CLIENT_URL = gql`mutation($manager : ID, $firstName : String, 
         country: {
             id: $countryId
         },
-        description: $description
-            }){
-                id
-            }
+        description: $description,
+        createdBy: {
+            username : $createdBy
+        },
+        modifiedBy : {
+            username : $modifiedBy
+        }
+    }){
+        id
+    }
 }`;
 
 export const GET_BY_ID = 
@@ -107,19 +131,37 @@ gql`query($customerId: ID!){
             id,
             name
         },
-        description
+        description,
+        doctor{
+            id,
+            firstName   
+        },
+        status,
+        createdBy {
+            id,
+            firstName
+        },
+        createdDate,
+        modifiedBy{
+            id,
+            firstName
+        },
+        modifiedDate
   }
 }`;
 
-export const UPDATE_CLIENT_URL = gql`mutation($id : ID!, $manager : ID, $firstName : String, $lastName : String!,
+export const UPDATE_CLIENT_URL = gql`mutation($id : ID!, $manager : ID, $doctor : ID!, $firstName : String, $lastName : String!,
   $type : ID, $cin : String, $cnss : String, $email : String, $phone : String,
   $creditLimit : String, $orgId : ID!, $registerationNumber : String, $affiliateNumber : String, $address : String,
-  $city : String, $postalCode : String, $countryId : ID!, $description : String
+  $city : String, $postalCode : String, $countryId : ID!, $description : String, $modifiedBy : String
   ){
     updateCustomer(id: $id, input: {
         manager: {
           id: $manager
       },
+      doctor: {
+        id : $doctor
+        },
       firstName: $firstName,
       lastName: $lastName,
       type: {
@@ -141,10 +183,17 @@ export const UPDATE_CLIENT_URL = gql`mutation($id : ID!, $manager : ID, $firstNa
       country: {
           id: $countryId
       },
-      description: $description
-          }){
-              id
-          }
+      description: $description,
+      createdBy : {
+        username : $modifiedBy
+      },
+      modifiedBy : {
+        username : $modifiedBy
+      }
+
+    }){
+        id
+    }
 }`;
 
 

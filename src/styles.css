@@ -9,3 +9,11 @@ ng-select {
   border-radius: 8px;
   border: #959595 2px solid !important;
 }
+
+.select-valid {
+  display: none;
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}

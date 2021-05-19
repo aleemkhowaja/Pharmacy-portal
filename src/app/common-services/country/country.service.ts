@@ -9,7 +9,7 @@ import { ALL_COUNTRY_URL } from './constant';
 })
 export class CountryService {
 
-  constructor(private http: HttpClient, private apollo: Apollo) { }
+  constructor(private apollo: Apollo) { }
 
 
   /**

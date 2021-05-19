@@ -14,6 +14,7 @@ export class SearchArchiveComponent implements OnInit {
     currentPage: 1,
     totalItems: 10,
     itemsPerPage: 5,
+    maxSize : 5
   };
 
   dataLoading: boolean = true;

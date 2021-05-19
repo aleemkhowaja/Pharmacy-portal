@@ -29,6 +29,7 @@ export class SearchProductComponent implements OnInit {
     currentPage: 1,
     totalItems: 10,
     itemsPerPage: 5,
+    maxSize : 5
   };
 
   resultsLength = 0;
