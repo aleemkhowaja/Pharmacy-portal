@@ -34,6 +34,8 @@ export interface ProductModel {
     productLabReference?: string,
     packaging?: string,
     monograph?: string,
-    description?: string
+    description?: string,
+    nameOrBarcode?: string,
+    
   }
   

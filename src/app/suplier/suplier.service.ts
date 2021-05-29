@@ -1,9 +1,10 @@
+import { ALL_SUPPLIER_URL, SAVE_SUPPLIER_URL } from './constant';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo, QueryRef } from 'apollo-angular';
 import { ProductModel } from 'src/models/product';
 import { SuplierModel } from 'src/models/suplier';
-import Observable from 'zen-observable';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -174,12 +175,46 @@ export class SuplierService {
     );
   }
 
+  filter(pageNum: number, itemPerPage: number, supplier: SuplierModel) : QueryRef<any>
+  {
+    return this.apollo.watchQuery<any>({
+      query: ALL_SUPPLIER_URL,
+
+      variables : {
+        pageNumber : pageNum-1,
+        pageSize : itemPerPage,
+        sortOrder : "DESC",
+        sortBy : "id",
+        lastName: supplier.lastName,
+        telephone : supplier.telephone,
+        city : supplier.city
+      }
+    });
+  }
+
+
   getById(id: number) {
     return this.lstSupliers.find((x: any) => x.id == id);
   }
 
-  save(suplier: SuplierModel) {
-    console.log(name);
+  save(suplier: SuplierModel) : Observable<any>{
+    return this.apollo.mutate({
+      mutation: SAVE_SUPPLIER_URL,
+      variables: {
+        id : suplier.id,
+        country : suplier.country,
+        lastName : suplier.lastName,
+        email : suplier.email,
+        phone : suplier.telephone,
+        fax : suplier.fax,
+        website : suplier.website,
+        address : suplier.address,
+        city : suplier.city,
+        postalCode : suplier.postalCode,
+        description : suplier.description,
+        createdBy : localStorage.getItem("username")
+      }
+    });
   }
 
   getDetailsSupliers() {

@@ -81,7 +81,7 @@
             <tbody>
               <tr >
               <td><input type="text" [(ngModel)]="searchFields.name" placeholder="Nom"></td>
-              <td><input type="text" [(ngModel)]="searchFields.phone" placeholder="Téléphone"></td>
+              <td><input type="text" [(ngModel)]="searchFields.telephone" placeholder="Téléphone"></td>
               <td><input type="text" [(ngModel)]="searchFields.city" placeholder="Ville"></td>
               <td><input type="text" [(ngModel)]="searchFields.balance" placeholder="Équilibre"></td>
 
@@ -110,7 +110,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of lstSuplier" (click)="viewSuplier(item.id)">
-                  <td>{{ item.name }}</td>
+                  <td>{{ item.lastName }}</td>
                   <td>{{ item.phone }}</td>
                   <td>{{ item.city }}</td>
                   <td>{{ item.balance }}</td>

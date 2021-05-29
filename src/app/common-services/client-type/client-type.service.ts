@@ -1,4 +1,4 @@
-import { ALL_TYPE_URL } from './constant';
+import { ALL_TYPE_URL } from './client-type-constant';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';

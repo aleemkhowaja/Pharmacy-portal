@@ -61,8 +61,10 @@ export class SearchClientComponent implements OnInit {
 
   ngOnInit(): void {
     
+    /**
+     * get All Clients
+     */
     this.getAll();
-   // this.getAll();
 
     /**
      * refetch the data
@@ -90,13 +92,13 @@ export class SearchClientComponent implements OnInit {
    */
   getAll() {
 
-  //  this.getAllSubscription?.unsubscribe();
-  //  this.searchSubscription?.unsubscribe();
+    this.getAllSubscription?.unsubscribe();
+    this.searchSubscription?.unsubscribe();
 
     this.clientQuery = this.clientService.filter(this.pagination.currentPage,
       this.pagination.itemsPerPage,  this.searchFields);
 
-     this.clientQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
+      this.getAllSubscription = this.clientQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
         if(response.data.getAllCustomers.length > 0)
           this.pagination.totalItems = response.data.getAllCustomers[0].count;
           this.dataLoading = false;
@@ -128,19 +130,18 @@ export class SearchClientComponent implements OnInit {
    */
   searchItems() {
 
-   // this.getAllSubscription?.unsubscribe();
-   // this.searchSubscription?.unsubscribe();
+   this.getAllSubscription?.unsubscribe();
+   this.searchSubscription?.unsubscribe();
 
     //this.searchFields.type?.id = this.searchFields.typeId;
 
     this.clientQuery = this.clientService.filter(1, 5, this.searchFields);
 
-    this.clientQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
+    this.searchSubscription = this.clientQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
         if(response.data.getAllCustomers.length > 0)
           this.pagination.totalItems = response.data.getAllCustomers[0].count;
           this.dataLoading = false;
           this.lstClient = response.data.getAllCustomers;
-
           console.log(this.lstClient);
         });
   }

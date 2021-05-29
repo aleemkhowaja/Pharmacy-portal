@@ -1,0 +1,76 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title pull-left">Title</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    ...
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+  </div> -->
+  <!-- <div class="modal-header">
+    <h4 class="modal-title pull-left">Title</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+
+<div class="container">
+  <!-- The Modal -->
+  <div  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Fenêtre Pop-up</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="search-boxnw">
+            <input type="text" class="search-inpnw"  [(ngModel)]="searchFields.lastName">
+            <button><i class="fas fa-search" (click)="searchCustomersDiloagItems()"></i></button>
+          </div>
+          <br>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Nom</th>
+                <th scope="col">Téléphone</th>
+
+              </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let item of lstClient" (click)="setCustomerId(item.lastName)" >
+                <th scope="row"><input type="radio" class="radio-btn"></th>
+                <td>{{ item.lastName }}</td>
+                <td>{{ item.phone }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="pagination" class="mt-1">
+            <app-pagination
+              [pagination]="pagination"
+              (pageNumberChanged)="loadLst($event)"
+            ></app-pagination>
+          </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class=" annuler-btn special-red" (click)="bsModalRef.hide()">Annuler</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+  </div> -->

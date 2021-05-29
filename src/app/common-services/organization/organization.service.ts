@@ -1,4 +1,4 @@
-import { ALL_ORGANZATION_URL } from './constant';
+import { ALL_ORGANZATION_URL } from './organization-constant';
 import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';

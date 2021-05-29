@@ -66,7 +66,7 @@
               <div class="row">
                 <div class="col col-12 col-md-6">
                   <div class="Sub-Head">Nom</div>
-                  <input id="suplier-name" formControlName="name" />
+                  <input id="suplier-name" formControlName="lastName" />
                 </div>
                 <div class="col col-12 col-md-6">
                   <div class="Sub-Head">Email</div>
@@ -77,7 +77,7 @@
               <div class="row">
                 <div class="col col-12 col-md-6">
                   <div class="Sub-Head">Téléphone</div>
-                  <input type="text" id="suplier-phone" formControlName="phone" />
+                  <input type="text" id="suplier-phone" formControlName="telephone" />
                 </div>
                 <div class="col col-12 col-md-6">
                     <div class="Sub-Head">Fax</div>
@@ -88,8 +88,8 @@
               <br />
               <div class="row">
                 <div class="col col-12 col-md-6">
-                    <div class="Sub-Head">Site internet</div>
-                    <input type="text" id="suplier-internet-site" formControlName="internetSite" />
+                    <div class="Sub-Head">Website</div>
+                    <input type="text" id="suplier-internet-site" formControlName="website" />
                   </div>
               </div>
             </div>
@@ -126,18 +126,26 @@
               <div class="row">
                 <div class="col col-12 col-md-6">
                     <div class="Sub-Head">Postal code</div>
-                    <input type="text" formControlName="zipCode" />
+                    <input type="text" formControlName="postalCode" />
                   </div>
                   <div class="col col-12 col-md-6">
-                    <div class="Sub-Head">Pays</div>
-                    <input type="text" formControlName="country" />
+                        <div class="Sub-Head">Pays</div>
+                        <div class="dropdown show">
+                          <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="countries" bindValue="id"
+                          bindLabel="name" name="country" formControlName="country" [placeholder]="'country'" [virtualScroll]="true"
+                            [appendTo]="'body'">
+                          </ng-select>
+                        </div>
+                        <div *ngIf=" f.country.errors  && f.country.invalid" style="width: 100%; margin-top: .25rem; font-size: 80%;color: #dc3545;">
+                          <div *ngIf="f.country.errors.required">Country is required</div>
+                        </div>
                   </div>
               </div>
               <br />
               <div class="row">
                 <div class="col col-12 col-md-6">
-                    <div class="Sub-Head">Site internet</div>
-                    <input type="text" id="suplier-internet-site" formControlName="internetSite" />
+                    <div class="Sub-Head">Website</div>
+                    <input type="text" id="suplier-internet-site" formControlName="website" />
                   </div>
               </div>
             </div>

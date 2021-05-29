@@ -1,4 +1,4 @@
-import { ALL_USER_URL } from './constant';
+import { ALL_USER_URL } from './manager-constant';
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

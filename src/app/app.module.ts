@@ -11,7 +11,7 @@ import { HomeModule } from './home/home.module';
 import { EmployeeModule } from './employee/employee.module';
 import { GraphQLModule } from './graphql.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -40,6 +40,8 @@ import { UpdateInventoryComponent } from './stock/update-inventory/update-invent
 import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
 import { SearchImportComponent } from './stock/search-import/search-import.component';
 import { AddImportComponent } from './stock/add-import/add-import.component';
+import { CustomerDialogComponent } from './common-services/customer-dialog/customer-dialog.component';
+import { ConfirmationDialogComponent } from './common-services/confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -66,7 +68,9 @@ import { AddImportComponent } from './stock/add-import/add-import.component';
     UpdateInventoryComponent,
     InventoryDetailsComponent,
     SearchImportComponent,
-    AddImportComponent
+    AddImportComponent,
+    CustomerDialogComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -87,7 +91,8 @@ import { AddImportComponent } from './stock/add-import/add-import.component';
     TooltipModule.forRoot(),
     ButtonsModule.forRoot()
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }, BsModalRef],
   bootstrap: [AppComponent],
+  entryComponents: [CustomerDialogComponent]
 })
 export class AppModule {}

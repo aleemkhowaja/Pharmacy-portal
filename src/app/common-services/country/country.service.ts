@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ALL_COUNTRY_URL } from './constant';
+import { ALL_COUNTRY_URL } from './country-constant';
 
 @Injectable({
   providedIn: 'root'

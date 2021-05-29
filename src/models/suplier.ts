@@ -1,15 +1,15 @@
 export interface SuplierModel {
     id?: number;
-    name?: string;
-    phone?: string;
+    lastName?: string;
+    telephone?: string;
     email?: string;
     fax?: string;
-    internetSite?: number;
+    website?: string;
     address?: string;
     city?: string;
-    zipCode?: boolean;
+    postalCode?: boolean;
     country?: boolean;
     description?: string,
-    balance?: string,
+    balance?: number,
     suplier?: string
   }

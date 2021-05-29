@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ALL_DOCTORS_URL } from './constant';
+import { ALL_DOCTORS_URL } from './doctor-constant';
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 

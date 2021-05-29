@@ -18,7 +18,7 @@ export function createApollo(httpLink: HttpLink) {
 
   const auth = setContext((operation, context) => {
     const token = localStorage.getItem('token');
-    console.log("inside interceptor ..............."+token);
+    console.log("inside interceptor ...............graph ql"+token);
     if (token === null) {
       return {};
     } else {

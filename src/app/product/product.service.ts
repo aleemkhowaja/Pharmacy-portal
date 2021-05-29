@@ -1,6 +1,7 @@
+import { ALL_PRODUCT_URL } from './product-constant';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo, QueryRef } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { ProductModel } from 'src/models/product';
 
@@ -300,6 +301,25 @@ export class ProductService {
       (pageNumber - 1) * itemPerPage,
       pageNumber * itemPerPage
     );
+  }
+
+  filter(pageNum: number, itemPerPage: number, product: ProductModel) : QueryRef<any>
+  {
+    console.log("product service ::"+product.nameOrBarcode);
+    return this.apollo.watchQuery<any>({
+      query: ALL_PRODUCT_URL,
+
+      variables : {
+        pageNumber : pageNum-1,
+        pageSize : itemPerPage,
+        sortOrder : "DESC",
+        sortBy : "id",
+        name: product.name,
+        barCode : product.barcode,
+        ppv : product.ppv,
+        dci : product.dci
+      }
+    });
   }
 
   getSpecificProduct(id: number) {
