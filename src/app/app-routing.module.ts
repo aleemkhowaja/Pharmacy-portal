@@ -1,3 +1,17 @@
+import { AfterApprovePurchaseComponent } from './purchase-order/after-approve-purchase/after-approve-purchase.component';
+import { SearchProductSuggestionComponent } from './product/product-suggestion/search-product-suggestion/search-product-suggestion.component';
+import { ProductSuggestionDetailsComponent } from './product/product-suggestion/product-suggestion-details/product-suggestion-details.component';
+import { AddProductSuggestionComponent } from './product/product-suggestion/add-product-suggestion/add-product-suggestion.component';
+import { SaleInvoiceComponent } from './sale/sale-invoice/sale-invoice.component';
+import { ApproveSuccessfulSalesComponent } from './sale/approve-successful-sales/approve-successful-sales.component';
+import { DeliverySlipDetailComponent } from './delivery-slip/delivery-slip-detail/delivery-slip-detail.component';
+import { DeliverySlipComponent } from './delivery-slip/delivery-slip.component';
+import { OrderProposalDetailsComponent } from './order-proposal/order-proposal-details/order-proposal-details.component';
+import { OrderProposalComponent } from './order-proposal/order-proposal.component';
+import { OrderDetailsComponent } from './purchase-order/order-details/order-details.component';
+import { AddOrderComponent } from './purchase-order/add-order/add-order.component';
+import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
+import { AfterApproveSalesComponent } from './sale/after-approve-sales/after-approve-sales.component';
 import { SearchQuoteComponent } from './sale/quote/search-quote/search-quote.component';
 import { AddQuoteComponent } from './sale/quote/add-quote/add-quote.component';
 import { QuoteComponent } from './sale/quote/quote.component';
@@ -28,7 +42,6 @@ import { ArchiveComponent } from './client/archive/archive.component';
 import { SearchArchiveComponent } from './client/archive/search-archive/search-archive.component';
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
-import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { StockComponent } from './stock/stock.component';
 import { SearchStockComponent } from './stock/search-stock/search-stock.component';
@@ -171,6 +184,21 @@ const routes: Routes = [
     component: AddSaleComponent,
     data: { title: 'Add Sale' },
   },
+  {
+    path: 'after-approve-sale',
+    component: AfterApproveSalesComponent,
+    data: { title: 'After Approve Sale' },
+  },
+  {
+    path: 'approve-sucessful-sale',
+    component: ApproveSuccessfulSalesComponent,
+    data: { title: 'After Approve Sucessful Sale' },
+  },
+  {
+    path: 'sale-invoice/:id',
+    component: SaleInvoiceComponent,
+    data: { title: 'Sale Invoice' },
+  },
 
   //quote
 
@@ -185,6 +213,70 @@ const routes: Routes = [
     component: AddQuoteComponent,
     data: { title: 'Add Quote' },
   },
+  //purchase order
+  {
+    path: 'purchase-order',
+    component: PurchaseOrderComponent,
+    data: { title: 'Purchase Orders',  }
+  },
+  {
+    path: 'add-order',
+    component: AddOrderComponent,
+    data: { title: 'Add Order' },
+  },
+  {
+    path: 'purchase-order/:id',
+    component: OrderDetailsComponent,
+    data: { title: 'Order Details' },
+  },
+  {
+    path: 'after-purchase-approve',
+    component: AfterApprovePurchaseComponent,
+    data: { title: 'After Purcase Approve' },
+  },
+
+
+
+//proposal order
+{
+  path: 'order-proposal',
+  component: OrderProposalComponent,
+  data: { title: 'Orders Proposal ',  }
+},
+{
+  path: 'order-proposal-details',
+  component: OrderProposalDetailsComponent,
+  data: { title: 'Proposal Details' },
+}
+,
+
+//Delivery Slip
+{
+  path: 'delivery-slip',
+  component: DeliverySlipComponent,
+  data: { title: 'Delivery Slip' },
+}
+,
+{
+  path: 'delivery-slip-details',
+  component: DeliverySlipDetailComponent,
+  data: { title: 'Delivery Slip Details' },
+},
+{
+  path: 'product-suggestion/:id',
+  component: ProductSuggestionDetailsComponent,
+  data: { title: 'Product suggestion details' },
+},
+{
+  path: 'product-suggestion',
+  component: SearchProductSuggestionComponent,
+  data: { title: 'Product suggestions' },
+},
+{
+  path: 'add-product-suggestion',
+  component: AddProductSuggestionComponent,
+  data: { title: 'Add Product Suggestion' },
+}
 ];
 
 @NgModule({

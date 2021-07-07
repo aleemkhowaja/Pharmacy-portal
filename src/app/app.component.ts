@@ -1,6 +1,7 @@
+import { CheckService } from './common-services/islogin-service/check.service';
 import { Router } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +13,18 @@ export class AppComponent implements OnInit {
 
   isLoggedIn$: string | null | undefined;
   
-  constructor( private router: Router) { }
+  constructor( private router: Router, public checkService: CheckService) {
+   }
 
   ngOnInit(): void {
     let username = localStorage.getItem("username");
-    this.isLoggedIn$ = username;
-
+    if(username){
+      this.checkService.isEnabled = true;
+    }else{
+      this.router.navigate(['/login']);
+    }
     console.log(this.isLoggedIn$);
 
-    // if(username)
-    //   this.router.navigate(['/home'], { replaceUrl: true });
   }
 
 }

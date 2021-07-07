@@ -1,3 +1,5 @@
+import { ALL_TRANSACTION_URL, GET_BY_ID, SAVE_SALE_URL } from './sale-constant';
+import { SaleModel } from 'src/models/sale';
 import { ProductService } from './../product/product.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -299,6 +301,7 @@ export class SaleService {
               private productService: ProductService) {}
 
 
+              
   getAllProducts(pageNum: number, itemPerPage: number, product: ProductModel):  QueryRef<any> {
     return this.productService.filter(pageNum, itemPerPage, product);
   }
@@ -307,8 +310,55 @@ export class SaleService {
     return this.lstProducts.find((x: any) => x.id == id);
   }
 
-  save(product: ProductModel) {
-    console.log(name);
+  filter(pageNum: number, itemPerPage: number, saleModel: SaleModel) : QueryRef<any>
+  {
+    return this.apollo.watchQuery<any>({
+      query: ALL_TRANSACTION_URL,
+
+      variables : {
+        pageNumber : pageNum-1,
+        pageSize : itemPerPage,
+        sortOrder : "DESC",
+        sortBy : "id",
+        transactionNumber: saleModel.transactionNumber,
+        customerName : saleModel.customerName,
+        amount : saleModel.amount ,
+        transDate : saleModel.transDate,
+        quantity : saleModel.quantity,
+        transStatus : saleModel.transStatus,
+        reference : saleModel.reference,
+        isDelivered : saleModel.isDelivered,
+        transType : "sale"
+      }
+    });
+  }
+
+
+  save(saleModel: SaleModel) : Observable<any> {
+      return this.apollo.mutate({
+        mutation: SAVE_SALE_URL,
+        variables: {
+          quanity: saleModel.quantity,
+          amount : saleModel.amount,
+          transStatus : 'Completed',
+          reference: saleModel.reference,
+          isDelivered : saleModel.isDelivered,
+          type : 'sale',
+          paymentMethod : saleModel.paymentMethod,
+          customerId : saleModel.customerId,
+          createdBy : localStorage.getItem("username"),
+          modifiedBy : localStorage.getItem("username")
+        }
+      });
+  }
+
+  getById(id: number) : QueryRef<any>  {
+    return this.apollo.watchQuery<any>({
+      query : GET_BY_ID,
+      variables : {
+        transactionId : id
+      },
+    });
   }
 
   getDetailsProducts() {

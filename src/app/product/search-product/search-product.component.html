@@ -147,8 +147,8 @@
               <tbody>
                 <tr *ngFor="let item of lstProduct" (click)="viewProduct(item.id)">
                   <td>{{ item.name }}</td>
-                  <td>{{ item.category }}</td>
-                  <td>{{ item.pharmaceuticalForm }}</td>
+                  <td>{{ item.category?.name}}</td>
+                  <td>{{ item.pharmaceuticalForm?.name }}</td>
                   <td>{{ item.ppv }}</td>
                   <td>{{ item.pph }}</td>
                   <td>{{ item.barcode }}</td>
@@ -157,7 +157,7 @@
                   <td class=" active-sign" *ngIf="!item.active" ><p class="active-N" >Non</p></td>
                   <td class=" active-sign" *ngIf="item.active" ><p class="active-Y" >Oui</p></td>
                   <td *ngIf="moreInformation">{{ item.laboratory }}</td>
-                  <td *ngIf="moreInformation">{{ item.dci }}</td>
+                  <td *ngIf="moreInformation">{{ item.dci?.name }}</td>
                   <td>
                     <a
                       class="fa fa-pencil"

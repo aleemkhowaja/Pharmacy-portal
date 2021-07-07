@@ -45,7 +45,7 @@
                         <div class="col">
                             <div class="patient-name ">
                                 <span>
-                                   {{item.product}}
+                                   {{item.name}}
                                 </span>
                             </div>
                         </div>
@@ -248,7 +248,7 @@
                                         <div class="col col col-12 col-md-6">
                                             <div class="DCI all-tags">
                                                 <span class="DCI-tag tags"> DCI :</span>
-                                                <span class="id-DCI "> {{product?.dci}} </span>
+                                                <span class="id-DCI "> {{product?.dciModel?.name}} </span>
                                             </div>
                                         </div>
                                     </div>
@@ -325,7 +325,7 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Catégorie : </span>
-                                            <span class="prop">{{product?.category}}</span>
+                                            <span class="prop">{{product?.categoryModel?.name}}</span>
                                         </div>
                                     </div>
                                     <div class="col col-12 col-md-6">
@@ -340,13 +340,13 @@
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">DCI :</span>
-                                            <span class="prop">{{product?.dci}}</span>
+                                            <span class="prop">{{product?.dciModel?.name}}</span>
                                         </div>
                                     </div>
                                     <div class="col col-12 col-md-6">
                                         <div class="all-tags">
                                             <span class="tags">Formulaire pharmaceutique :</span>
-                                            <span class="prop">{{product?.pharmaceuticalForm}}</span>
+                                            <span class="prop">{{product?.pharmaceuticalFormModel?.name}}</span>
                                         </div>
                                     </div>
                                 </div>

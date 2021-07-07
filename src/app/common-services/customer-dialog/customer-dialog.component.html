@@ -46,7 +46,7 @@
               </tr>
             </thead>
             <tbody>
-               <tr *ngFor="let item of lstClient" (click)="setCustomerId(item.lastName)" >
+               <tr *ngFor="let item of lstClient" (click)="setCustomerId(item)" >
                 <th scope="row"><input type="radio" class="radio-btn"></th>
                 <td>{{ item.lastName }}</td>
                 <td>{{ item.phone }}</td>

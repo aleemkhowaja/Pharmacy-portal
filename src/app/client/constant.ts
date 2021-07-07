@@ -4,8 +4,9 @@ export const ALL_CLIENT_URL = gql`
 query($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String!, $lastName: String,
       $email : String, $phone : String, $cin : String, 
       $cnss : String, $balance : String, $typeId : ID) {
-  getAllCustomers(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy, filter:{ lastName : $lastName,
-                  email : $email, phone : $phone, cin : $cin, cnss : $cnss, creditLimit : $balance, type:{id :$typeId}}) {
+  getAllCustomers(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy, 
+    filter:{ lastName : $lastName,email : $email, phone : $phone, cin : $cin, cnss : $cnss, creditLimit : 
+        $balance, type:{id :$typeId}}) {
     id,
         manager{
             id,

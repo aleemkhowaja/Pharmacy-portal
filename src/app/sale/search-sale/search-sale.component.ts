@@ -1,3 +1,7 @@
+import { Subscription } from 'rxjs';
+import { CustomerDialogComponent } from './../../common-services/customer-dialog/customer-dialog.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QueryRef } from 'apollo-angular';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -11,18 +15,24 @@ import { Router } from '@angular/router';
   templateUrl: './search-sale.component.html',
   styleUrls: ['./search-sale.component.css']
 })
+@UntilDestroy()
 export class SearchSaleComponent implements OnInit {
+
+  saleQuery: QueryRef<any> | undefined;
 
   lstSale: any;
   moreInformation = true;
   searching = false;
   productQuery: QueryRef<any> | undefined;
+  getAllSubscription: Subscription | undefined;
+  searchSubscription: Subscription | undefined;
+
   searchFields: any = {
     transactionNumber: '',
-    customer: '',
+    customerName: '',
     dos: '',
     createdOn: '',
-    total: '',
+    amount: null,
     delivered: '',
     status: ''
   };
@@ -49,9 +59,19 @@ export class SearchSaleComponent implements OnInit {
   dataLoading: boolean = true;
 
   constructor(private saleService: SaleService,
-    private router: Router) { }
+    private router: Router,
+    private modalService: BsModalService) { }
 
   ngOnInit(): void {
+    /**
+     * get All Sales
+     */
+     this.getAll();
+
+    /**
+      * refetch the data
+    */
+    this.saleQuery?.refetch();
   }
 
   getAllProducts() {
@@ -65,23 +85,56 @@ export class SearchSaleComponent implements OnInit {
           this.dataLoading = false;
           this.lstSale = response.data.getAllCustomers;
         });
-
-    //#endregion
-
-    console.log('this.lstSale ', this.lstSale);
   }
 
   loadLst(pageNumber: number) {
-    this.getAllProducts();
+    this.pagination.currentPage = pageNumber;
+    this.getAll();
   }
 
   viewSale(id: number) {
     this.router.navigate([`/sale/${id}`]);
   }
 
+    /**
+   * This function will call while initialize the components
+   * to retrieve all records with filter , paginition
+   */
+     getAll() {
+      this.getAllSubscription?.unsubscribe();
+      this.searchSubscription?.unsubscribe();
+      this.saleQuery = this.saleService.filter(this.pagination.currentPage,
+        this.pagination.itemsPerPage,  this.searchFields);
+  
+        this.getAllSubscription  = this.saleQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
+          if(response.data.getAllTransaction.length > 0)
+            this.pagination.totalItems = response.data.getAllTransaction[0].count;
+            this.dataLoading = false;
+            this.lstSale = response.data.getAllTransaction;
+          });
+    }
+
+
+  /**
+   * This function will call while filter/search
+   */
   searchItems() {
-    this.lstSale = this.saleService.search(this.searchFields);
-    console.log(this.lstSale);
-  }
+
+    this.getAllSubscription?.unsubscribe();
+     this.searchSubscription?.unsubscribe();
+ 
+     //this.searchFields.type?.id = this.searchFields.typeId;
+     if(this.searchFields?.amount == ""){
+      this.searchFields.amount = null;
+    }
+     this.saleQuery = this.saleService.filter(1, 5, this.searchFields);
+ 
+     this.searchSubscription = this.saleQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
+         if(response.data.getAllTransaction.length > 0)
+           this.pagination.totalItems = response.data.getAllTransaction[0].count;
+           this.dataLoading = false;
+           this.lstSale = response.data.getAllTransaction;
+         });
+   }
 
 }

@@ -1,0 +1,136 @@
+<div class="container">
+
+
+  <!-- The Modal -->
+  <div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form  id="product-sale-detail-form" [formGroup]="productSaleDetailsForm">
+
+          <input type="hidden" formControlName="vatOnPurchase" />
+          <input type="hidden" formControlName="vatOnSales" />
+          <input type="hidden" formControlName="id" />
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">ASPIRINE VITAMINEE CO 330MG /200MG B20 COMP EFFER</h4>
+            <button type="button" class="close" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row">
+              <div class="col col-4">
+                Calcul automatique
+
+              </div>
+              <div class="col">
+
+                <input type="checkbox" class="checkbox-nw" formControlName="automaticCalculate">
+
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col col-4">
+                PPH
+
+              </div>
+              <div class="col">
+
+                <input type="number" formControlName="pph">
+
+              </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col col-4">
+                PPV
+
+              </div>
+              <div class="col">
+
+                <input type="number" formControlName="ppv" (change)="calculatePrice()">
+
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col col-4">
+                Zone
+
+
+              </div>
+              <div class="col">
+
+                <div class="dropdown dropdown1 show">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Aucun
+                  </a>
+
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Comprimés</a>
+                    <a class="dropdown-item" href="#">Aucun</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <br>
+            <div class="row">
+              <div class="col col-4">
+                Stock min
+
+
+              </div>
+              <div class="col">
+
+                <input type="number" formControlName="minStock">
+
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col col-4">
+                Stock max
+
+
+              </div>
+              <div class="col">
+
+                <input type="number" formControlName="maxStock">
+
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col col-4">
+                Date de péremption
+
+
+              </div>
+              <div class="col">
+
+                <input type="date" formControlName="expDate">
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class=" annuler-btn">Page produit</button>
+            <button class="creerbtn" (click)="submitProductSaleDetails()">Sauvegarder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

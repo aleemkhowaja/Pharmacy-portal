@@ -1,89 +1,7 @@
 
-<div class="container pop-box1">
-  <!-- The Modal -->
-  <div class="modal" id="myModal2">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Remise globale</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="row">
-            <div class="col col-4">
-              Appliquer à
-
-            </div>
-            <div class="col">
-
-              <div class="dropdown dropdown1 show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Appliquer à chaque produit
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">Appliquer au total</a>
-                  <a class="dropdown-item" href="#">Rectifier le total</a>
-                  <a class="dropdown-item" href="#">Appliquer à chaque produit</a>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col col-4">
-              Type de remise
 
 
-            </div>
-            <div class="col">
 
-              <div class="dropdown dropdown1 show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  %
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">%</a>
-                  <a class="dropdown-item" href="#">Montant</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col col-4">
-              Remise
-
-
-            </div>
-            <div class="col">
-
-              <input type="text" name="" id="">
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="annuler-btn">Appliquer</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-</div>
 
 
 <div class="container pop-box1">
@@ -506,138 +424,9 @@
 
 
 </div>
-
-<div class="container pop-box1">
-
-
-  <!-- The Modal -->
-  <div class="modal" id="myModal6">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">ASPIRINE VITAMINEE CO 330MG /200MG B20 COMP EFFER</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="row">
-            <div class="col col-4">
-              Calcul automatique
-
-            </div>
-            <div class="col">
-
-              <input type="checkbox" class="checkbox-nw">
-
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col col-4">
-              PPH
-
-            </div>
-            <div class="col">
-
-              <input type="number">
-
-            </div>
-          </div>
-          <br>
-
-          <div class="row">
-            <div class="col col-4">
-              PPH
-
-            </div>
-            <div class="col">
-
-              <input type="number">
-
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col col-4">
-              Zone
+<!-- place product sale dialog here -->
 
 
-            </div>
-            <div class="col">
-
-              <div class="dropdown dropdown1 show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Aucun
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">Comprimés</a>
-                  <a class="dropdown-item" href="#">Aucun</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <br>
-          <div class="row">
-            <div class="col col-4">
-              Stock min
-
-
-            </div>
-            <div class="col">
-
-              <input type="number">
-
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col col-4">
-              Stock max
-
-
-            </div>
-            <div class="col">
-
-              <input type="number">
-
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col col-4">
-              Date de péremption
-
-
-            </div>
-            <div class="col">
-
-              <input type="date">
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class=" annuler-btn">Page produit</button>
-          <button type="button" class="annuler-btn">Sauvegarder</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-
-
-</div>
 <div class="container pop-box1">
 
 
@@ -900,6 +689,17 @@
 <!-- Page content holder -->
 <div class="p-51"></div>
 <div class="page-content p-5" id="content">
+  <div *ngIf="isProductSubmitedEmpty" style="width: 100%; margin-top: .25rem; font-size: 80%;color: #dc3545;">
+    <div id="header_notification" class="notification notif_error __web-inspector-hide-shortcut__" style="overflow: hidden;">
+     <div id="notif_error_content" class="notif_error_content">
+           <!-- <span style="vertical-align:middle; display: inline-block; margin-right: 10px">
+               <img src="/images/notif_error.png" style="margin-top: 0;">
+           </span> -->
+       <p class="notification_msg" style="display: inline-block;">Vous devez choisir au moins un produit avec une quantité supérieur à 0.</p>
+     </div>
+   </div>
+   </div>
+
   <!-- Toggle button -->
   <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i></button>
 
@@ -914,7 +714,7 @@
         <div class="dropdown show dropright ">
           <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="../Images/Icons/bell.png" alt="Notification" class="bell-icon">
+            <img src="../../../assets/Icons/bell.png" alt="Notification" class="bell-icon">
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -924,32 +724,22 @@
           </div>
         </div>
       </div>
-
-
       <div class=" col col-12 buttons-aic col-md-2 cmnpad">
         <div class="box1 boxes12">
           Brouillon
         </div>
       </div>
-
-
-
       <div class=" col col-12 col-md-2 buttons-aic  cmnpad">
         <div class="creer">
           <a href="#">
-            <button class="creerbtn">
+            <button class="creerbtn" (click)="approveSales()" >
               Approuver
             </button>
           </a>
         </div>
       </div>
-
-
     </div>
-
-
     <br>
-
     <div class="row">
       <div class="col col-md-6">
 
@@ -974,7 +764,7 @@
 
                 <div class="col-12 col-md-9 justify-content-end ">
                   <div class="box544">
-                    <input type="text" data-toggle="modal" (click)="openModalWithComponent()" [(ngModel)]="customerName">
+                    <input type="text" data-toggle="modal" (click)="openCustomerModelWithComponent()" [(ngModel)]="customerName">
                     <button class="searchbtn"><i class="fas fa-search"></i></button>
                     <button class="crossbtn"> <i class="fas fa-times"></i></button>
                   </div>
@@ -1085,13 +875,14 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let item of productList" (click)="purchaseProduct(item)">
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.pharmaceuticalForm.name}}</td>
-                          <td>{{ item.ppv}}</td>
-                          <td class=" active-sign"> <span class="active-Y">Oui</span> </td>
-                          <td class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
-                          <td class="balance-edit" data-toggle="modal" data-target="#myModal6"> <i class="fas fa-pen"></i></td>
+                        <tr *ngFor="let item of productList" >
+                          <input type="hidden" value="{{ item.quantity }}" >
+                          <td (click)="purchaseProduct(item)">{{ item.name }}</td>
+                          <td (click)="purchaseProduct(item)">{{ item.pharmaceuticalForm?.name}}</td>
+                          <td (click)="purchaseProduct(item)">{{ item.ppv}}</td>
+                          <td (click)="purchaseProduct(item)" class=" active-sign"> <span class="active-Y">Oui</span> </td>
+                          <td (click)="purchaseProduct(item)" class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
+                          <td> <a class="fa fa-pencil" (click)="openProductdSaleDetailsModelWithComponent(item)"> </a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -1193,14 +984,14 @@
                 <div class="col col-5">
 
                   <p class="total-tags">TOTAL À PAYER</p>
-                  <div class="R-popup" data-toggle="modal" data-target="#myModal2">R</div>
+                  <div class="R-popup" data-toggle="modal" (click)="openGlobalDiscountDialog()">R</div>
 
                 </div>
 
                 <div class="col col-5">
 
                   <div class="total-amount ">
-                    15.3 DHS
+                    {{totalAmount  | number:'1.0-2' }}
                   </div>
 
                 </div>
@@ -1244,210 +1035,86 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="edit-menuRW edit-menuRW1" *ngFor="let item of saleProductList" >
-                          <td>{{ item.id }}</td>
+                        <!-- <div *ngFor="let item of saleProductList; let i = index" [attr.data-index]="i">  -->
+                        <tr class="edit-menuRW edit-menuRW1" *ngFor="let item of saleProductList; let i = index"  (click)="openProductQuantityDetailsModelWithComponent(item, i)" >
+                          <td>{{ item.quantity }}</td>
                           <td>{{ item.name }}</td>
-                          <td>25</td>
-                          <td>15 DHS</td>
+                          <td>{{ item.ppu}} 
+                            <div *ngIf="item.isDiscountAvaiable" class="table-badge discount_sticker" >{{ item.percentage | number:'1.0-0'}} % = {{item.dicountAmount | number:'1.0-2'}}</div>
+                          </td>
+                          <td>{{ item.ppv}}</td>
                           <td class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
-                          <td>15 DHS</td>
+                          <td>{{ item.ppv}}</td>
                           <td>
                             <div class="edit-btn" data-toggle="modal" data-target="#myModal6"><i class="fas fa-pen"></i></div>
                           </td>
                           <td>
-                            <div class="cross-btn"><i class="fas fa-times"></i></div>
+                            <div class="cross-btn"><a class="fa fa-times" (click)="deleteSaleProduct(item)"> </a></div>
                           </td>
                         </tr>
+                        <!-- <tr  *ngIf="itemsVisibility">
+                        <table class="table table-striped" >
+                          <tbody class="tbody-inp">
 
+                            <tr >
+                              <td colspan="10">
+                                <div class="rem-edit rem-edit1">
+                                    <div class="cross-btn rem-edit-child"><i class="fas fa-times"></i></div>
+                                </div>
+                                
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><div>Quantité</div><input type="number"></td>
+                              <td><div>Prix unitaire</div><input type="number"></td>
+                              <td><div>Remise</div><input type="number"></td>
+ 
+                            </tr>
+                            <tr>
+                              <td><div>Rem. U.G.</div><input type="number"></td>
+                              <td><div>Disponible</div><input type="number"></td>
 
-
-                        <!-- <tr class="edit-menuRW edit-menuRW2">
-                          <td>2</td>
-                          <td>1944 AGATHE NAIL POLISH 11.5ML</td>
-                          <td>25</td>
-                          <td>15 DHS</td>
-                          <td class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
-                          <td>15 DHS</td>
-                          <td>
-                            <div class="edit-btn" data-toggle="modal" data-target="#myModal6"><i class="fas fa-pen"></i></div>
-                          </td>
-                          <td>
-                            <div class="cross-btn"><i class="fas fa-times"></i></div>
-                          </td>
-                        </tr>
-
-                        <tr class=" edit-menuNW edit-menuNW2 ">
-                          <td colspan="10">
-                            <table class="table table-striped">
-                              <tbody class="tbody-inp">
-
-                                <tr>
-                                  <td colspan="10">
-                                    <div class="rem-edit rem-edit2">
-                                      <div class="cross-btn rem-edit-child"><i class="fas fa-times"></i></div>
+                              <td>
+                                <div> Type de remise</div>
+                               
+                             
+                                  <div class="dropdown dropdown1 show">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    %
+                                    </a>
+                                  
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                      <a class="dropdown-item" href="#">%</a>
+                                      <a class="dropdown-item" href="#">Montant</a>
                                     </div>
-
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div>Quantité</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Prix unitaire</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Remise</div><input type="number">
-                                  </td>
-
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div>Rem. U.G.</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Disponible</div><input type="number">
-                                  </td>
-
-                                  <td>
-                                    <div> Type de remise</div>
+                                  </div>   
+                              </td>
 
 
-                                    <div class="dropdown dropdown1 show">
-                                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        %
-                                      </a>
+                                
+                            </tr>
 
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">%</a>
-                                        <a class="dropdown-item" href="#">Montant</a>
-                                      </div>
-                                    </div>
-                                  </td>
-
-
-
-                                </tr>
-
-                                <tr>
-                                  <td>
-                                    <div>Base de remboursement</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Taux Remb. </div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Date de péremption</div>
-                                    <input type="date">
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td colspan="10 ">
-                                    <button class="etr-btn">Entrer</button>
-                                  </td>
-
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-
-                        </tr>
-
-                        <tr class="edit-menuRW edit-menuRW3">
-                          <td>3</td>
-                          <td>1944 AGATHE NAIL POLISH 11.5ML</td>
-                          <td>25</td>
-                          <td>15 DHS</td>
-                          <td class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
-                          <td>15 DHS</td>
-                          <td>
-                            <div class="edit-btn" data-toggle="modal" data-target="#myModal6"><i class="fas fa-pen"></i></div>
-                          </td>
-                          <td>
-                            <div class="cross-btn"><i class="fas fa-times"></i></div>
-                          </td>
-                        </tr>
-
-                        <tr class=" edit-menuNW edit-menuNW3 ">
-                          <td colspan="10">
-                            <table class="table table-striped">
-                              <tbody class="tbody-inp">
-
-                                <tr>
-                                  <td colspan="10">
-                                    <div class="rem-edit rem-edit3">
-                                      <div class="cross-btn rem-edit-child"><i class="fas fa-times"></i></div>
-                                    </div>
-
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div>Quantité</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Prix unitaire</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Remise</div><input type="number">
-                                  </td>
-
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div>Rem. U.G.</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Disponible</div><input type="number">
-                                  </td>
-
-                                  <td>
-                                    <div> Type de remise</div>
-
-
-                                    <div class="dropdown dropdown1 show">
-                                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        %
-                                      </a>
-
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">%</a>
-                                        <a class="dropdown-item" href="#">Montant</a>
-                                      </div>
-                                    </div>
-                                  </td>
-
-
-
-                                </tr>
-
-                                <tr>
-                                  <td>
-                                    <div>Base de remboursement</div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Taux Remb. </div><input type="number">
-                                  </td>
-                                  <td>
-                                    <div>Date de péremption</div>
-                                    <input type="date">
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td colspan="10 ">
-                                    <button class="etr-btn">Entrer</button>
-                                  </td>
-
-                                </tr> -->
-                              <!-- </tbody>
-                            </table>
-                          </td>
-
-                        </tr> -->
+                            <tr>
+                              <td><div>Base de remboursement</div><input type="number"></td>
+                              <td><div>Taux Remb. </div><input type="number"></td>
+                                <td>
+                                  <div>Date de péremption</div>
+                                  <input type="date">
+                                </td>
+                            </tr>
+                            <tr>
+                              <td colspan="10 ">
+                                <button class="etr-btn">Entrer</button>
+                              </td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
+                      </tr>  -->
+                    <!-- </div> -->
                       </tbody>
                     </table>
+                 
                   </div>
 
                 </div>

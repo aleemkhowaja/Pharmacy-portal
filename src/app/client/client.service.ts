@@ -205,27 +205,6 @@ update(client: ClientModel) : Observable<any> {
   });
 }
 
-
-
-  // getAll(pageNumber: number, itemPerPage: number): Observable<ClientModel[]> {
-    
-  //   return this.lstCients.slice(
-  //     (pageNumber - 1) * itemPerPage,
-  //     pageNumber * itemPerPage
-  //   );
-  // }
-
-  // getByIs(id: number) : Observable<any>  {
-  // {
-  //   return this.apollo.watchQuery<any>({
-  //     query: GET_BY_ID,
-  //     variables : {
-  //       sortOrder : "DESC",
-  //       sortBy : "id",
-  //     },
-  //   }).valueChanges;
-  // }
-
   getById(id: number) : QueryRef<any>  {
     return this.apollo.watchQuery<any>({
       query : GET_BY_ID,
@@ -233,13 +212,6 @@ update(client: ClientModel) : Observable<any> {
         customerId : id
       },
     });
-
-  // return this.lstCients.find((x: any) => x.id === id);
   }
-
-
-  // save(client: ClientModel) {
-  //   console.log(client.email);
-  // }
 
 }

@@ -1,0 +1,101 @@
+`
+<div class="container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form  id="product-quantity-detail-form" [formGroup]="productQuantityDetailForm">
+
+                <input type="hidden" id="unitPriceHidden_id" formControlName="unitPriceHidden" />
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tbody class="tbody-inp">
+                            <!-- <tr>
+                                <td colspan="10">
+                                    <div class="rem-edit rem-edit1">
+                                    <div class="cross-btn rem-edit-child"><i class="fas fa-times"></i></div>
+                                    </div>
+                        
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <td>
+                                    <div>Quantité</div>
+                                    <input type="number" formControlName="unitQuantity"
+                                    >
+                                </td>
+                                <td>
+                                    <div>Prix unitaire</div><input type="number"  formControlName="unitPrice" 
+                                    (input)="calculateDirectAmountDiscount()">
+                                </td>
+                                <td>
+                                    <div>Remise</div><input type="number" formControlName="discount" 
+                                    (input)="calculateAfterDiscount()">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>Rem. U.G.</div><input type="number" formControlName="remUG">
+                                </td>
+                                <td>
+                                    <div>Disponible</div><input type="number" formControlName="available">
+                                </td>
+                        
+                                <td>
+                                    <div> Type de remise</div>
+                        
+                        
+                                    <div class="dropdown dropdown1 show">
+                                        <ng-select 
+                    
+                                        id="sale-discountType" 
+                                        [clearable]="true" 
+                                        [items]="discountTypes" 
+                                        bindValue="id"
+                                        bindLabel="name" 
+                                        name="discountType" 
+                                        formControlName="discountType" 
+                                        [placeholder]="'Gestionnaire'" 
+                                        [virtualScroll]="true"
+                                        [appendTo]="'body'">
+                    
+                                    </ng-select>
+
+                                    <!-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        %
+                                    </a>
+                        
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">%</a>
+                                        <a class="dropdown-item" href="#">Montant</a>
+                                    </div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>Base de remboursement</div><input type="number"  formControlName="basisOfReimbursement">
+                                </td>
+                                <td>
+                                    <div>Taux Remb. </div><input type="number" formControlName="rateOfReim">
+                                </td>
+                                <td>
+                                    <div>Date de péremption</div>
+                                    <input type="date" formControlName="expiryDate">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10 ">
+                                    <button class="creerbtn" (click)="saleReCalculate()">Sauvegarder</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

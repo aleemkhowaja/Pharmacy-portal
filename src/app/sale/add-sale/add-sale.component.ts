@@ -1,19 +1,22 @@
+import { GlobalDiscountDialogComponent } from './../../common-services/dialogs/global-discount-dialog/global-discount-dialog.component';
+import { ProductQuantityDetailDialogComponent } from './../../common-services/dialogs/product-quantity-detail-dialog/product-quantity-detail-dialog.component';
+import { ClientModel } from './../../../models/client';
+import { ProductModel } from './../../../models/product';
+import { BaseComponent } from './../../common-services/base/base.component';
 import { CustomerDialogComponent } from './../../common-services/customer-dialog/customer-dialog.component';
 import { Subscription } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ProductModel } from 'src/models/product';
 import { Select } from './../../../models/select';
 import { DciService } from './../../common-services/dci/dci.service';
 import { Pagination } from './../../../models/pagination';
 import { QueryRef } from 'apollo-angular';
 import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ClientService } from 'src/app/client/client.service';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { SaleModel } from 'src/models/sale';
-import { StrNgCombo } from 'src/models/strNgCombo';
 import { SaleService } from '../sale.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ProductSaleDetailsDialogComponent } from 'src/app/product/product-sale-details-dialog/product-sale-details-dialog.component';
 
 @Component({
   selector: 'app-add-sale',
@@ -21,11 +24,13 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./add-sale.component.css']
 })
 @UntilDestroy()
-export class AddSaleComponent implements OnInit {
+export class AddSaleComponent extends BaseComponent implements OnInit {
 
   productList: any;
   saleProductList : any = [];
-
+  totalAmount : number = 0;
+  isProductSubmitedEmpty : Boolean = false;
+  
   moreInformation = true;
   searching = false;
   private querySubscription: Subscription | undefined;
@@ -79,54 +84,160 @@ export class AddSaleComponent implements OnInit {
     galenicForm: [''],
     dci: [''],
     laboratory: [''],
-    range: [''],
-    
+    range: [''],   
   });
+  
+  itemsVisibility : any;
 
-  
-  
   constructor(
     private fb: FormBuilder,
     private router: ActivatedRoute,
     private saleService: SaleService,
     private cdr: ChangeDetectorRef,
     private dciService : DciService,
-    private modalService: BsModalService
-  ) { } 
+    private modalService: BsModalService,
+    private r: Router
+  ) {
+    super();
+
+    /**
+     * get saled if approve sale without any product
+     */
+     this.isProductSubmitedEmpty = this.r.getCurrentNavigation()?.extras.state?.isProductSubmitedEmpty;
+  } 
 
   /**
    * Open Customer Dialog
    */
   bsModalRef: BsModalRef | undefined;
-  customerName: string = "";
-  openModalWithComponent() {
+  client: ClientModel | undefined;
+  customerName: string | undefined;
+  customerId : Number | undefined;
+  openCustomerModelWithComponent() {
     this.bsModalRef = this.modalService.show(CustomerDialogComponent);
     this.bsModalRef.content.event.subscribe((res: { data: any; }) => {
-      this.customerName = res.data;
+      /**
+       * recieved client data from dialog
+       */
+      this.client = res.data;
+      this.customerName = this.client?.lastName;
+      this.customerId = this.client?.id;
     });
-    
   }
 
-  // openModalWithComponent() {
-  //   console.log("----------------");
 
-  //   this.bsModalRef = this.modalService.show(CustomerDialogComponent);
-  //   this.bsModalRef.content.closeBtnName = 'Close'; 
-  //   this.bsModalRef.content.event.subscribe((res: any) => {
-  //    console.log(res);
-  //   });
+  /**
+   * in sale screen when adding discount by percentage or by amount from
+   * sale products 
+   */
+  sale: SaleModel | undefined;
+  openProductQuantityDetailsModelWithComponent(product: ProductModel, index: number) {
 
-  // }
+    const initialState = {
+      data: product
+    };
+    this.bsModalRef = this.modalService.show(ProductQuantityDetailDialogComponent, {
+      initialState
+    });
+    this.bsModalRef.content.event.subscribe((res: {
+      data: any;
+    }) => {
+      
+      /**
+       * recieved sale data from dialog
+       */
+      this.sale = JSON.parse(res.data);
+      product.dicountAmount = Number(product.ppv) - Number(this.sale?.unitPrice)
+      if(this.sale?.discountType == 1)
+      {
+        product.percentage = Number(this.sale ?.discount);
+      } else 
+      {
+        var actualPrice = Number(product?.ppv);
+        var percentage = ((actualPrice - Number(this.sale?.unitPrice )) / actualPrice) * 100; 
+        product.percentage = percentage
+      }
+     
+      product.ppu = Number(this.sale?.unitPrice)
+      product.isQuantityCalculatonIgonre = true;
+      if(product.percentage)
+      {
+        product.isDiscountAvaiable = true;
+      }
+        
+
+      /**
+       * refresh the sale product row
+       */
+      this.purchaseProduct(product);
+    });
+  }
+
+
+  /**
+   * Open Global Discount Dialog
+   */
+  openGlobalDiscountDialog() {
+    
+    const initialState = {
+     // data: product
+    };
+    this.bsModalRef = this.modalService.show(GlobalDiscountDialogComponent, {
+      initialState
+    });
+
+    this.bsModalRef.content.event.subscribe((res: {
+      data: any;
+    }) => {
+      /**
+       * recieved sale data from dialog
+       */
+       let saleTemp = <SaleModel>{ };
+       saleTemp = JSON.parse(res.data);
+       this.applyGlobalDiscount(saleTemp);
+
+    });
+
+  }
+
+  applyGlobalDiscount(sale : SaleModel) 
+  {
+    this.saleProductList.forEach((_element: any, index: any) => {
+      debugger
+      var discountAmount = (Number(sale?.discount) / 100) * _element["ppu"];
+      this.saleProductList[index]["percentage"] = Number(sale?.discount);
+      this.saleProductList[index]["dicountAmount"] = discountAmount;
+      this.saleProductList[index]["isDiscountAvaiable"] = true;
+    });
+  }
+
+  /**
+   * 
+   * @param product when edit button called from product table
+   * it will show the dialog
+   */
+  openProductdSaleDetailsModelWithComponent(product : ProductModel) {
+
+    const initialState = {
+      data: product
+    };
+
+    this.bsModalRef = this.modalService.show(ProductSaleDetailsDialogComponent, {initialState});
+    this.bsModalRef.content.event.subscribe((res: { data: any; }) => {
+    /**
+     * TODO REPLACE
+     * WE NEED GET PRODUT LIST
+     */
+    window.location.reload();
+    });
+  }
 
   ngOnInit(): void {
 
     const _saleId: number = this.router.snapshot.params.id;
-    console.log("====="+_saleId);
     this.addEditSaleDto = this.saleService.getSpecificProduct(_saleId);
     if (this.addEditSaleDto)
       this.addSaleForm.patchValue(this.addEditSaleDto);
-    console.log(this.addEditSaleDto);
-
 
     /**
      * get All Product
@@ -160,7 +271,6 @@ export class AddSaleComponent implements OnInit {
    * get All Products
    */
   getAllProduct() {
-    this.querySubscription?.unsubscribe();
     this.dataLoading = false;   
     this.productQuery = this.saleService.getAllProducts(this.pagination.currentPage,
       this.pagination.itemsPerPage,  this.productSearchFields);
@@ -190,7 +300,6 @@ export class AddSaleComponent implements OnInit {
       this.querySubscription = this.productQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
            if(response.data.getAllProducts.length > 0)
              this.pagination.totalItems = response.data.getAllProducts[0].count;
-             console.log("this.pagination.totalItems::"+this.pagination.totalItems);
              this.dataLoading = false;
              this.productList = response.data.getAllProducts;
              this.querySubscription?.unsubscribe();
@@ -198,7 +307,6 @@ export class AddSaleComponent implements OnInit {
      }
 
      ngOnDestroy() {
-      console.log("destroy -----");
       this.querySubscription?.unsubscribe();
     }
 
@@ -222,18 +330,116 @@ export class AddSaleComponent implements OnInit {
       this.getAllProduct();
     }
 
-    purchaseProduct(product : any) {
+    /**
+     * 
+     * This function will be called when we click the product table 
+     * and click the product which we want to purchase
+     * @param product 
+     */
+    purchaseProduct(product : ProductModel) { 
+            
+      let recordExist : boolean = false;
+      let itemCount : number = 0;
+      let newSaleProductList : any = [];
+      this.saleProductList.forEach((_element: any, index: any) => {
+        product = JSON.parse(JSON.stringify(product));
+        product.trDetailsVisible = false;
+        
+        if(!product["ppu"])
+          product["ppu"] = product["ppv"];
+        
+        _element["trDetailsVisible"] = false;
+        if(product["id"] == _element["id"]) {
+          recordExist = true;
+          if(!product.isQuantityCalculatonIgonre)
+          {
+            itemCount = _element["quantity"];
+            itemCount = Number(itemCount) + 1;
+            product.quantity  = itemCount;
+          }
+          //calculate amount 
+         // this.totalAmount += Number(product["ppv"]);
+          newSaleProductList?.push(product);
+        } else
+        {
+          _element["ppu"] = _element["ppv"];
+          newSaleProductList?.push(_element);
+        }
+      });
 
-      // let array = [];  
-      // for(let key in product){  
-      //  if(product.hasOwnProperty(key)){  
-      //    array.push(product[key]);  
-      //  }  
-      // }  
 
-      this.saleProductList?.push(product);
+      if(!recordExist)
+      {
+        product = JSON.parse(JSON.stringify(product));
+        product.quantity = 1;
+        product["ppu"] = product["ppv"];
+      //  product.trDetailsVisible = false;
+     //   this.totalAmount+= Number(product["ppv"]);
+        newSaleProductList?.push(product);
+      }
+      this.saleProductList = newSaleProductList;
 
-      console.log(this.saleProductList);
-     // console.log(array+"-------"+this.saleProductList);
+      this.calculateTotalAmountOfSale();
     }
+
+
+    /**
+     * Calculate the totalAmount
+     */
+    calculateTotalAmountOfSale() {
+      this.totalAmount = 0;
+      this.saleProductList.forEach((_element: any, index: any) => {
+        this.totalAmount += (Number(_element["quantity"]) * Number(_element["ppu"]));
+      });
+
+    }
+
+    showHide(product : ProductModel) {
+      product.trDetailsVisible =  product.trDetailsVisible ? false : true;
+    }
+
+
+    /**
+     * Delete Sale Product quantity 
+     * @param product 
+     */
+    deleteSaleProduct(product : ProductModel) {
+      product = JSON.parse(JSON.stringify(product));
+      let newSaleProductList : any = [];
+      this.saleProductList.forEach((_element: any, index: any) => {
+        if(product["id"] == _element["id"]) {
+          if(Number(_element["quantity"]) > 1) 
+          {
+            _element["quantity"] = Number(_element["quantity"]) - 1;
+            this.totalAmount -= Number(_element["ppv"]);
+            newSaleProductList?.push(_element);
+          }
+          else {
+            this.totalAmount -= Number(_element["ppv"]);
+          }
+        } else 
+        {
+          newSaleProductList?.push(_element);
+        }
+      });
+      this.saleProductList = newSaleProductList;
+    }
+
+    approveSales() 
+    {
+      let navigationExtras: NavigationExtras = {
+        state: {
+          saleProducts : JSON.stringify(this.saleProductList),
+          customerId : this.customerId
+        }
+      };
+      this.r.navigate(['/after-approve-sale', ],navigationExtras);
+    }
+
+    editSaleitem(item : ProductModel)
+    {
+        
+    }
+
+     
 }

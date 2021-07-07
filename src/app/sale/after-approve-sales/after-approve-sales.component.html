@@ -1,0 +1,360 @@
+<form class="sale-form" id="sale-product-form" [formGroup]="saleForm" >
+  <input type="hidden" id="sale-product_id" formControlName="id" />
+  <input type="hidden" id="sale-quantity" formControlName="quantity" />
+  <!-- Page content holder -->
+  <div class="p-51"></div>
+  <div class="page-content p-5" id="content">
+    <!-- Toggle button -->
+    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+        class="fa fa-bars mr-2"></i></button>
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+
+
+        <div class="col-10 page-head col-md-10">
+          <h2>Créer une nouvelle vente </h2>
+        </div>
+
+        <div class=" col col-2 col-md-1 cmnpad">
+          <div class="dropdown show dropright ">
+            <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="../../../assets/Icons/bell.png" alt="Notification" class="bell-icon">
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class=" col col-12 buttons-aic col-md-1 cmnpad">
+          <div class="box1 boxes12">
+            Retouner
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+
+        <div class="col col-12 col-md-6 ">
+          <div class="row">
+            <div class="col">
+              <div class="creat-box">
+
+                <div class="row">
+                  <div class="col col-12 col-md-6">
+                    <div class="date-box">
+                      <div class="date-tag tag-all">
+                        Date :
+                      </div>
+                      <div class="date-value value-all">
+                        2021-03-14
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col col-12 col-md-6">
+                    <div class="par-box">
+                      <div class="par-tag tag-all">
+                        Date :
+                      </div>
+                      <div class="par-value value-all">
+                        Mouad GHALMANE
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col col-5">
+
+                    <p class="total-tags">TOTAL À PAYER PAR LE CLIENT</p>
+
+                  </div>
+
+                  <div class="col col-5">
+
+                    <div class="total-amount total-tags">
+                      {{totalPrice}} DHS
+                    </div>
+
+                  </div>
+                  <div class="col col-1">
+                    <div class="upward-aarow">
+                      <i class="fas fa-arrow-alt-circle-up"></i>
+                    </div>
+
+                  </div>
+                </div>
+                <hr>
+
+                <br>
+                <div class="row">
+                  <div class="col col-6">
+                    <p class="total-tags-all">
+                      Quantité totale
+                    </p>
+                  </div>
+
+                  <div class="col col-6">
+                    <div class="total-qty total-tags-all">
+                      {{totalQuantity}}
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div class="row">
+                  <div class="col col-6">
+                    <p class="total-tags-all">
+                      Total à payer par l’organisme
+                    </p>
+                  </div>
+
+                  <div class="col col-6">
+                    <div class="total-qty total-tags-all">
+                      0.00 DHS
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-12 col-md-6">
+          <br class="br-nw">
+          <div class="row">
+            <div class="col">
+              <div class="creat-box">
+                <div class="row">
+                  <div class="col col-6">
+
+                    <p class="total-tags">Montant reçu (DHS)</p>
+
+                  </div>
+
+                  <div class="col col-6">
+
+                    <div class="total-amount total-tags">
+                      <input type="number"  class="inp-9" formControlName="amount">
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <br>
+
+                <div class="row">
+                  <div class="col col-6">
+
+                    <p class="total-tags">Monnaie</p>
+
+                  </div>
+
+                  <div class="col col-6">
+
+                    <div class="total-amount total-tags">
+                      0 DHS
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <hr>
+                <br>
+                <div class="row">
+                  <div class="col col-6">
+                    <p class="total-tags-all">
+                      Statut
+                    </p>
+                  </div>
+
+                  <div class="col col-6">
+                    <div class="total-qty total-tags-all">
+                      <div class="dropdown dropdown1 show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Complété
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Complété</a>
+                          <a class="dropdown-item" href="#">Annuler</a>
+                          <a class="dropdown-item" href="#">Agréé</a>
+                          <a class="dropdown-item" href="#">Attendre</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col col-6">
+                    <p class="total-tags-all">
+                      Référence
+                    </p>
+                  </div>
+
+                  <div class="col col-6">
+                    <div class="total-qty total-tags-all">
+                      <input type="text" class="inp-9" formControlName="reference">
+                    </div>
+                  </div>
+
+                </div>
+
+                <br>
+                <div class="row">
+                  <div class="col col-6">
+                    <p class="total-tags-all">
+                      Livré
+                    </p>
+                  </div>
+
+                  <div class="col col-6">
+                    <div class="total-qty total-tags-all">
+                      <input type="checkbox" formControlName="isDelivered">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col col-12 col-md-4">
+              <a href="#" (click)="submitForm(1)">
+              <div class="paymentmethod-1 paymentmethod-all">
+                <div class="pay-icon">
+                  <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="pay-icon-name">
+                  Espèces
+                </div>
+              </div>
+            </a>
+            </div>
+            <div class="col col-12 col-md-4">
+              <a href="#" (click)="submitForm(2)">
+                <div class="paymentmethod-1 paymentmethod-all">
+                  <div class="pay-icon">
+                    <i class="fas fa-money-check-alt"></i>
+                  </div>
+                  <div class="pay-icon-name">
+                    Chèque
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col col-12 col-md-4">
+              <a href="#" (click)="submitForm(3)">
+                <div class="paymentmethod-1 paymentmethod-all">
+                  <div class="pay-icon">
+                    <i class="fas fa-credit-card"></i>
+                  </div>
+                  <div class="pay-icon-name">
+                    Carte Bancaire
+                  </div>
+                </div>
+              </a>
+            </div>
+
+
+            <div class="col col-12 col-md-4">
+              <a href="#" (click)="submitForm(4)">
+                <div class="paymentmethod-2 paymentmethod-all">
+                  <div class="pay-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                  </div>
+                  <div class="pay-icon-name">
+                    Lettre De Change
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col col-12 col-md-4">
+              <a href="#" (click)="submitForm(4)">
+                <div class="paymentmethod-2 paymentmethod-all">
+                  <div class="pay-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                  </div>
+                  <div class="pay-icon-name">
+                    Autre
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+  <br>
+
+
+
+
+
+  <div class="container-fluid">
+    <div class="clear-fix">
+      <div class="row justify-content-end">
+
+        <div class="col faq col-sm-1  ">
+          <div class="faqbox">
+            <a href="#">
+              <button class="faqbtn">FAQ</button>
+            </a>
+          </div>
+        </div>
+
+        <div class="col supportnum col-sm-2 float-right " style="position:relative">
+          <div class="sptnumbox">
+            <p>Soutien: 99 99 999 999</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+</form>

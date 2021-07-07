@@ -1,0 +1,23 @@
+.notif_error p {
+    font-size: 22px;
+    font-family: open sans;
+    font-weight: 800;
+    color: #ba4a46;
+    text-align: center;
+}
+
+.notif_error_content {
+    width: auto;
+    text-align: center;
+    margin-bottom: 6px;
+    background-color: #ff65005e;
+}
+
+.table-badge {
+    background: #f6ac32;
+    color: #fff;
+    padding: 3px 5px;
+    text-align: center;
+    border-radius: 2px;
+    display: inline-block;
+}

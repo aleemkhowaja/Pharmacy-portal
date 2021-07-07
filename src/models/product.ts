@@ -1,3 +1,8 @@
+import { RangeModel } from './range';
+import { TherapeuticClassModel } from './therapeuticClass';
+import { CategoryModel } from 'src/models/category';
+import { DciModel } from './dci';
+import { PharmaceuticalFormModel } from './pharmaceuticalFormModel';
 export interface ProductModel {
     id?: number;
     product?: string,
@@ -5,6 +10,7 @@ export interface ProductModel {
     name?: string;
     category?: string;
     pharmaceuticalForm?: string;
+    ppu?: number;
     ppv?: number;
     pph?: number;
     barcode?: string;
@@ -22,7 +28,7 @@ export interface ProductModel {
     marketProduct?: boolean,
     vatOnPurchase?: string,
     vatOnSales?: string,
-    isRefundable?: string,
+    isRefundable?: boolean,
     reimbursementBasis?: string,
     presentation?: string,
     excipients?: string,
@@ -36,6 +42,24 @@ export interface ProductModel {
     monograph?: string,
     description?: string,
     nameOrBarcode?: string,
-    
+    quantity?:number,
+    minStock?:number,
+    maxStock?:number
+    categoryId?:number
+    therapeuticClassId?:number,
+    dosageForChildren?:string
+    conditioning?: string,
+    dciModel?: DciModel
+    categoryModel?: CategoryModel;
+    therapeuticClassModel?:TherapeuticClassModel
+    pharmaceuticalFormModel?:PharmaceuticalFormModel
+    rangeModel?:RangeModel
+
+    trDetailsVisible?:Boolean;
+    percentage?:Number
+    dicountAmount?:Number
+    isQuantityCalculatonIgonre?:Boolean
+    isDiscountAvaiable?:Boolean
+
   }
   

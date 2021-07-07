@@ -45,8 +45,6 @@ export class CustomerDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("8888");
-
     /**
      * get All Clients
      */
@@ -101,14 +99,19 @@ export class CustomerDialogComponent implements OnInit {
         });
      }
 
-     setCustomerId(name : string)
+
+     setCustomerId(customer : ClientModel)
      {
-      this.triggerEvent(name);
+      this.triggerEvent(customer);
       this.bsModalRef.hide();
      }
 
-     triggerEvent(name: string) {
-      this.event.emit({ data: name , res:200 });
+     /**
+      * send data to parent component from where dialog has opened.
+      * @param customer 
+      */
+     triggerEvent(customer: ClientModel) {
+      this.event.emit({ data: customer , res:200 });
     }
 }
 

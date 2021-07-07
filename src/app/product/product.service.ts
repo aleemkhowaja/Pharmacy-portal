@@ -1,4 +1,4 @@
-import { ALL_PRODUCT_URL } from './product-constant';
+import { ALL_PRODUCT_URL, UPDATE_PRODUCT_URL, UPDATE_PRODUCT_URL1, GET_PRODUCT_BY_ID, SAVE_PRODUCT_URL } from './product-constant';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo, QueryRef } from 'apollo-angular';
@@ -9,298 +9,21 @@ import { ProductModel } from 'src/models/product';
   providedIn: 'root'
 })
 export class ProductService {
-  lstProducts: any = [
-    {
-      id: 1,
-      product: 'BIOFAR CO CALCIUM Protein D5 B23 COMP EFFER',
-      name: 'Jhon',
-      category: "Drugstore (33.330%)",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: false,
-      active: false,
-      laboratory: "NIL",
-      dci: "1",
-      status: "Rejeté",
-    },
-    {
-      id: 2,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Mark',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: false,
-      active: false,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Rejeté",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 3,
-      product: 'BIOFAR CO CALCIUM GlUTAMINE D3 B50 COMP EFFER',
-      name: 'Philipe',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: true,
-      active: true,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Valide",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 4,
-      product: 'BIOFAR CO CALCIUM CREATINE D3 B80 COMP EFFER',
-      name: 'George',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: true,
-      active: true,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Valide",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 5,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Carl',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: true,
-      active: true,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Rejeté",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 6,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Mark',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: false,
-      active: false,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Rejeté",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 7,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Mark',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: true,
-      active: true,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Rejeté",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 8,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Mark',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: true,
-      active: true,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Valide",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 9,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Mark',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: false,
-      active: false,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Valide",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
-    {
-      id: 10,
-      product: 'BIOFAR CO CALCIUM VITAMIN D3 B20 COMP EFFER',
-      name: 'Mark',
-      category: "Drugstore (33.330%)",
-      pharmaceuticalForm: 'ACCESSORIES',
-      ppv: 75.00,
-      pph: 13.33,
-      barcode: 'gfgfg45454',
-      zone: true,
-      active: true,
-      laboratory: "NIL",
-      dci: "NIL",
-      status: "Valide",
-      categoryId: "2",
-      galenicForm: "1",
-      barcode2: 'gfgfg45454',
-      therapeuticClass: "3",
-      range: "2",
-      subRange: "3",
-      productTable: "1",
-      vatOnPurchase: "2",
-      vatOnSales: "3",
-      isRefundable: "1",
-      drivingContraindications: "2",
-      breastFeedingContraindications: "3",
-      pregnancyContraindications: "1",
-    },
 
-
-  ];
+  
 
   constructor(private http: HttpClient, private apollo: Apollo) {}
 
-  getAll(pageNumber: number, itemPerPage: number): Observable<ProductModel[]> {
-    return this.lstProducts.slice(
-      (pageNumber - 1) * itemPerPage,
-      pageNumber * itemPerPage
-    );
+  getAll(pageNumber: number, itemPerPage: number): Observable<any> {
+    return this.apollo.query<any>({
+      query: ALL_PRODUCT_URL,
+      variables: {
+        pageNumber: pageNumber - 1,
+        pageSize: itemPerPage,
+        sortOrder: "DESC",
+        sortBy: "id",
+      },
+    });
   }
 
   filter(pageNum: number, itemPerPage: number, product: ProductModel) : QueryRef<any>
@@ -322,27 +45,109 @@ export class ProductService {
     });
   }
 
-  getSpecificProduct(id: number) {
-    return this.lstProducts.find((x: any) => x.id == id);
-  }
-
-  save(product: ProductModel) {
-    console.log(name);
-  }
-
-  getDetailsProducts() {
-    return this.lstProducts;
-  }
-
-  search(filters: any) {
-    return this.lstProducts.filter((x: any) => {
-      return (!filters.name || x.name.includes(filters.name)) && (!filters.ppv || x.ppv == filters.ppv)
-              && (!filters.category || x.category.includes(filters.category))
-              && (!filters.barCode || x.category.includes(filters.barcode))
-              && (!filters.pharmaceuticalForm || x.pharmaceuticalForm.includes(filters.pharmaceuticalForm))
-              && (!filters.pph || x.pph == filters.pph)
-              && (!filters.zone || x.zone == (filters.zone == 'Oui'))
-              && (!filters.active || x.active == (filters.active == 'Oui'));
+  getById(id: number): QueryRef<any> {
+    return this.apollo.watchQuery<any>({
+      query: GET_PRODUCT_BY_ID,
+      variables: {
+        productId: id
+      },
     });
   }
+
+ 
+  updateWithProperties(product: ProductModel) : Observable<any> {
+    return this.apollo.mutate({
+      mutation: UPDATE_PRODUCT_URL1,
+      variables: {
+        id : product.id,
+        pph: product.pph,
+        ppv : product.ppv,
+        stockMin: product.minStock,
+        stockMax : product.maxStock
+      }
+    });
+  }
+
+  save(product: ProductModel) : Observable<any>{
+    return this.apollo.mutate({
+      mutation: SAVE_PRODUCT_URL,
+      variables: {
+        name: product.name,
+        barCode: product.barcode2,
+        barCode2: product.barcode2,
+        categoryId: product.categoryId,
+        therapeuticClass: product.therapeuticClass,
+        therapeuticClassId:product.therapeuticClassId,
+        pharmaceuticalFormId: product.pharmaceuticalForm,
+        dci: product.dci,
+        laboratory: product.laboratory,
+        range1: product.range,
+        subRange: product.subRange,
+        productTable: product.productTable,
+        requiresPrescription: product.prescriptionRequired,
+        productMarket: product.marketProduct,
+        pph: product.pph,
+        ppv: product.ppv,
+        vatOnPurchase: product.vatOnPurchase,
+        vatOnSale: product.vatOnSales,
+        isRefundable: product.isRefundable,
+        basisOfReimbursement: product.reimbursementBasis,
+        presentation: product.presentation,
+        excipients: product.excipients,
+        adultDosage: product.dosageForAdults,
+        dosageForChildren: product.dosageForChildren,
+        indications: product.indications,
+        contraindicationDriving: product.drivingContraindications,
+        breastFeedingContraindication: product.breastFeedingContraindications,
+        pregnancyContraindication: product.pregnancyContraindications,
+        productLabReference: product.productLabReference,
+        conditioning: product.conditioning,
+        monoGraph: product.monograph,
+        description: product.description,
+        createdBy:localStorage.getItem("username")
+      }
+    });
+  }
+
+  update(product: ProductModel): Observable<any> {
+    return this.apollo.mutate({
+      mutation: UPDATE_PRODUCT_URL,
+      variables: {
+        id: product.id,
+        name: product.name,
+        barCode: product.barcode2,
+        barCode2: product.barcode2,
+        category: product.category,
+        therapeuticClass: product.therapeuticClass,
+        pharmaceuticalForm: product.pharmaceuticalForm,
+        dci: product.dci,
+        laboratory: product.laboratory,
+        range1: product.range,
+        subRange: product.subRange,
+        productTable: product.productTable,
+        requiresPrescription: product.prescriptionRequired,
+        productMarket: product.marketProduct,
+        pph: product.pph,
+        ppv: product.ppv,
+        vatOnPurchase: product.vatOnPurchase,
+        vatOnSale: product.vatOnSales,
+        isRefundable: product.isRefundable,
+        basisOfReimbursement: product.reimbursementBasis,
+        presentation: product.presentation,
+        excipients: product.excipients,
+        adultDosage: product.dosageForAdults,
+        dosageForChildren: product.dosageForChildren,
+        indications: product.indications,
+        contraindicationDriving: product.drivingContraindications,
+        breastFeedingContraindication: product.breastFeedingContraindications,
+        pregnancyContraindication: product.pregnancyContraindications,
+        productLabReference: product.productLabReference,
+        conditioning: product.conditioning,
+        monoGraph: product.monograph,
+        description: product.description,
+        modifiedBy: localStorage.getItem("username")
+      }
+    });
+  }
+
 }

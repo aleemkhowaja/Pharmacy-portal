@@ -78,7 +78,6 @@ export class ViewClientComponent implements OnInit {
 
   ngOnInit(): void {
     const _clientId: number = this.route.snapshot.params.id;
-    console.log("===----"+_clientId);
     if (_clientId > 0) {
       this.getById(_clientId);
       this.clientQuery ?.refetch();
@@ -115,7 +114,6 @@ export class ViewClientComponent implements OnInit {
    * @param _clientId 
    */
   getById(_clientId: number) {
-    console.log("==="+_clientId);
     this.clientQuery = this.clientService.getById(_clientId);
 
     this.clientQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response => {

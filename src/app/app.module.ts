@@ -1,5 +1,17 @@
-import { AddClientComponent } from './client/add-client/add-client.component';
-import { SearchClientComponent } from './client/search-client/search-client.component';
+import { ProductSuggestionDetailsComponent } from './product/product-suggestion/product-suggestion-details/product-suggestion-details.component';
+import { SearchProductSuggestionComponent } from './product/product-suggestion/search-product-suggestion/search-product-suggestion.component';
+import { AddProductSuggestionComponent } from './product/product-suggestion/add-product-suggestion/add-product-suggestion.component';
+import { DeliverySlipDetailComponent } from './delivery-slip/delivery-slip-detail/delivery-slip-detail.component';
+import { DeliverySlipComponent } from './delivery-slip/delivery-slip.component';
+import { ProviderDialogComponent } from 'src/app/common-services/provider-dialog/provider-dialog.component';
+import { ProviderComponent } from './common-services/provider/provider.component';
+import { OrderProposalDetailsComponent } from './order-proposal/order-proposal-details/order-proposal-details.component';
+import { SearchOrderProposalComponent } from './order-proposal/search-order-proposal/search-order-proposal.component';
+import { OrderProposalComponent } from './order-proposal/order-proposal.component';
+import { OrderDetailsComponent } from './purchase-order/order-details/order-details.component';
+import { SearchOrderComponent } from './purchase-order/search-order/search-order.component';
+import { AddOrderComponent } from './purchase-order/add-order/add-order.component';
+import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
@@ -25,7 +37,6 @@ import { SearchProductComponent } from './product/search-product/search-product.
 import { ProductComponent } from './product/product.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddProductComponent } from './product/add-product/add-product.component';
-import { SearchProductSuggestionComponent } from './product/search-product-suggestion/search-product-suggestion.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { SuplierComponent } from './suplier/suplier.component';
 import { SearchSuplierComponent } from './suplier/search-suplier/search-suplier.component';
@@ -42,6 +53,14 @@ import { SearchImportComponent } from './stock/search-import/search-import.compo
 import { AddImportComponent } from './stock/add-import/add-import.component';
 import { CustomerDialogComponent } from './common-services/customer-dialog/customer-dialog.component';
 import { ConfirmationDialogComponent } from './common-services/confirmation-dialog/confirmation-dialog.component';
+import { ProductSaleDetailsDialogComponent } from './product/product-sale-details-dialog/product-sale-details-dialog.component';
+import { BaseComponent } from './common-services/base/base.component';
+import { AfterApproveSalesComponent } from './sale/after-approve-sales/after-approve-sales.component';
+import { ApproveSuccessfulSalesComponent } from './sale/approve-successful-sales/approve-successful-sales.component';
+import { SaleInvoiceComponent } from './sale/sale-invoice/sale-invoice.component';
+import { ProductQuantityDetailDialogComponent } from './common-services/dialogs/product-quantity-detail-dialog/product-quantity-detail-dialog.component';
+import { GlobalDiscountDialogComponent } from './common-services/dialogs/global-discount-dialog/global-discount-dialog.component';
+import { AfterApprovePurchaseComponent } from './purchase-order/after-approve-purchase/after-approve-purchase.component';
 
 
 
@@ -70,7 +89,29 @@ import { ConfirmationDialogComponent } from './common-services/confirmation-dial
     SearchImportComponent,
     AddImportComponent,
     CustomerDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ProductSaleDetailsDialogComponent,
+    BaseComponent,
+    AfterApproveSalesComponent,
+    PurchaseOrderComponent,
+    AddOrderComponent,
+    SearchOrderComponent,
+    OrderDetailsComponent,
+    OrderProposalComponent,
+    SearchOrderProposalComponent,
+    OrderProposalDetailsComponent,
+    ProviderComponent,
+    ProviderDialogComponent,
+    DeliverySlipComponent,
+    DeliverySlipDetailComponent,
+    ApproveSuccessfulSalesComponent,
+    SaleInvoiceComponent,
+    AddProductSuggestionComponent,
+    SearchProductSuggestionComponent,
+    ProductSuggestionDetailsComponent,
+    ProductQuantityDetailDialogComponent,
+    GlobalDiscountDialogComponent,
+    AfterApprovePurchaseComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,177 @@
+
+<!-- Page content holder -->
+<div class="p-51"></div>
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i></button>
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+    
+
+      <div class="col page-head col-md-9">
+          <h2> Proposition de commande
+          </h2>
+      </div>
+
+      <div class=" col col-2 col-md-1 cmnpad" >
+        <div class="dropdown show dropright ">
+          <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="../Images/Icons/bell.png" alt="Notification" class="bell-icon">
+          </a>
+        
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+
+      <div class=" col col-2 col-md-2 cmnpad" >
+        <div class="dropdown show dropright ">
+          <a class="btn btn-secondary dropdown-toggle dd-menu13" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Choisissez la méthode      
+         </a>
+        
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+
+
+     
+
+     
+  </div>
+        
+    <div class="container-fluid sec-cont">
+
+        <div class="row justify-content-end">
+          <div class="col col-12 col-md-4">
+            <div class="search-box">
+              <input type="text" placeholder="Type to search..">
+              <div class="search-icon searchbtn ">
+                <i class="fas fa-search"></i>
+              </div>
+        <div class="cancel-icon crossbtn">
+                <i class="fas fa-times"></i>
+              </div>
+        <div class="search-data">
+        </div>
+        </div>
+          </div>
+        </div>
+
+        <div class="row search-row" >
+          <div class="col">
+            <table class="table">
+              <tbody>
+               
+                
+                <td><input type="text" placeholder="Fournisseur"></td>
+                <td><input type="text" placeholder=" 	Créée le"></td>
+              
+                <td><input type="text" placeholder="Total"></td>
+                
+                <td><button><i class="fas fa-search"></i></button></td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+
+                <div class="table-cont">
+
+                  <div class=" patients-table">
+                    <table class="table table-striped">
+                <thead>
+                  <tr>
+                   
+                    <th scope="col">Fournisseur</th>
+                    
+                    <th scope="col"> Crééé le</th>
+                    <th scope="col">Total</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of listPurchases">
+                    <td>{{item.provider.name}}</td>
+                    <td>{{item.createdDate}}</td>
+                    <td>{{item.total}}</td>
+
+                   
+                  </tr>
+                 
+                </tbody>
+              </table>
+              
+            </div>
+
+                </div>
+              
+                
+            </div>
+            
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+              <div class="page-num">
+                <div class="row justify-content-end">
+
+                  <div class="col col-12 col-md-2">
+                    <div class="page-num-inp">
+                      <input type="number"  value="10" >
+                      <button>Entrer</button>
+                    </div>
+                  </div>
+                  <div class="col-12 col col-md-6">
+                    <div class="page-search">
+                      <input type="text" placeholder="Page search">
+                      <button class="btn ">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col col-12 ">
+                    <div class="page-num-cont">
+                     
+                      <a href="#" class="page-num-link "><span class=" back-arrw page-count "><i class="fas fa-chevron-left"></i></span></a>
+                      <a href="#" class="page-num-link "><span class=" one-arrw page-count active-page">1</span></a>
+                      <a href="#" class="page-num-link"><span class=" two-arrw page-count">2</span></a>
+                      <a href="#" class="page-num-link"><span class=" page-dots">...</span></a>
+                      <a href="#" class="page-num-link"><span class=" three-arrw page-count">24</span></a>
+                      <a href="#" class="page-num-link"><span class=" for-arrw page-count"><i class="fas fa-chevron-right"></i></span></a>
+
+                    </div>
+                  </div>
+
+
+                </div>
+                  
+              </div>
+          </div>
+      </div>
+        
+
+        
+        
+    </div>
+
+
+
+
+
+
+
+  </div>
+

@@ -1,0 +1,79 @@
+
+<div class="container">
+    <!-- The Modal -->
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form  id="product-quantity-detail-form" [formGroup]="globalDiscountForm">
+             <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Remise globale</h4>
+              <button type="button" class="close" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="row">
+                <div class="col col-4">
+                  Appliquer à
+                </div>
+                <div class="col">
+                  <ng-select 
+                  id="sale-applyTo" 
+                  [clearable]="true" 
+                  [items]="applyToCriteria" 
+                  bindValue="id"
+                  bindLabel="name" 
+                  name="applyTo" 
+                  formControlName="applyTo" 
+                  [placeholder]="'apply To'" 
+                  [virtualScroll]="true"
+                  [appendTo]="'body'">
+                </ng-select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-4">
+                  Type de remise  
+                </div>
+                <div class="col">
+                  <ng-select 
+                    
+                    id="sale-discountType" 
+                    [clearable]="true" 
+                    [items]="discountTypes" 
+                    bindValue="id"
+                    bindLabel="name" 
+                    name="discountType" 
+                    formControlName="discountType" 
+                    [placeholder]="'Gestionnaire'" 
+                    [virtualScroll]="true"
+                    [appendTo]="'body'">
+
+                  </ng-select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col col-4">
+                  Remise
+
+                </div>
+                <div class="col">
+    
+                  <input type="text" name=""  formControlName="discount">
+    
+                </div>
+              </div>
+            </div>
+         
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="annuler-btn" (click)="globalDiscountCalculate()" >Appliquer</button>
+          </div>
+  
+        </form>
+        </div>
+      </div>
+  </div>

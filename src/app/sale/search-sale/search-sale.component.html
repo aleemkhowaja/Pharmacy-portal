@@ -62,14 +62,14 @@
             <tbody>
               <tr>
                 <td><input type="text" [(ngModel)]="searchFields.transactionNumber" placeholder="Transaction Number"></td>
-                <td><input type="text" [(ngModel)]="searchFields.customer" placeholder="Customer"></td>
+                <td><input type="text" [(ngModel)]="searchFields.customerName" placeholder="Customer"></td>
                 <td><input type="date" [(ngModel)]="searchFields.dos"></td>
                 <td><input type="date" [(ngModel)]="searchFields.createdOn"></td>
                 <td><button (click)="searchItems()"><i class="fas fa-search"></i></button></td>
               </tr>
 
               <tr>
-                <td><input type="text" [(ngModel)]="searchFields.total" placeholder="Total"></td>
+                <td><input type="text" [(ngModel)]="searchFields.amount" placeholder="Total"></td>
                 <td>
                   <div class="dropdown dropdown1 show dropright ">
                     <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink"
@@ -127,22 +127,22 @@
                 </thead>
                 <tbody>
 
-                  <tr *ngFor="let item of lstSale" (click)="viewSale(item.id)">
+                  <tr *ngFor="let item of lstSale" [routerLink]="['/sale-invoice', item.id]" >
                     <td>{{ item.transactionNumber }}</td>
-                    <td>{{ item.customer }}</td>
-                    <td>{{ item.dos }}</td>
-                    <td>{{ item.createdOn }}</td>
-                    <td>{{ item.total }}</td>
-                    <td class="Zone-sign" *ngIf="!item.delivered">
+                    <td>{{ item.customer?.lastName }}</td>
+                    <td>{{ item.transDate | date: 'dd-MM-yyyy' }}</td>
+                    <td>{{ item.createdDate | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{ item.amount }}</td>
+                    <td class="Zone-sign" *ngIf="!item.isDelivered">
                       <p class="zone-sign-N">Non</p>
                     </td>
-                    <td class="Zone-sign" *ngIf="item.delivered">
+                    <td class="Zone-sign" *ngIf="item.isDelivered">
                       <p class="zone-sign-Y">Oui</p>
                     </td>
-                    <td class=" status-sign" *ngIf="!item.status">
+                    <td class=" status-sign" *ngIf="item.transStatus != 'Completed'">
                       <p class="active-N">Non</p>
                     </td>
-                    <td class=" active-sign" *ngIf="item.active">
+                    <td class=" active-sign" *ngIf="item.transStatus == 'Completed'">
                       <p class="active-Y">Oui</p>
                     </td>
                     <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
