@@ -17,16 +17,16 @@ export class OrderProposalComponent implements OnInit {
   constructor(private purchaseService: PurchaseOrderService) { }
 
   ngOnInit(): void {
-    this.initPurchases();
+   // this.initPurchases();
   }
 
-  public initPurchases() {
+ /* public initPurchases() {
     this.purchaseService.filter().pipe(untilDestroyed(this)).subscribe(response => {
       if(response.data.getAllPurchases.length > 0){
         this.listPurchases = response.data.getAllPurchases;
       }
 
     });
-  }
+  }*/
 
 }
