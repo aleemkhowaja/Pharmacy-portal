@@ -12,7 +12,8 @@ import { SAVE_MESSAGE } from 'src/app/common/constants/constants.service';
 })
 export class AfterApproveSalesComponent implements OnInit {
 
-  saleProductList : any = [];
+  saleProductList: any = [];
+  saledProductDetails: any = [];
   saleForm = this.fb.group({
     id : [''],
     reference : [''],
@@ -20,23 +21,33 @@ export class AfterApproveSalesComponent implements OnInit {
     quantity: [''],
     isDelivered : false,
     paymentMethod : null,
-    customerId : null
+    customerId : null,
+    saledproductDetails : [''],
+    transStatus : ['']
   });
 
-  totalPrice : number = 0.0;
-  totalQuantity : number = 0;
-  constructor(private router: ActivatedRoute, 
-              private r : Router,
+  transStats = [
+    { id: 'Annulé', name: 'Annulé' },
+    { id: 'Complété', name: 'Complété' },
+    { id: 'Certifé', name: 'Certifé' },
+    { id: 'En attente', name: 'En attente' }
+  ];
+
+  totalPrice = 0.0;
+  totalQuantity = 0;
+  constructor(private router: ActivatedRoute,
+              private r: Router,
               private fb: FormBuilder,
-              private saleService : SaleService) {
+              private saleService: SaleService) {
     /**
      * get saled products to approve and save in db
      */
-    let salesList = this.r.getCurrentNavigation()?.extras.state?.saleProducts;
+    const salesList = this.r.getCurrentNavigation()?.extras.state?.saleProducts;
     /**
      * get the customer id sent from previous page
      */
-    let customerId = this.r.getCurrentNavigation()?.extras.state?.customerId;
+    debugger
+    const customerId = this.r.getCurrentNavigation()?.extras.state?.customerId;
     this.saleForm.get('customerId')?.setValue(customerId);
     this.saleProductList = JSON.parse(salesList);
 
@@ -45,15 +56,17 @@ export class AfterApproveSalesComponent implements OnInit {
   ngOnInit(): void {
     this.saleProductList.forEach((_element: any, index: any) => {
       this.totalQuantity += Number(_element["quantity"]);
-      this.totalPrice += (Number(_element["quantity"]) * Number(_element["ppv"]));
+      this.totalPrice += Number(_element["ppu"]);
     });
+
 
     this.saleForm.get('amount')?.setValue(this.totalPrice);
     this.saleForm.get('quantity')?.setValue(this.totalQuantity);
+    this.saleForm.get('saledproductDetails')?.setValue(JSON.stringify(this.saleProductList));
   }
 
 
-  
+
 /**
  * Submit the client/customer form
  * @returns
@@ -65,23 +78,24 @@ export class AfterApproveSalesComponent implements OnInit {
     */
   if(this.saleForm.get('quantity')?.value <= 0)
   {
-    let navigationExtras: NavigationExtras = {
+    const navigationExtras: NavigationExtras = {
       state: {
         isProductSubmitedEmpty : true
       }
     };
-    this.r.navigate(['/add-sale', ],navigationExtras);
+    this.r.navigate(['/add-sale', ], navigationExtras);
     return false;
   }
   //  if (this.addClientForm.invalid) {
   //    alert('Please fill all the required fields to create a super hero!');
   //    return false;
   //  }
-   if(this.saleForm.value.id == '')
+  if (this.saleForm.value.id === '') {
     this.saleForm.get('paymentMethod')?.setValue(paymentMethod);
-     this.saleService.save(this.saleForm.value).subscribe((response) => {
+  }
+  this.saleService.save(this.saleForm.value).subscribe((response) => {
       this.r.navigate(['approve-sucessful-sale']);
-      
+
       //  Swal.fire(SAVE_MESSAGE)
       //  this.saleForm.reset();
       // this.r.navigate(['/client'], { replaceUrl: true });
@@ -92,7 +106,7 @@ export class AfterApproveSalesComponent implements OnInit {
     //    this.addClientForm.reset();
     //    this.r.navigate(['/client'], { replaceUrl: true });
     //  });
-   return true;
+  return true;
  }
 
 }

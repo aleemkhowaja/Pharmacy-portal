@@ -1,13 +1,13 @@
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
 export const ALL_TRANSACTION_URL = gql`
 query
-    ($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String!, $transactionNumber : String, 
-    $customerName : String, $amount : BigDecimal, $transType : String) 
+    ($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String!, $transactionNumber : String,
+    $customerName : String, $amount : BigDecimal, $transType : String)
     {
 
-        getAllTransaction(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy, 
-            filter:{transactionNumber : $transactionNumber, type :  $transType, customer:{lastName : $customerName}, amount : $amount}) 
+        getAllTransaction(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy,
+            filter:{transactionNumber : $transactionNumber, type :  $transType, customer:{lastName : $customerName}, amount : $amount})
     {
     id,
     customer{
@@ -39,7 +39,7 @@ query
 `;
 
 export const SAVE_SALE_URL = gql`mutation($quanity : Int,$amount : BigDecimal, $reference : String,
-    $isDelivered : Boolean, $type : String, $transStatus : String, $paymentMethod : ID, $customerId : ID,$createdBy : String, $modifiedBy : String
+    $isDelivered : Boolean, $type : String, $transStatus : String, $paymentMethod : ID, $customerId : ID, $saledproductDetails : String,$createdBy : String, $modifiedBy : String
     ){
         createTransaction(input: {
         quantity: $quanity,
@@ -48,6 +48,7 @@ export const SAVE_SALE_URL = gql`mutation($quanity : Int,$amount : BigDecimal, $
         reference: $reference,
         isDelivered: $isDelivered,
         type: $type,
+        saledProductDetails : $saledproductDetails,
         paymentMethod: {
             id : $paymentMethod
         },
@@ -65,7 +66,7 @@ export const SAVE_SALE_URL = gql`mutation($quanity : Int,$amount : BigDecimal, $
     }
 }`;
 
-export const GET_BY_ID = 
+export const GET_BY_ID =
 gql`query($transactionId: ID!){
     transactionById(id: $transactionId){
         id,
@@ -87,8 +88,13 @@ gql`query($transactionId: ID!){
                     id,
                     name,
                     vatOnSale,
+                    ppv
                 },
-                quantity
+                quantity,
+                discount,
+                amountAfterDiscount,
+                percentage,
+                totalAfterDiscount
             },
            count,
            status,

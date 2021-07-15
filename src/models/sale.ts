@@ -4,33 +4,38 @@ import { ClientModel } from './client';
 export interface SaleModel {
 
     id?: number;
-    transactionNumber?:String
-    customer?: ClientModel
-    customerName?: String
-    transDate?: Date
-    createdOn?: Date
-    amount?:number
-    quantity?:Number
-    transStatus?:String
-    reference?: String
-    isDelivered?:Boolean
-    type?:String
-    paymentMethod?:number
-    customerId?:number
-    transactionDetails?:TransactionModel
-    createdBy?:UserModel
+    transactionNumber?: String;
+    customer?: ClientModel;
+    customerName?: String;
+    transDate?: Date;
+    createdOn?: Date;
+    amount?: number;
+    quantity?: Number;
+    transStatus?: String;
+    reference?: String;
+    isDelivered?: Boolean;
+    type?: String;
+    paymentMethod?: number;
+    customerId?: number;
+    saledproductDetails?: String;
+    transactionDetails?: TransactionModel;
+    createdBy?: UserModel;
 
-    //sale quantity details
-    unitQuantity?:number
-    unitPrice?:number
-    discount?:number
-    remUG?:number
-    available?:number
-    discountType?:number
-    basisOfReimbursement?:number
-    rateOfReim?:number
-    expiryDate?: Date
+    // sale quantity details
+    unitQuantity?: number;
+    unitPrice?: number;
+    discount?: number;
+    remUG?: number;
+    available?: number;
+    discountType?: number;
+    basisOfReimbursement?: number;
+    rateOfReim?: number;
+    expiryDate?: Date;
 
-    applyTo?: number
-    
+    applyTo?: number;
+    percentage?: number;
+    dicountAmount?: number;
+    amountAfterDiscount?: number;
+    totalAfterDiscount?: number;
+
   }

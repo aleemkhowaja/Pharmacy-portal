@@ -296,12 +296,12 @@ export class SaleService {
 
   ];
 
-  constructor(private http: HttpClient, 
+  constructor(private http: HttpClient,
               private apollo: Apollo,
               private productService: ProductService) {}
 
 
-              
+
   getAllProducts(pageNum: number, itemPerPage: number, product: ProductModel):  QueryRef<any> {
     return this.productService.filter(pageNum, itemPerPage, product);
   }
@@ -340,12 +340,13 @@ export class SaleService {
         variables: {
           quanity: saleModel.quantity,
           amount : saleModel.amount,
-          transStatus : 'Completed',
+          transStatus : saleModel.transStatus,
           reference: saleModel.reference,
           isDelivered : saleModel.isDelivered,
           type : 'sale',
           paymentMethod : saleModel.paymentMethod,
           customerId : saleModel.customerId,
+          saledproductDetails : saleModel.saledproductDetails,
           createdBy : localStorage.getItem("username"),
           modifiedBy : localStorage.getItem("username")
         }

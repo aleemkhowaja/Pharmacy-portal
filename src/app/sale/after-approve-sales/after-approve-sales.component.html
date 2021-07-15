@@ -1,6 +1,7 @@
 <form class="sale-form" id="sale-product-form" [formGroup]="saleForm" >
   <input type="hidden" id="sale-product_id" formControlName="id" />
   <input type="hidden" id="sale-quantity" formControlName="quantity" />
+  <input type="hidden" id="sale-quantity" formControlName="saledproductDetails" />
   <!-- Page content holder -->
   <div class="p-51"></div>
   <div class="page-content p-5" id="content">
@@ -85,7 +86,7 @@
                   <div class="col col-5">
 
                     <div class="total-amount total-tags">
-                      {{totalPrice}} DHS
+                      {{totalPrice  | number:'1.0-2' }} DHS
                     </div>
 
                   </div>
@@ -148,7 +149,7 @@
                   <div class="col col-6">
 
                     <div class="total-amount total-tags">
-                      <input type="number"  class="inp-9" formControlName="amount">
+                      <input type="number"  class="inp-9" formControlName="amount" value=" {{totalPrice  | number:'1.0-2' }}">
                     </div>
 
                   </div>
@@ -184,21 +185,38 @@
                   </div>
 
                   <div class="col col-6">
-                    <div class="total-qty total-tags-all">
-                      <div class="dropdown dropdown1 show">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Complété
-                        </a>
+                    <div class="dropdown dropdown1 show">
+                      <ng-select
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="#">Complété</a>
-                          <a class="dropdown-item" href="#">Annuler</a>
-                          <a class="dropdown-item" href="#">Agréé</a>
-                          <a class="dropdown-item" href="#">Attendre</a>
-                        </div>
-                      </div>
+                        id="sale-discountType"
+                        [clearable]="true"
+                        [items]="transStats"
+                        bindValue="id"
+                        bindLabel="name"
+                        name="discountType"
+                        formControlName="transStatus"
+                        [placeholder]="'Statut'"
+                        [virtualScroll]="true"
+                        [appendTo]="'body'">
+
+                      </ng-select>
                     </div>
+
+<!--                    <div class="total-qty total-tags-all">-->
+<!--                      <div class="dropdown dropdown1 show">-->
+<!--                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"-->
+<!--                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                          Complété-->
+<!--                        </a>-->
+
+<!--                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+<!--                          <a class="dropdown-item" href="#">Complété</a>-->
+<!--                          <a class="dropdown-item" href="#">Annuler</a>-->
+<!--                          <a class="dropdown-item" href="#">Agréé</a>-->
+<!--                          <a class="dropdown-item" href="#">Attendre</a>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
                   </div>
 
                 </div>

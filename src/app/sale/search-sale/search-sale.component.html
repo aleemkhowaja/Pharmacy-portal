@@ -139,11 +139,17 @@
                     <td class="Zone-sign" *ngIf="item.isDelivered">
                       <p class="zone-sign-Y">Oui</p>
                     </td>
-                    <td class=" status-sign" *ngIf="item.transStatus != 'Completed'">
-                      <p class="active-N">Non</p>
+                    <td *ngIf="item?.transStatus == 'Compléter'">
+                      <span class="status-com status-sign"> {{item?.transStatus}} </span>
                     </td>
-                    <td class=" active-sign" *ngIf="item.transStatus == 'Completed'">
-                      <p class="active-Y">Oui</p>
+                    <td *ngIf="item?.transStatus == 'En attente'" >
+                      <span class="status-sign-pen status-sign"> {{item?.transStatus}} </span>
+                    </td>
+                    <td  *ngIf="item?.transStatus == 'Annulé'">
+                      <span class="status-sign-pen status-sign"> {{item?.transStatus}} </span>
+                    </td>
+                    <td  *ngIf="item?.transStatus == 'Certifé'">
+                      <span class="status-sign-pen status-sign"> {{item?.transStatus}} </span>
                     </td>
                     <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
 

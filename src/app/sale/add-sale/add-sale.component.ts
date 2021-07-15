@@ -18,6 +18,7 @@ import { SaleService } from '../sale.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ProductSaleDetailsDialogComponent } from 'src/app/product/product-sale-details-dialog/product-sale-details-dialog.component';
 
+
 @Component({
   selector: 'app-add-sale',
   templateUrl: './add-sale.component.html',
@@ -26,11 +27,28 @@ import { ProductSaleDetailsDialogComponent } from 'src/app/product/product-sale-
 @UntilDestroy()
 export class AddSaleComponent extends BaseComponent implements OnInit {
 
+  constructor(
+    private fb: FormBuilder,
+    private router: ActivatedRoute,
+    private saleService: SaleService,
+    private cdr: ChangeDetectorRef,
+    private dciService: DciService,
+    private modalService: BsModalService,
+    private r: Router
+  ) {
+    super();
+
+    /**
+     * get saled if approve sale without any product
+     */
+    this.isProductSubmitedEmpty = this.r.getCurrentNavigation()?.extras.state?.isProductSubmitedEmpty;
+  }
+
   productList: any;
-  saleProductList : any = [];
-  totalAmount : number = 0;
-  isProductSubmitedEmpty : Boolean = false;
-  
+  saleProductList: any = [];
+  totalAmount = 0;
+  isProductSubmitedEmpty: Boolean = false;
+
   moreInformation = true;
   searching = false;
   private querySubscription: Subscription | undefined;
@@ -42,9 +60,9 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     transactionNumber: '',
     customer: '',
     dci : '',
-    nameOrBarcode:'',
-    lastname:'',
-    ppv:'',
+    nameOrBarcode: '',
+    lastname: '',
+    ppv: '',
     dos: '',
     createdOn: '',
     total: '',
@@ -52,7 +70,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     status: ''
   };
 
-  productSearchFields : ProductModel = {
+  productSearchFields: ProductModel = {
     dci : '',
     barcode : '',
     name : '',
@@ -71,7 +89,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-  dataLoading: boolean = true;
+  dataLoading = true;
 
 
   addEditSaleDto: SaleModel | undefined;
@@ -84,27 +102,10 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     galenicForm: [''],
     dci: [''],
     laboratory: [''],
-    range: [''],   
+    range: [''],
   });
-  
-  itemsVisibility : any;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: ActivatedRoute,
-    private saleService: SaleService,
-    private cdr: ChangeDetectorRef,
-    private dciService : DciService,
-    private modalService: BsModalService,
-    private r: Router
-  ) {
-    super();
-
-    /**
-     * get saled if approve sale without any product
-     */
-     this.isProductSubmitedEmpty = this.r.getCurrentNavigation()?.extras.state?.isProductSubmitedEmpty;
-  } 
+  itemsVisibility: any;
 
   /**
    * Open Customer Dialog
@@ -112,7 +113,14 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
   bsModalRef: BsModalRef | undefined;
   client: ClientModel | undefined;
   customerName: string | undefined;
-  customerId : Number | undefined;
+  customerId: Number | undefined;
+
+
+  /**
+   * in sale screen when adding discount by percentage or by amount from
+   * sale products
+   */
+  sale: SaleModel | undefined;
   openCustomerModelWithComponent() {
     this.bsModalRef = this.modalService.show(CustomerDialogComponent);
     this.bsModalRef.content.event.subscribe((res: { data: any; }) => {
@@ -124,13 +132,6 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
       this.customerId = this.client?.id;
     });
   }
-
-
-  /**
-   * in sale screen when adding discount by percentage or by amount from
-   * sale products 
-   */
-  sale: SaleModel | undefined;
   openProductQuantityDetailsModelWithComponent(product: ProductModel, index: number) {
 
     const initialState = {
@@ -142,29 +143,29 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     this.bsModalRef.content.event.subscribe((res: {
       data: any;
     }) => {
-      
+
       /**
        * recieved sale data from dialog
        */
       this.sale = JSON.parse(res.data);
-      product.dicountAmount = Number(product.ppv) - Number(this.sale?.unitPrice)
-      if(this.sale?.discountType == 1)
+      product.dicountAmount = Number(product.ppv) - Number(this.sale?.unitPrice);
+      if (this.sale?.discountType == 1)
       {
         product.percentage = Number(this.sale ?.discount);
-      } else 
+      } else
       {
-        var actualPrice = Number(product?.ppv);
-        var percentage = ((actualPrice - Number(this.sale?.unitPrice )) / actualPrice) * 100; 
-        product.percentage = percentage
+        const actualPrice = Number(product?.ppv);
+        const percentage = ((actualPrice - Number(this.sale?.unitPrice )) / actualPrice) * 100;
+        product.percentage = percentage;
       }
-     
-      product.ppu = Number(this.sale?.unitPrice)
+
+      product.ppu = Number(this.sale?.unitPrice);
       product.isQuantityCalculatonIgonre = true;
-      if(product.percentage)
+      if (product.percentage)
       {
         product.isDiscountAvaiable = true;
       }
-        
+
 
       /**
        * refresh the sale product row
@@ -178,7 +179,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
    * Open Global Discount Dialog
    */
   openGlobalDiscountDialog() {
-    
+
     const initialState = {
      // data: product
     };
@@ -192,7 +193,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
       /**
        * recieved sale data from dialog
        */
-       let saleTemp = <SaleModel>{ };
+       let saleTemp = { } as SaleModel;
        saleTemp = JSON.parse(res.data);
        this.applyGlobalDiscount(saleTemp);
 
@@ -200,23 +201,46 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
 
   }
 
-  applyGlobalDiscount(sale : SaleModel) 
+  /**
+   * Apply Global Discount
+   * @param sale
+   */
+  applyGlobalDiscount(saleModel: SaleModel)
   {
+
     this.saleProductList.forEach((_element: any, index: any) => {
-      debugger
-      var discountAmount = (Number(sale?.discount) / 100) * _element["ppu"];
-      this.saleProductList[index]["percentage"] = Number(sale?.discount);
-      this.saleProductList[index]["dicountAmount"] = discountAmount;
-      this.saleProductList[index]["isDiscountAvaiable"] = true;
+      const actualPrice = Number(this.saleProductList[index].ppv);
+      if (saleModel?.discountType == 2)
+      {
+        const percentage = ((actualPrice - (actualPrice - Number(saleModel?.discount))) / actualPrice) * 100;
+        this.saleProductList[index].percentage = Number(percentage);
+        this.saleProductList[index].dicountAmount = Number(saleModel?.discount);
+        this.saleProductList[index].ppu = actualPrice - Number(saleModel?.discount);
+
+      } else
+      {
+        const discountAmount = (Number(saleModel?.discount) / 100) * _element.ppu;
+        this.saleProductList[index].percentage = Number(saleModel?.discount);
+        this.saleProductList[index].dicountAmount = discountAmount;
+        this.saleProductList[index].ppu  = actualPrice - discountAmount;
+      }
+
+      this.saleProductList[index].isDiscountAvaiable = true;
+
     });
+
+    /**
+     * Re Calculate Ammount after global Discount
+     */
+    this.calculateTotalAmountOfSale();
   }
 
   /**
-   * 
+   *
    * @param product when edit button called from product table
    * it will show the dialog
    */
-  openProductdSaleDetailsModelWithComponent(product : ProductModel) {
+  openProductdSaleDetailsModelWithComponent(product: ProductModel) {
 
     const initialState = {
       data: product
@@ -236,8 +260,9 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
 
     const _saleId: number = this.router.snapshot.params.id;
     this.addEditSaleDto = this.saleService.getSpecificProduct(_saleId);
-    if (this.addEditSaleDto)
+    if (this.addEditSaleDto) {
       this.addSaleForm.patchValue(this.addEditSaleDto);
+    }
 
     /**
      * get All Product
@@ -247,7 +272,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     /**
      * refetch the data
     */
-   this.productQuery?.refetch();
+    this.productQuery?.refetch();
 
 
     /**
@@ -271,16 +296,17 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
    * get All Products
    */
   getAllProduct() {
-    this.dataLoading = false;   
+    this.dataLoading = false;
     this.productQuery = this.saleService.getAllProducts(this.pagination.currentPage,
       this.pagination.itemsPerPage,  this.productSearchFields);
 
-      this.querySubscription = this.productQuery.valueChanges.subscribe(response=> {
-        if(response.data.getAllProducts.length > 0)
+    this.querySubscription = this.productQuery.valueChanges.subscribe(response => {
+        if (response.data.getAllProducts.length > 0) {
           this.pagination.totalItems = response.data.getAllProducts[0].count;
-          this.dataLoading = false;
-          this.productList = response.data.getAllProducts;
-          this.querySubscription?.unsubscribe();
+        }
+        this.dataLoading = false;
+        this.productList = response.data.getAllProducts;
+        this.querySubscription?.unsubscribe();
         });
   }
 
@@ -297,12 +323,13 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
       */
       this.productQuery?.refetch();
 
-      this.querySubscription = this.productQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
-           if(response.data.getAllProducts.length > 0)
+      this.querySubscription = this.productQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response => {
+           if (response.data.getAllProducts.length > 0) {
              this.pagination.totalItems = response.data.getAllProducts[0].count;
-             this.dataLoading = false;
-             this.productList = response.data.getAllProducts;
-             this.querySubscription?.unsubscribe();
+           }
+           this.dataLoading = false;
+           this.productList = response.data.getAllProducts;
+           this.querySubscription?.unsubscribe();
            });
      }
 
@@ -322,7 +349,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
 
     /**
     * This function will call while paginition
-    * @param pageNumber 
+    * @param pageNumber
     */
      loadLst(pageNumber: number) {
       this.querySubscription?.unsubscribe();
@@ -331,48 +358,49 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     }
 
     /**
-     * 
-     * This function will be called when we click the product table 
+     *
+     * This function will be called when we click the product table
      * and click the product which we want to purchase
-     * @param product 
+     * @param product
      */
-    purchaseProduct(product : ProductModel) { 
-            
-      let recordExist : boolean = false;
-      let itemCount : number = 0;
-      let newSaleProductList : any = [];
+    purchaseProduct(product: ProductModel) {
+
+      let recordExist = false;
+      let itemCount = 0;
+      const newSaleProductList: any = [];
       this.saleProductList.forEach((_element: any, index: any) => {
         product = JSON.parse(JSON.stringify(product));
         product.trDetailsVisible = false;
-        
-        if(!product["ppu"])
-          product["ppu"] = product["ppv"];
-        
-        _element["trDetailsVisible"] = false;
-        if(product["id"] == _element["id"]) {
+
+        if (!product.ppu) {
+          product.ppu = product.ppv;
+        }
+
+        _element.trDetailsVisible = false;
+        if (product.id == _element.id) {
           recordExist = true;
-          if(!product.isQuantityCalculatonIgonre)
+          if (!product.isQuantityCalculatonIgonre)
           {
-            itemCount = _element["quantity"];
+            itemCount = _element.quantity;
             itemCount = Number(itemCount) + 1;
             product.quantity  = itemCount;
           }
-          //calculate amount 
+          // calculate amount
          // this.totalAmount += Number(product["ppv"]);
           newSaleProductList?.push(product);
         } else
         {
-          _element["ppu"] = _element["ppv"];
+          _element.ppu = _element.ppv;
           newSaleProductList?.push(_element);
         }
       });
 
 
-      if(!recordExist)
+      if (!recordExist)
       {
         product = JSON.parse(JSON.stringify(product));
         product.quantity = 1;
-        product["ppu"] = product["ppv"];
+        product.ppu = product.ppv;
       //  product.trDetailsVisible = false;
      //   this.totalAmount+= Number(product["ppv"]);
         newSaleProductList?.push(product);
@@ -389,57 +417,55 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     calculateTotalAmountOfSale() {
       this.totalAmount = 0;
       this.saleProductList.forEach((_element: any, index: any) => {
-        this.totalAmount += (Number(_element["quantity"]) * Number(_element["ppu"]));
+        this.totalAmount += (Number(_element.quantity) * Number(_element.ppu));
       });
 
     }
 
-    showHide(product : ProductModel) {
+    showHide(product: ProductModel) {
       product.trDetailsVisible =  product.trDetailsVisible ? false : true;
     }
 
 
     /**
-     * Delete Sale Product quantity 
-     * @param product 
+     * Delete Sale Product quantity
+     * @param product
      */
-    deleteSaleProduct(product : ProductModel) {
+    deleteSaleProduct(product: ProductModel) {
       product = JSON.parse(JSON.stringify(product));
-      let newSaleProductList : any = [];
+      const newSaleProductList: any = [];
       this.saleProductList.forEach((_element: any, index: any) => {
-        if(product["id"] == _element["id"]) {
-          if(Number(_element["quantity"]) > 1) 
+        if (product.id == _element.id) {
+          if (Number(_element.quantity) > 1)
           {
-            _element["quantity"] = Number(_element["quantity"]) - 1;
-            this.totalAmount -= Number(_element["ppv"]);
+            _element.quantity = Number(_element.quantity) - 1;
             newSaleProductList?.push(_element);
           }
-          else {
-            this.totalAmount -= Number(_element["ppv"]);
-          }
-        } else 
+        } else
         {
           newSaleProductList?.push(_element);
         }
       });
       this.saleProductList = newSaleProductList;
+
+      this.calculateTotalAmountOfSale();
     }
 
-    approveSales() 
+    approveSales()
     {
-      let navigationExtras: NavigationExtras = {
+      const navigationExtras: NavigationExtras = {
         state: {
           saleProducts : JSON.stringify(this.saleProductList),
           customerId : this.customerId
         }
       };
-      this.r.navigate(['/after-approve-sale', ],navigationExtras);
+      this.r.navigate(['/after-approve-sale', ], navigationExtras);
     }
 
-    editSaleitem(item : ProductModel)
+    editSaleitem(item: ProductModel)
     {
-        
+
     }
 
-     
+
 }

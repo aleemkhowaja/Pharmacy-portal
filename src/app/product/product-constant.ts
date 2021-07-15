@@ -1,9 +1,9 @@
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
 export const ALL_PRODUCT_URL = gql`
 query($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String!, $name: String,
       $barCode : String, $ppv : String, $dci : ID) {
-        getAllProducts(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy, 
+        getAllProducts(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy,
             filter:{name : $name,barCode : $barCode, ppv : $ppv, dci:{id :$dci}}) {
         id,
         name,
@@ -70,44 +70,44 @@ query($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String
 `;
 
 export const SAVE_PRODUCT_URL = gql`mutation(
-    $name : String, 
-    $barCode : String, 
-    $barCode2 : String, 
+    $name : String,
+    $barCode : String,
+    $barCode2 : String,
     $categoryId : ID,
-      $therapeuticClassId : ID, 
-      $pharmaceuticalFormId : ID, 
-      $dciId : ID, 
-      $laboratory : String, 
+      $therapeuticClassId : ID,
+      $pharmaceuticalFormId : ID,
+      $dciId : ID,
+      $laboratory : String,
       $range : ID,
-      $subRange : String, 
-      $productTable : String, 
-      $requiresPrescription : Boolean, 
-      $productMarket : Boolean, 
+      $subRange : String,
+      $productTable : String,
+      $requiresPrescription : Boolean,
+      $productMarket : Boolean,
       $pph : String,
-      $ppv : String, 
-      $vatOnPurchase : String, 
-      $vatOnSale : String, 
-      $isRefundable : Boolean, 
+      $ppv : String,
+      $vatOnPurchase : String,
+      $vatOnSale : String,
+      $isRefundable : Boolean,
       $basisOfReimbursement : String,
-      $presentation : String, 
-      $excipients : String, 
-      $adultDosage : String, 
-      $dosageForChildren : String, 
+      $presentation : String,
+      $excipients : String,
+      $adultDosage : String,
+      $dosageForChildren : String,
       $indications : String,
-      $contraindicationDriving : String, 
-      $breastFeedingContraindication : String, 
+      $contraindicationDriving : String,
+      $breastFeedingContraindication : String,
       $pregnancyContraindication : String,
-      $productLabReference : String, 
-      $conditioning : String, 
-      $monoGraph : String, 
-      $description : String, 
+      $productLabReference : String,
+      $conditioning : String,
+      $monoGraph : String,
+      $description : String,
       $createdBy : String,
       $modifiedBy : String
       ){
           createProduct(input: {
             name: $name,
             barCode: $barCode,
-            barCode2: $barCode2, 
+            barCode2: $barCode2,
             category: {
               id: $categoryId
           },
@@ -119,9 +119,9 @@ export const SAVE_PRODUCT_URL = gql`mutation(
             },
             dci: {
                 id: $dciId
-            },   
+            },
             laboratory: $laboratory,
-            
+
             range1: {
               id: $range
           },
@@ -156,13 +156,13 @@ export const SAVE_PRODUCT_URL = gql`mutation(
           modifiedBy : {
             username : $modifiedBy
           }
-    
+
         }){
             id
         }
     }`;
-  
-  export const GET_PRODUCT_BY_ID =
+
+export const GET_PRODUCT_BY_ID =
       gql`query($productId: ID!){
       ProductById(id: $productId){
           id,
@@ -225,8 +225,8 @@ export const SAVE_PRODUCT_URL = gql`mutation(
           modifiedDate
     }
   }`;
-  
-  export const UPDATE_PRODUCT_URL = gql`mutation($id : ID!, $name : String, $barCode : String, $barCode2 : String, $categoryId : ID!,
+
+export const UPDATE_PRODUCT_URL = gql`mutation($id : ID!, $name : String, $barCode : String, $barCode2 : String, $categoryId : ID!,
     $therapeuticClassId : ID, $pharmaceuticalFormId : ID!, $dciId : ID!, $laboratory : String, $range : ID!,
     $subRange : String, $productTable : String, $requiresPrescription : Boolean, $productMarket : Boolean, $pph : String,
     $ppv : String, $vatOnPurchase : String, $vatOnSale : String, $isRefundable : Boolean, $basisOfReimbursement : String,
@@ -237,7 +237,7 @@ export const SAVE_PRODUCT_URL = gql`mutation(
       updateProduct(id: $id, input: {
           name: $name,
           barCode: $barCode,
-          barCode2: $barCode2, 
+          barCode2: $barCode2,
           category: {
             id: $categoryId
         },
@@ -249,9 +249,9 @@ export const SAVE_PRODUCT_URL = gql`mutation(
           },
           dci: {
               id: $dciId
-          },   
+          },
           laboratory: $laboratory,
-          
+
           range1: {
             id: $range
         },
@@ -283,14 +283,14 @@ export const SAVE_PRODUCT_URL = gql`mutation(
         modifiedBy : {
           username : $modifiedBy
         }
-  
+
       }){
           id
       }
   }`;
-  
-  
-  
+
+
+
 
 /**
  * updateProduct(id:1, input: {

@@ -17,7 +17,7 @@
                                     <div class="rem-edit rem-edit1">
                                     <div class="cross-btn rem-edit-child"><i class="fas fa-times"></i></div>
                                     </div>
-                        
+
                                 </td>
                             </tr> -->
                             <tr>
@@ -27,11 +27,11 @@
                                     >
                                 </td>
                                 <td>
-                                    <div>Prix unitaire</div><input type="number"  formControlName="unitPrice" 
+                                    <div>Prix unitaire</div><input type="number"  formControlName="unitPrice"
                                     (input)="calculateDirectAmountDiscount()">
                                 </td>
                                 <td>
-                                    <div>Remise</div><input type="number" formControlName="discount" 
+                                    <div>Remise</div><input type="number" formControlName="discount"
                                     (input)="calculateAfterDiscount()">
                                 </td>
                             </tr>
@@ -42,36 +42,24 @@
                                 <td>
                                     <div>Disponible</div><input type="number" formControlName="available">
                                 </td>
-                        
+
                                 <td>
                                     <div> Type de remise</div>
-                        
-                        
                                     <div class="dropdown dropdown1 show">
-                                        <ng-select 
-                    
-                                        id="sale-discountType" 
-                                        [clearable]="true" 
-                                        [items]="discountTypes" 
+                                        <ng-select
+
+                                        id="sale-discountType"
+                                        [clearable]="true"
+                                        [items]="discountTypes"
                                         bindValue="id"
-                                        bindLabel="name" 
-                                        name="discountType" 
-                                        formControlName="discountType" 
-                                        [placeholder]="'Gestionnaire'" 
+                                        bindLabel="name"
+                                        name="discountType"
+                                        formControlName="discountType"
+                                        [placeholder]="'Gestionnaire'"
                                         [virtualScroll]="true"
                                         [appendTo]="'body'">
-                    
-                                    </ng-select>
 
-                                    <!-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        %
-                                    </a>
-                        
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">%</a>
-                                        <a class="dropdown-item" href="#">Montant</a>
-                                    </div> -->
+                                    </ng-select>
                                     </div>
                                 </td>
                             </tr>
