@@ -368,7 +368,7 @@
   
                           <div class="col-12 col-md-9 justify-content-end ">
                               <div class="box544">
-                                  <input type="text" data-toggle="modal"  (click)="openModalWithComponent()" [(ngModel)]="providerName">
+                                  <input type="text" data-toggle="modal" (click)="openCustomerModelWithComponent()" [(ngModel)]="customerName">
                                   <button class="searchbtn nw-btn-color3"><i class="fas fa-search"></i></button>
                                   <button class="crossbtn nw-btn-color3" > <i class="fas fa-times"></i></button>
                               </div>
@@ -391,34 +391,21 @@
                 <div class="row">
                   
               
-                <div class="col col-sm-3">
-    
-                    <div class="dropdown dropdown1 show">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          DCI
-                        </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="#">Acarbose</a>
-                          <a class="dropdown-item" href="#">Acebutolol</a>
-                          <a class="dropdown-item" href="#">Aceclofenac</a>
-                          <a class="dropdown-item" href="#">Acarbose</a>
-                          <a class="dropdown-item" href="#">Acebutolol</a>
-                          <a class="dropdown-item" href="#">Aceclofenac</a>
-                          <a class="dropdown-item" href="#">Acarbose</a>
-                          <a class="dropdown-item" href="#">Acebutolol</a>
-                          <a class="dropdown-item" href="#">Aceclofenac</a>
-                        </div>
-                      </div>     
-                </div>
-  
-                <div class="col">
-                  <div class="barcode-inp creer-inp">
-                    <input type="text" placeholder="Name Or Barcode">
-                    
+                  <div class="col col-sm-3">
+                    <div class="dropdown show">
+                      <ng-select [ngClass]="'overFlowSelect'" [clearable]="true" [items]="dci" bindValue="id"
+                      bindLabel="name" name="dci" [(ngModel)]="productSearchFields.dci" [placeholder]="'dci'" [virtualScroll]="true"
+                        [appendTo]="'body'">
+                      </ng-select>
+                    </div>
                   </div>
-                  
-                </div>
+  
+                  <div class="col">
+                    <div class="barcode-inp creer-inp">
+                      <input type="text" placeholder=" Barcode"  [(ngModel)]="productSearchFields.barcode">
+                    </div>
+  
+                  </div>
   
   
                 </div>
@@ -445,21 +432,21 @@
   
                   <div class="col-6 col-md-3 ">
                     <div class="last-name creer-inp">
-                      <input type="text" placeholder="Nom">
+                      <input type="text" placeholder="Nom" [(ngModel)]="productSearchFields.name">
                       
                     </div>
                   </div>
   
                   <div class="col-6 col-md-2 ">
                     <div class="last-name creer-inp">
-                      <input type="text" placeholder="PPV">
+                      <input type="text" placeholder="PPV" [(ngModel)]="productSearchFields.ppv">
             
                     </div>
                   </div>
   
                   <div class="col-6 col-md-2 ">
                     <div class="last-name creer-inp">
-                      <input type="text" placeholder="PPH">
+                      <input type="text" placeholder="PPH" [(ngModel)]="productSearchFields.pph">
             
                     </div>
                   </div>
@@ -506,12 +493,13 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let item of productList" (click)="purchaseProduct(item)">
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.pharmaceuticalForm.name}}</td>
-                          <td>{{ item.ppv}}</td>
-                          <td class=" active-sign"> <span class="active-Y">Oui</span> </td>
-                          <td class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
+                        <tr *ngFor="let item of productList">
+                          <input type="hidden" value="{{ item.quantity }}" >
+                          <td (click)="purchaseProduct(item)">{{ item.name }}</td>
+                          <td (click)="purchaseProduct(item)">{{ item.pharmaceuticalForm?.name}}</td>
+                          <td (click)="purchaseProduct(item)">{{ item.ppv}}</td>
+                          <td (click)="purchaseProduct(item)" class=" active-sign"> <span class="active-Y">Oui</span> </td>
+                          <td (click)="purchaseProduct(item)" class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
                           <td class="balance-edit" data-toggle="modal" data-target="#myModal6"> <i class="fas fa-pen"></i></td>
                         </tr>
                       </tbody>
@@ -655,7 +643,7 @@
   
                               <div class="col col-md-6">
                               <div class="total-qty total-tags-all">
-                                  {{quantityNo}}
+                                  <!--{{quantityNo}}-->
                               </div>
                               </div>
   
@@ -743,22 +731,22 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="edit-menuRW edit-menuRW1" *ngFor="let item of orderProductList">
-                            <td>{{ item.id }}</td>
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.pph }}</td>
-                          <td>{{ item.pph }}</td>
-                         
-                          <td>{{ item.ppv }}</td>
-                          <td class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
-                          <td>
-                            {{item.pph*2}}
-                          </td>
-                          <td>
-                            <div class="cross-btn"><i class="fas fa-times"></i></div>
-                            <div class="edit-btn" data-toggle="modal" data-target="#myModal6"><i class="fas fa-pen"></i></div>
-
-                          </td>
+                          <tr class="edit-menuRW edit-menuRW1" *ngFor="let item of purchaseProductList; let i = index"  (click)="openProductQuantityDetailsModelWithComponent(item, i)" >
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.ppu}} 
+                              <div *ngIf="item.isDiscountAvaiable" class="table-badge discount_sticker" >{{ item.percentage | number:'1.0-0'}} % = {{item.dicountAmount | number:'1.0-2'}}</div>
+                            </td>
+                            <td>{{ item.pph}}</td>
+                            <td>{{ item.ppv}}</td>
+                            <td class="neg-disp-sign"> <span class="neg-disp"> -1</span></td>
+                            <td>{{ item.ppv}}</td>
+                            <td>
+                              <div class="edit-btn" data-toggle="modal" data-target="#myModal6"><i class="fas fa-pen"></i></div>
+                            </td>
+                            <td>
+                              <div class="cross-btn"><a class="fa fa-times" (click)="deletePurchaseProduct(item)"> </a></div>
+                            </td>
                           </tr>
                           
                         <tr class=" edit-menuNW edit-menuNW1 " >

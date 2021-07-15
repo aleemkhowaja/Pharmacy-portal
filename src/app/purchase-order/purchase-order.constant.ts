@@ -1,5 +1,43 @@
 import gql from 'graphql-tag';
 
+export const ALL_TRANSACTION_URL = gql`
+query
+    ($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String!, $transactionNumber : String, 
+    $customerName : String, $amount : BigDecimal, $transType : String) 
+    {
+
+        getAllTransaction(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy, 
+            filter:{transactionNumber : $transactionNumber, type :  $transType, customer:{lastName : $customerName}, amount : $amount}) 
+    {
+    id,
+    customer{
+            id,
+            lastName
+        },
+        transactionNumber,
+        transDate,
+        amount,
+        quantity,
+        transStatus,
+        reference,
+        isDelivered,
+        type,
+       count,
+       status,
+       createdBy {
+        id,
+        firstName
+       },
+       createdDate,
+       modifiedBy{
+        id,
+        firstName
+       },
+       modifiedDate
+  }
+}
+`;
+
 export const SAVE_PURCHASE = gql`mutation($product : ID, $provider : ID){
       createPurchase(input: {
         product: {
