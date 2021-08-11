@@ -4,22 +4,24 @@ import { ClientModel } from './client';
 export interface SaleModel {
 
     id?: number;
-    transactionNumber?: String;
+    transactionNumber?: string;
     customer?: ClientModel;
-    customerName?: String;
+    customerName?: string;
     transDate?: Date;
-    createdOn?: Date;
+    createdDate?: Date;
+    modifiedDate?: Date;
     amount?: number;
-    quantity?: Number;
-    transStatus?: String;
-    reference?: String;
-    isDelivered?: Boolean;
-    type?: String;
+    quantity?: number;
+    transStatus?: string;
+    reference?: string;
+    isDelivered?: boolean;
+    type?: string;
     paymentMethod?: number;
     customerId?: number;
-    saledproductDetails?: String;
+    saledproductDetails?: string;
     transactionDetails?: TransactionModel;
     createdBy?: UserModel;
+    modifiedBy?: UserModel;
 
     // sale quantity details
     unitQuantity?: number;
@@ -37,5 +39,9 @@ export interface SaleModel {
     dicountAmount?: number;
     amountAfterDiscount?: number;
     totalAfterDiscount?: number;
+
+
+    // Quote
+    isQuote?: boolean;
 
   }

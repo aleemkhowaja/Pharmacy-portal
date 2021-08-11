@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Pagination} from '../../../models/pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,14 @@ export class UtilityService {
       event.preventDefault();
     }
   }
-  
+
+
+  pagination: Pagination = {
+    totalPages: 2,
+    currentPage: 1,
+    totalItems: 0,
+    itemsPerPage: 5,
+    maxSize : 5
+  };
+
 }

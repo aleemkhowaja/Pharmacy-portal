@@ -123,6 +123,7 @@
                     <th scope="col">Total</th>
                     <th scope="col">Livré</th>
                     <th scope="col">Statut</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -133,13 +134,14 @@
                     <td>{{ item.transDate | date: 'dd-MM-yyyy' }}</td>
                     <td>{{ item.createdDate | date: 'dd-MM-yyyy'}}</td>
                     <td>{{ item.amount }}</td>
+
                     <td class="Zone-sign" *ngIf="!item.isDelivered">
                       <p class="zone-sign-N">Non</p>
                     </td>
                     <td class="Zone-sign" *ngIf="item.isDelivered">
                       <p class="zone-sign-Y">Oui</p>
                     </td>
-                    <td *ngIf="item?.transStatus == 'Compléter'">
+                    <td *ngIf="item?.transStatus == 'Complété'">
                       <span class="status-com status-sign"> {{item?.transStatus}} </span>
                     </td>
                     <td *ngIf="item?.transStatus == 'En attente'" >
@@ -151,11 +153,17 @@
                     <td  *ngIf="item?.transStatus == 'Certifé'">
                       <span class="status-sign-pen status-sign"> {{item?.transStatus}} </span>
                     </td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
 
-                    <td>
-                      <a class="fa fa-pencil" [routerLink]="['/add-sale', item.id]"></a>
-                    </td>
+
+                    <td><span class="pdf-icon">
+                      <a
+                        class="fas fa-file-pdf"
+                        [routerLink]="['/sale-pdf-report', item?.id]"
+                      > </a></span></td>
+
+<!--                    <td>-->
+<!--                      <a class="fa fa-pencil" [routerLink]="['/add-sale', item.id]"></a>-->
+<!--                    </td>-->
                   </tr>
                 </tbody>
               </table>

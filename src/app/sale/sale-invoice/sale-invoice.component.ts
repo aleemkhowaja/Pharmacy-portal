@@ -29,11 +29,16 @@ export class SaleInvoiceComponent implements OnInit {
   lstSale: any;
   lstSaleProducts: any;
 
+
+  pageSearchParameters: any = {
+    searchPage: '',
+  };
+
   pagination: Pagination = {
     totalPages: 2,
     currentPage: 1,
     totalItems: 0,
-    itemsPerPage: 5,
+    itemsPerPage: 10,
     maxSize: 2
   };
   dataLoading = true;
@@ -47,11 +52,12 @@ export class SaleInvoiceComponent implements OnInit {
     status: ''
   };
 
-  totalAmountWithoutDiscount= 0.0;
+  totalAmountWithoutDiscount = 0.0;
   totalDiscount = 0.0;
   totalAmountAfterDiscount = 0.0;
   htTotalAmount = 0.0;
   vatAmount = 0.0;
+
 
   ngOnInit(): void {
 
@@ -75,8 +81,6 @@ export class SaleInvoiceComponent implements OnInit {
       this.lstSaleProducts = this.addEditSaleDto?.transactionDetails;
       this.calculateInvoiceDetails();
     });
-
-
   }
 
   calculateInvoiceDetails()
@@ -101,16 +105,32 @@ export class SaleInvoiceComponent implements OnInit {
   getAll() {
    this.getAllSubscription ?.unsubscribe();
    this.searchSubscription ?.unsubscribe();
-    this.saleQuery = this.saleService.filter(this.pagination.currentPage,
+   this.saleQuery = this.saleService.filter(this.pagination.currentPage,
       this.pagination.itemsPerPage, this.searchFields);
 
-    this.getAllSubscription = this.saleQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response => {
+   this.getAllSubscription = this.saleQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response => {
       if (response.data.getAllTransaction.length > 0) {
         this.pagination.totalItems = response.data.getAllTransaction[0].count;
       }
       this.dataLoading = false;
       this.lstSale = response.data.getAllTransaction;
     });
+  }
+
+
+  /**
+   * This function will call while paginition
+   * @param pageNumber
+   */
+  loadLst(pageNumber: number | undefined) {
+    if (pageNumber != null) {
+      this.pagination.currentPage = pageNumber;
+    }
+    this.getAll();
+  }
+
+  searchByPage( ) {
+    this.loadLst(this.pageSearchParameters?.pageSearch);
   }
 
 }

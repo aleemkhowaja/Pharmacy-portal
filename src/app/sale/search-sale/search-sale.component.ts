@@ -75,7 +75,7 @@ export class SearchSaleComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.dataLoading = false;   
+    this.dataLoading = false;
     this.productQuery = this.saleService.getAllProducts(this.pagination.currentPage,
       this.pagination.itemsPerPage,  this.searchFields);
 
@@ -105,7 +105,7 @@ export class SearchSaleComponent implements OnInit {
       this.searchSubscription?.unsubscribe();
       this.saleQuery = this.saleService.filter(this.pagination.currentPage,
         this.pagination.itemsPerPage,  this.searchFields);
-  
+
         this.getAllSubscription  = this.saleQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
           if(response.data.getAllTransaction.length > 0)
             this.pagination.totalItems = response.data.getAllTransaction[0].count;
@@ -122,13 +122,13 @@ export class SearchSaleComponent implements OnInit {
 
     this.getAllSubscription?.unsubscribe();
      this.searchSubscription?.unsubscribe();
- 
+
      //this.searchFields.type?.id = this.searchFields.typeId;
      if(this.searchFields?.amount == ""){
       this.searchFields.amount = null;
     }
      this.saleQuery = this.saleService.filter(1, 5, this.searchFields);
- 
+
      this.searchSubscription = this.saleQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response=> {
          if(response.data.getAllTransaction.length > 0)
            this.pagination.totalItems = response.data.getAllTransaction[0].count;

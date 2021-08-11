@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Select } from './../../../models/select';
 import { DciService } from './../../common-services/dci/dci.service';
-import { Pagination } from './../../../models/pagination';
 import { QueryRef } from 'apollo-angular';
 import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,6 +16,7 @@ import { SaleModel } from 'src/models/sale';
 import { SaleService } from '../sale.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ProductSaleDetailsDialogComponent } from 'src/app/product/product-sale-details-dialog/product-sale-details-dialog.component';
+import {UtilityService} from '../../common/util/utility.service';
 
 
 @Component({
@@ -27,27 +27,12 @@ import { ProductSaleDetailsDialogComponent } from 'src/app/product/product-sale-
 @UntilDestroy()
 export class AddSaleComponent extends BaseComponent implements OnInit {
 
-  constructor(
-    private fb: FormBuilder,
-    private router: ActivatedRoute,
-    private saleService: SaleService,
-    private cdr: ChangeDetectorRef,
-    private dciService: DciService,
-    private modalService: BsModalService,
-    private r: Router
-  ) {
-    super();
 
-    /**
-     * get saled if approve sale without any product
-     */
-    this.isProductSubmitedEmpty = this.r.getCurrentNavigation()?.extras.state?.isProductSubmitedEmpty;
-  }
 
   productList: any;
   saleProductList: any = [];
   totalAmount = 0;
-  isProductSubmitedEmpty: Boolean = false;
+  isProductSubmitedEmpty = false;
 
   moreInformation = true;
   searching = false;
@@ -77,15 +62,6 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     ppv : 0
   };
 
-  pagination: Pagination = {
-    totalPages: 2,
-    currentPage: 1,
-    totalItems: 0,
-    itemsPerPage: 5,
-    maxSize : 5
-  };
-
-
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -113,8 +89,51 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
   bsModalRef: BsModalRef | undefined;
   client: ClientModel | undefined;
   customerName: string | undefined;
-  customerId: Number | undefined;
+  customerId: number | undefined;
 
+  constructor(
+    private fb: FormBuilder,
+    private router: ActivatedRoute,
+    private saleService: SaleService,
+    private cdr: ChangeDetectorRef,
+    private dciService: DciService,
+    private modalService: BsModalService,
+    private r: Router,
+    public utilityService: UtilityService
+  ) {
+    super();
+
+    /**
+     * get saled if approve sale without any product
+     */
+    this.isProductSubmitedEmpty = this.r.getCurrentNavigation()?.extras.state?.isProductSubmitedEmpty;
+  }
+
+
+  ngOnInit(): void {
+
+    const _saleId: number = this.router.snapshot.params.id;
+    this.addEditSaleDto = this.saleService.getSpecificProduct(_saleId);
+    if (this.addEditSaleDto) {
+      this.addSaleForm.patchValue(this.addEditSaleDto);
+    }
+
+    /**
+     * get All Product
+     */
+    this.getAllProduct();
+
+    /**
+     * refetch the data
+     */
+    this.productQuery?.refetch();
+
+
+    /**
+     * get all dci
+     */
+    this.initDCI();
+  }
 
   /**
    * in sale screen when adding discount by percentage or by amount from
@@ -256,31 +275,6 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-
-    const _saleId: number = this.router.snapshot.params.id;
-    this.addEditSaleDto = this.saleService.getSpecificProduct(_saleId);
-    if (this.addEditSaleDto) {
-      this.addSaleForm.patchValue(this.addEditSaleDto);
-    }
-
-    /**
-     * get All Product
-     */
-    this.getAllProduct();
-
-    /**
-     * refetch the data
-    */
-    this.productQuery?.refetch();
-
-
-    /**
-     * get all dci
-     */
-    this.initDCI();
-  }
-
   ngAfterContentChecked() {
     this.cdr.detectChanges();
   }
@@ -297,12 +291,12 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
    */
   getAllProduct() {
     this.dataLoading = false;
-    this.productQuery = this.saleService.getAllProducts(this.pagination.currentPage,
-      this.pagination.itemsPerPage,  this.productSearchFields);
+    this.productQuery = this.saleService.getAllProducts(this.utilityService.pagination.currentPage,
+      this.utilityService.pagination.itemsPerPage,  this.productSearchFields);
 
     this.querySubscription = this.productQuery.valueChanges.subscribe(response => {
         if (response.data.getAllProducts.length > 0) {
-          this.pagination.totalItems = response.data.getAllProducts[0].count;
+          this.utilityService.pagination.totalItems = response.data.getAllProducts[0].count;
         }
         this.dataLoading = false;
         this.productList = response.data.getAllProducts;
@@ -325,7 +319,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
 
       this.querySubscription = this.productQuery.valueChanges.pipe(untilDestroyed(this)).subscribe(response => {
            if (response.data.getAllProducts.length > 0) {
-             this.pagination.totalItems = response.data.getAllProducts[0].count;
+             this.utilityService.pagination.totalItems = response.data.getAllProducts[0].count;
            }
            this.dataLoading = false;
            this.productList = response.data.getAllProducts;
@@ -353,7 +347,7 @@ export class AddSaleComponent extends BaseComponent implements OnInit {
     */
      loadLst(pageNumber: number) {
       this.querySubscription?.unsubscribe();
-      this.pagination.currentPage = pageNumber;
+      this.utilityService.pagination.currentPage = pageNumber;
       this.getAllProduct();
     }
 

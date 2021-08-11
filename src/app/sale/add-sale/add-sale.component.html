@@ -896,43 +896,25 @@
         <br>
         <div class="row">
           <div class="col">
-
             <div class="creat-box">
               <div class="row">
                 <div class="col">
-
                   <div class="Afficher-filt">
                     Afficher uniquement les produits utilisés :
                   </div>
                   <input type="checkbox" class="checkbox-nw">
                 </div>
-
-
                 <div class="col col-md-6 col-12">
-                  <div *ngIf="pagination" class="mt-1">
+                  <div *ngIf="utilityService.pagination" class="mt-1">
                     <app-pagination
-                      [pagination]="pagination"
+                      [pagination]="utilityService.pagination"
                       (pageNumberChanged)="loadLst($event)">
                     </app-pagination>
                   </div>
-                  <!-- <div class="page-num-cont">
-
-                    <a href="#" class="page-num-link "><span class=" back-arrw page-count "><i class="fas fa-chevron-left"></i></span></a>
-                    <a href="#" class="page-num-link "><span class=" one-arrw page-count active-page">1</span></a>
-                    <a href="#" class="page-num-link"><span class=" two-arrw page-count">2</span></a>
-                    <a href="#" class="page-num-link"><span class=" page-dots">...</span></a>
-                    <a href="#" class="page-num-link"><span class=" three-arrw page-count">24</span></a>
-                    <a href="#" class="page-num-link"><span class=" for-arrw page-count"><i class="fas fa-chevron-right"></i></span></a>
-
-                  </div> -->
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
       </div>
 
@@ -1039,7 +1021,7 @@
                         <tr class="edit-menuRW edit-menuRW1" *ngFor="let item of saleProductList; let i = index"  (click)="openProductQuantityDetailsModelWithComponent(item, i)" >
                           <td>{{ item.quantity }}</td>
                           <td>{{ item.name }}</td>
-                          <td>{{ item.ppu}} 
+                          <td>{{ item.ppu}}
                             <div *ngIf="item.isDiscountAvaiable" class="table-badge discount_sticker" >{{ item.percentage | number:'1.0-0'}} % = {{item.dicountAmount | number:'1.0-2'}}</div>
                           </td>
                           <td>{{ item.ppv}}</td>
@@ -1061,14 +1043,14 @@
                                 <div class="rem-edit rem-edit1">
                                     <div class="cross-btn rem-edit-child"><i class="fas fa-times"></i></div>
                                 </div>
-                                
+
                               </td>
                             </tr>
                             <tr>
                               <td><div>Quantité</div><input type="number"></td>
                               <td><div>Prix unitaire</div><input type="number"></td>
                               <td><div>Remise</div><input type="number"></td>
- 
+
                             </tr>
                             <tr>
                               <td><div>Rem. U.G.</div><input type="number"></td>
@@ -1076,22 +1058,22 @@
 
                               <td>
                                 <div> Type de remise</div>
-                               
-                             
+
+
                                   <div class="dropdown dropdown1 show">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     %
                                     </a>
-                                  
+
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                       <a class="dropdown-item" href="#">%</a>
                                       <a class="dropdown-item" href="#">Montant</a>
                                     </div>
-                                  </div>   
+                                  </div>
                               </td>
 
 
-                                
+
                             </tr>
 
                             <tr>
@@ -1106,7 +1088,7 @@
                               <td colspan="10 ">
                                 <button class="etr-btn">Entrer</button>
                               </td>
-                              
+
                             </tr>
                           </tbody>
                         </table>
@@ -1114,7 +1096,7 @@
                     <!-- </div> -->
                       </tbody>
                     </table>
-                 
+
                   </div>
 
                 </div>

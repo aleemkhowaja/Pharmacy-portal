@@ -9,14 +9,14 @@
     <div class="row">
 
       <div class="col page-head col-md-10">
-        <h2>Citation</h2>
+        <h2>Devis</h2>
       </div>
 
       <div class=" col col-2 col-sm-1 cmnpad">
         <div class="dropdown show dropright ">
           <a class="btn btn-secondary dropdown-toggle bell-icon-dd" href="#" role="button" id="dropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="../Images/Icons/bell.png" alt="Notification" class="bell-icon">
+            <img src="../../../../assets/Icons/bell.png" alt="Notification" class="bell-icon">
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -48,19 +48,20 @@
         <div class="col col-12 col-md-4">
           <div class="search-box">
             <input type="text" placeholder="Type to search..">
-            <div class="search-icon searchbtn ">
-              <i class="fas fa-search"></i>
+            <div class="search-icon searchbtn" (click)="searching = true">
+              <i style="line-height: inherit" class="fas fa-search"></i>
             </div>
-            <div class="cancel-icon crossbtn">
+
+            <div class="cancel-icon crossbtn" *ngIf="searching" (click)="searching = false">
               <i class="fas fa-times"></i>
             </div>
-            <div class="search-data">
-            </div>
+
+            <div class="search-data"></div>
           </div>
         </div>
       </div>
 
-      <div class="row search-row">
+      <div class="row" *ngIf="searching">
         <div class="col">
           <table class="table">
             <tbody>
@@ -100,201 +101,34 @@
                 <thead>
                   <tr>
                     <th scope="col">Numéro de transaction</th>
-                    <th scope="col">Client Name</th>
-                    <th scope="col">Valable jusque</th>
+                    <th scope="col">Nom du client</th>
+                    <th scope="col">Valable jusqu'au</th>
                     <th scope="col"> Total</th>
                     <th scope="col">Statut</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
+                  <tr  *ngFor="let item of lstSale" [routerLink]="['/sale-invoice', item.id]">
+                    <th scope="row">{{item.transactionNumber}}</th>
+                    <td>{{ item.customer?.lastName }}</td>
+                    <td>{{ item.transDate | date: 'dd-MM-yyyy' }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td *ngIf="item?.transStatus == 'Complété'">
+                      <span class="status-com status-sign"> {{item?.transStatus}} </span>
+                    </td>
+                    <td *ngIf="item?.transStatus == 'En attente'" >
+                      <span class="status-sign-pen status-sign"> {{item?.transStatus}} </span>
+                    </td>
+                    <td  *ngIf="item?.transStatus == 'Annulé'">
+                      <span class="status-sign-pen status-sign"> {{item?.transStatus}} </span>
+                    </td>
+                    <td  *ngIf="item?.transStatus == 'Certifé'">
+                      <span class="status-sign-pen status-sign"> {{item?.transStatus}} </span>
+                    </td>
+                    <td>
+                      <span class="pdf-icon"> <a  class="fas fa-file-pdf" [routerLink]="['/sale-pdf-report', item?.id]"> </a></span>
+                    </td>
                   </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">DEV_1</th>
-                    <td>amine bouami</td>
-                    <td>27-02-2021</td>
-                    <td>15.30</td>
-                    <td class="status-sign"> <span class="status-sign-pen">En attente</span></td>
-                    <td><span class="pdf-icon"><i class="fas fa-file-pdf"></i></span></td>
-                  </tr>
-
-
-
                 </tbody>
               </table>
 
@@ -305,47 +139,8 @@
 
       </div>
       <br>
-      <div class="row">
-        <div class="col">
-          <div class="page-num">
-            <div class="row justify-content-end">
-
-              <div class="col col-12 col-md-2">
-                <div class="page-num-inp">
-                  <input type="number" value="10">
-                  <button>Entrer</button>
-                </div>
-              </div>
-              <div class="col-12 col col-md-6">
-                <div class="page-search">
-                  <input type="text" placeholder="Page search">
-                  <button class="btn ">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-4 col col-12 ">
-                <div class="page-num-cont">
-
-                  <a href="#" class="page-num-link "><span class=" back-arrw page-count "><i class="fas fa-chevron-left"></i></span></a>
-                  <a href="#" class="page-num-link "><span class=" one-arrw page-count active-page">1</span></a>
-                  <a href="#" class="page-num-link"><span class=" two-arrw page-count">2</span></a>
-
-
-                  <a href="#" class="page-num-link"><span class=" page-dots">...</span></a>
-
-
-                  <a href="#" class="page-num-link"><span class=" three-arrw page-count">24</span></a>
-                  <a href="#" class="page-num-link"><span class=" for-arrw page-count"><i class="fas fa-chevron-right"></i></span></a>
-
-                </div>
-              </div>
-
-
-            </div>
-
-          </div>
-        </div>
+      <div *ngIf="pagination" class="mt-1">
+        <app-pagination [pagination]="pagination" (pageNumberChanged)="loadLst($event)"></app-pagination>
       </div>
 
     </div>

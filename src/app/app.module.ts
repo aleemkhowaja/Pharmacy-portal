@@ -61,6 +61,7 @@ import { SaleInvoiceComponent } from './sale/sale-invoice/sale-invoice.component
 import { ProductQuantityDetailDialogComponent } from './common-services/dialogs/product-quantity-detail-dialog/product-quantity-detail-dialog.component';
 import { GlobalDiscountDialogComponent } from './common-services/dialogs/global-discount-dialog/global-discount-dialog.component';
 import { AfterApprovePurchaseComponent } from './purchase-order/after-approve-purchase/after-approve-purchase.component';
+import {SalePdfReportComponent} from './sale/sale-pdf-report/sale-pdf-report.component';
 
 
 
@@ -111,7 +112,8 @@ import { AfterApprovePurchaseComponent } from './purchase-order/after-approve-pu
     ProductSuggestionDetailsComponent,
     ProductQuantityDetailDialogComponent,
     GlobalDiscountDialogComponent,
-    AfterApprovePurchaseComponent
+    AfterApprovePurchaseComponent,
+    SalePdfReportComponent,
   ],
   imports: [
     CommonModule,

@@ -50,6 +50,7 @@ import { UpdateInventoryComponent } from './stock/update-inventory/update-invent
 import { InventoryDetailsComponent } from './stock/inventory-details/inventory-details.component';
 import { SearchImportComponent } from './stock/search-import/search-import.component';
 import { AddImportComponent } from './stock/add-import/add-import.component';
+import {SalePdfReportComponent} from './sale/sale-pdf-report/sale-pdf-report.component';
 
 const routes: Routes = [
   {
@@ -98,7 +99,7 @@ const routes: Routes = [
     component: AddProductComponent,
     data: { title: 'Update Product' },
   },
-  
+
   {
     path: 'archive',
     component: ArchiveComponent,
@@ -199,6 +200,12 @@ const routes: Routes = [
     component: SaleInvoiceComponent,
     data: { title: 'Sale Invoice' },
   },
+  {
+    path: 'sale-pdf-report/:id',
+    component: SalePdfReportComponent,
+    data: { title: 'Informations facture' },
+  },
+
 
   //quote
 
@@ -314,7 +321,7 @@ export const routingComponents = [
   InventoryDetailsComponent,
   SearchImportComponent,
   AddImportComponent,
-  SaleComponent, 
+  SaleComponent,
   SearchSaleComponent,
   AddSaleComponent,
   SaleDetailsComponent,

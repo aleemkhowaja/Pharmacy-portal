@@ -3,11 +3,10 @@ import gql from 'graphql-tag';
 export const ALL_TRANSACTION_URL = gql`
 query
     ($pageNumber: Int!, $pageSize: Int!, $sortOrder : String!, $sortBy : String!, $transactionNumber : String,
-    $customerName : String, $amount : BigDecimal, $transType : String)
+    $customerName : String, $amount : BigDecimal, $transType : String, $isQuote : Boolean)
     {
-
         getAllTransaction(pageNumber : $pageNumber, pageSize: $pageSize, sortOrder: $sortOrder, sortBy: $sortBy,
-            filter:{transactionNumber : $transactionNumber, type :  $transType, customer:{lastName : $customerName}, amount : $amount})
+            filter:{transactionNumber : $transactionNumber, type : $transType, isQuote : $isQuote, customer:{lastName : $customerName}, amount : $amount})
     {
     id,
     customer{
@@ -22,6 +21,7 @@ query
         reference,
         isDelivered,
         type,
+        isQuote,
        count,
        status,
        createdBy {

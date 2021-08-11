@@ -316,10 +316,10 @@ export class SaleService {
       query: ALL_TRANSACTION_URL,
 
       variables : {
-        pageNumber : pageNum-1,
+        pageNumber : pageNum - 1,
         pageSize : itemPerPage,
-        sortOrder : "DESC",
-        sortBy : "id",
+        sortOrder : 'DESC',
+        sortBy : 'id',
         transactionNumber: saleModel.transactionNumber,
         customerName : saleModel.customerName,
         amount : saleModel.amount ,
@@ -328,7 +328,8 @@ export class SaleService {
         transStatus : saleModel.transStatus,
         reference : saleModel.reference,
         isDelivered : saleModel.isDelivered,
-        transType : "sale"
+        transType : 'sale',
+        isQuote : saleModel.isQuote
       }
     });
   }

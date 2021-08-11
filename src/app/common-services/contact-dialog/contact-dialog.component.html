@@ -7,7 +7,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Fenêtre Pop-up</h4>
-          <button type="button" class="close" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
@@ -19,28 +19,30 @@
           <br>
           <table class="table table-striped">
             <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Nom</th>
-                <th scope="col">Téléphone</th>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prénom</th>
+              <th scope="col">Téléphone</th>
 
-              </tr>
+            </tr>
             </thead>
             <tbody>
-               <tr *ngFor="let item of lstClient" (click)="setCustomerId(item)" >
-                <th scope="row"><input type="radio" class="radio-btn"></th>
-                <td>{{ item.lastName }}</td>
-                <td>{{ item.phone }}</td>
-              </tr>
+            <tr>
+              <th scope="row"><input type="radio" class="radio-btn"></th>
+              <td> Grossiste COPHAMET</td>
+              <td></td>
+              <td>15 52 41 47 45</td>
+            </tr>
             </tbody>
           </table>
         </div>
-        <div *ngIf="pagination" class="mt-1">
-            <app-pagination
-              [pagination]="pagination"
-              (pageNumberChanged)="loadLst($event)"
-            ></app-pagination>
-          </div>
+        <div *ngIf="utitlityService.pagination" class="mt-1">
+          <app-pagination
+            [pagination]="utitlityService.pagination"
+            (pageNumberChanged)="loadLst($event)"
+          ></app-pagination>
+        </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
